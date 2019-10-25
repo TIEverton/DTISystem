@@ -1,0 +1,27 @@
+html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: linear-gradient(#007bff, #0052aa);
+    
+}
+
+.img-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+    margin-top: 3%;
+}
+
+.text-login {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.botaoentrar {
+    text-align: right;
+}
