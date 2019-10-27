@@ -35,7 +35,7 @@
                                 <input type="password" class="form-control" placeholder="Sua senha" aria-label="Password" aria-describedby="basic-addon1">
                         </div>
                         <div class="botaoentrar">
-                            <a href="home.html"><button type="button" class="btn btn-primary">Entrar</button></a>
+                            <a href="home.php"><button type="button" class="btn btn-primary">Entrar</button></a>
                         </div>
                     </div>
             </div>
