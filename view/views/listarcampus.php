@@ -1,11 +1,10 @@
-<?php  
-session_start();
-if (!isset($_SESSION['logado'])) {
-  header("location: TelaLogin.php");
+<?php 
+include_once '../../config/config.php';
+include_once '../../controller/campus/Campus.DAO.php';
 
-    session_destroy();
-} 
+include_once '../../config/sessions.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -19,7 +18,7 @@ if (!isset($_SESSION['logado'])) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <title>DTI - Home &copy;</title>
+    <title>DTI - Listar Campus &copy;</title>
 </head>
 <body>
 <!-- INCLUDE MENU -->
@@ -27,34 +26,36 @@ if (!isset($_SESSION['logado'])) {
   include 'menu.php'; 
 ?>
 <!-- FIM INCLUDE MENU -->
+<?php 
+$reser = new campus_DAO;
+$resultado = $reser->listarCampus();
+?>
 
 <div class="container">
-        <div class="row col-md-13">
-        <table class="table table-striped custab text-center" border="1">
-        <thead>
-            <tr class="text-center" style="background-color: #0052aa; color: white;">
-                <th>Professor</th>
-                <th>Data</th>
-                <th>Equipamento</th>
-                <th class="text-center">Ação</th>
-            </tr>
-        </thead>
-                <tr>
-                    <td>Everton Pinheiro da Silva</td>
-                    <td>14/05/2002</td>
-                    <td>VGA 03</td>
-                    <td class="text-center"><a class="btn btn-primary btn-sm" href="#"><i class="fa fa-check-square" aria-hidden="true"></i></span> Devolver</a></td>
-                </tr>
 
-                <tr>
-                  <td>1</td>
-                  <td>News</td>
-                  <td>News Cate</td>
-                  <td class="text-center"><a class="btn btn-primary btn-sm" href="#"><i class="fa fa-check-square" aria-hidden="true"></i></span> Devolver</a></td>
-              </tr>
-        </table>
-        </div>
-    </div>
+<table class="table table-striped custab text-center" border="1">
+                <thead>
+                    <tr class="text-center" style="background-color: #0052aa; color: white;">
+                        <th>Nome</th>
+                        <th>Endereço</th>
+                        <th class="text-center">Ação</th>
+                    </tr>
+                </thead>
+                <?php
+                foreach($resultado as $res){
+                ?>  
+                        <tr>
+                            <td><?php echo $res['nome'] ?></td>
+                            <td><?php echo $res['endereco'] ?></td>
+                            <td>
+                              <a class="btn btn-danger btn-sm" href="../../controller/campus/Campus.controller.php?acao=delete&id=<?php echo $res['id'] ?>" name="acao" onClick="remover()"><i class="fa fa-times-circle" aria-hidden="true"></i> Excluir</span> </a>
+                              <a class="btn btn-primary btn-sm" href="editarcampus.php?id=<?php echo $res['id'] ?>"><i class="fa fa-refresh" aria-hidden="true"></i></i> Atualizar</span> </a>
+                            </td>
+                        </tr>
+                <?php } ?>
+</table>
+
+</div>
 <!-- Modal -->
 <div class="modal fade" id="modalNotificacao" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
@@ -69,9 +70,8 @@ if (!isset($_SESSION['logado'])) {
             <table class="table table-striped custab text-center" border="1">
                 <thead>
                     <tr class="text-center" style="background-color: #0052aa; color: white;">
-                        <th>Professor</th>
-                        <th>Sala</th>
-                        <th>Descrição</th>
+                        <th>Nome</th>
+                        <th>Endereço</th>
                         <th class="text-center">Ação</th>
                     </tr>
                 </thead>

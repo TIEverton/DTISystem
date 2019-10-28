@@ -1,3 +1,6 @@
+<?php 
+include_once '../../config/sessions.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -20,6 +23,7 @@
 ?>
 <!-- FIM INCLUDE MENU -->
 <div class="container">
+<form method="POST" action="../../controller/campus/Campus.controller.php">
 <div class="row justify-content-center">
   <div class="col-md-6">
     <div class="form-group" style="margin-top: 3%;">
@@ -28,7 +32,7 @@
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>text_fields</i></span>
             </div>
-            <input type="text" class="form-control" placeholder="Digite o nome do Campus." aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" name="nome" placeholder="Digite o nome do Campus." aria-label="Username" aria-describedby="basic-addon1">
       </div>
 
       CNPJ:
@@ -36,7 +40,7 @@
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>featured_play_list</i></span>
             </div>
-            <input type="text" class="form-control" placeholder="Digite o CNPJ do Campus." aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" name="cnpj" placeholder="Digite o CNPJ do Campus." aria-label="Username" aria-describedby="basic-addon1">
       </div>
 
       Endereço:
@@ -44,7 +48,7 @@
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>map</i></span>
             </div>
-            <input type="text" class="form-control" placeholder="Digite o endereço do Campus." aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" name="endereco" placeholder="Digite o endereço do Campus." aria-label="Username" aria-describedby="basic-addon1">
       </div>
 
       Rua:
@@ -52,7 +56,7 @@
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>my_location</i></span>
             </div>
-            <input type="text" class="form-control" placeholder="Digite a rua do Campus." aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" name="rua" placeholder="Digite a rua do Campus." aria-label="Username" aria-describedby="basic-addon1">
       </div>
 
       Número:
@@ -60,13 +64,13 @@
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>filter_1</i></span>
             </div>
-            <input type="text" class="form-control" placeholder="Digite o número do Campus." aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" name="numero" placeholder="Digite o número do Campus." aria-label="Username" aria-describedby="basic-addon1">
       </div>
-
+      <input type="hidden" name="acao" class="form-control" value="inserir"/>
       <div class="botaoentrar" style="margin-top: 10px;">
-          <a href="home.html"><button type="button" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button></a>
-          <a href="home.html"><button type="button" class="btn btn-warning"><i class="fa fa-eraser" aria-hidden="true"></i> Limpar</button></a>
-          <a href="home.html"><button type="button" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</button></a>
+        <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button>
+        <button type="reset" class="btn btn-warning"><i class="fa fa-eraser" aria-hidden="true"></i> Limpar</button>
+        <a href="listarcampus.php"><button type="button" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</button></a>
       </div>
     </div>
   </div>
@@ -108,6 +112,7 @@
             </div>
           </div>
         </div>
+        </form>
       </div>
 </body>
 </html>
