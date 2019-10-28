@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!--Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark lighten-1">
         <a class="navbar-brand" href="#">
@@ -60,8 +64,7 @@
             </li>
             <li class="nav-item avatar dropdown active">
               <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                Nome do Usuário <i class="fa fa-user-circle" aria-hidden="true"></i> 
+                aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['user_name'];?> <i class="fa fa-user-circle" aria-hidden="true"></i> 
               </a>
               <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
                 aria-labelledby="navbarDropdownMenuLink-55">
