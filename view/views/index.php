@@ -14,17 +14,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <title>DTI - Login &copy;</title>
 </head>
 <body>
-<form method="POST" action="../controller/usuario/Usuario.controller.php">
+<form method="POST" action="../../controller/usuario/Usuario.controller.php">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
                  <div class="img-login"> 
-                     <img class="img-login" src="../img/logodtisystembranca.png"> 
+                     <img class="img-login" src="../../img/logodtisystembranca.png"> 
                  </div> 
 
             <div class="p-3 card">

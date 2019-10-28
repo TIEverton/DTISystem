@@ -26,18 +26,18 @@
                 echo $erro->getMessage();
             }
         }
-        public function insert($login,$senha,$nome,$cpf,$email,$nivel,$acesso){
+        public function insert($nome,$login,$senha,$email,$cpf,$nivel,$acesso){
             try{
-                $sql = "INSERT INTO $this->tabela(login, senha, nome, cpf, email, nivel)
-             VALUES (:login, :senha, :nome, :cpf, :email, :nivel)";
+                $sql = "INSERT INTO $this->tabela(nome, login, senha, email, cpf, nivel)
+             VALUES (:nome, :login, :senha, :email, :cpf, :nivel)";
                 $exec = DB::prepare($sql);
+                $exec->bindParam(':nome',$nome);
                 $exec->bindParam(':login',$login);
                 $exec->bindParam(':senha',$senha);
-                $exec->bindParam(':nome',$nome);
-                $exec->bindParam(':cpf',$cpf);
                 $exec->bindParam(':email',$email);
+                $exec->bindParam(':cpf',$cpf);
                 $exec->bindParam(':nivel',$nivel);
-                echo "<script>alert('Usuario cadastrado com sucesso!!');window.location ='../../view/telas/TelaCadastroUsuario.php';</script>";
+                echo "<script>alert('Usuario cadastrado com sucesso!');window.location ='../../view/views/cadastrousuario.php';</script>";
                 return $exec->execute();
             }catch(PDOException $erro){
                 echo $erro->getMessage();
@@ -45,17 +45,17 @@
         }
         public function update($id){
             try{
-                $sql = "UPDATE $this->tabela SET login = :login, senha = :senha, nome = :nome,
-                cpf = :cpf, email = :email, nivel = :nivel WHERE id = :id";
+                $sql = "UPDATE $this->tabela SET nome = :nome, login = :login, senha = :senha,
+                email = :email, cpf = :cpf, nivel = :nivel WHERE id = :id";
                 $exec = DB::prepare($sql);
                 $exec->bindValue(':id', $id, PDO::PARAM_INT);
+                $exec->bindValue(':nome', $this->getNome());
                 $exec->bindValue(':login', $this->getLogin());
-                $exec->bindValue(':senha', $this->getSenha());
-                $exec->bindValue(':nome',$this->getNome());
-                $exec->bindValue(':cpf', $this->getCPF());
+                $exec->bindValue(':senha',$this->getSenha());
                 $exec->bindValue(':email', $this->getEmail());
+                $exec->bindValue(':cpf', $this->getCPF());
                 $exec->bindValue(':nivel', $this->getNivel());
-                echo "<script>alert('Usuario atualizado com sucesso!!');window.location ='../../view/telas/TelaListarUsuario.php';</script>";
+                echo "<script>alert('Usuario atualizado com sucesso!!');window.location ='../../view/views/listarusuario.php';</script>";
                 return $exec->execute();
             }catch(PDOException $erro){
                 echo "Erro".$erro->getMessage();
@@ -67,7 +67,7 @@
                 $sql = "DELETE FROM $this->tabela WHERE id = :id";
                 $exec = DB::prepare($sql);
                 $exec->bindValue(':id', $id, PDO::PARAM_INT);
-                echo "<script>alert('Usuario deletado com sucesso!!');window.location ='../../view/telas/TelaListarUsuario.php';</script>";
+                echo "<script>alert('Usuario deletado com sucesso!');window.location ='../../view/views/listarusuario.php';</script>";
 
                 return $exec->execute();
                 
@@ -86,14 +86,14 @@
                 $users = $exec->fetchAll(PDO::FETCH_ASSOC);
                 if(count($users) <= 0){
                 echo "<script>alert('Login falhou, digite os dados corretamente!');
-                window.location ='../../view/index.php';</script>";
+                window.location ='../../view/views/index.php';</script>";
                 }else{
                     $user = $users[0];
                     session_start();
                     $_SESSION['logado'] = true;
                     $_SESSION['user_id'] = $user['id'];
                     $_SESSION['user_name'] = $user['nome'];  
-                    echo "<script>window.location='../../view/home.php'</script>";
+                    echo "<script>window.location='../../view/views/home.php'</script>";
                 }
            }catch(PDOException $erro){
                echo $erro->getMessage();
@@ -101,7 +101,7 @@
            }
         }
         function listarUsuarios(){
-            $resultado = "SELECT * FROM usuario ORDER BY id ASC";
+            $resultado = "SELECT * FROM usuarios ORDER BY id ASC";
             $resultado = DB::prepare($resultado);
             $resultado->execute();
             while($dados = $resultado->fetch(PDO::FETCH_ASSOC)){

@@ -23,11 +23,11 @@
             if($acao == "update"){
                 $userClass->setId($_POST['id']);
             }
+            $userClass->setNome($_POST['nome']);
             $userClass->setLogin($_POST['login']);
             $userClass->setSenha($_POST['senha']);
-            $userClass->setNome($_POST['nome']);
-            $userClass->setCPF($_POST['cpf']);
             $userClass->setEmail($_POST['email']);
+            $userClass->setCPF($_POST['cpf']);
             $userClass->setNivel($_POST['nivel']);
         }
     }
@@ -35,7 +35,7 @@
 switch($acao){
     case 'inserir':
         try{
-            $userClass->insert($userClass->getLogin(),$userClass->getSenha(),$userClass->getNome(),$userClass->getCPF(),$userClass->getEmail(),$userClass->getNivel(),$userClass->getNivel());
+            $userClass->insert($userClass->getNome(),$userClass->getLogin(),$userClass->getSenha(),$userClass->getEmail(),$userClass->getCPF(),$userClass->getNivel(),$userClass->getNivel());
         }catch(Exception $e){
             echo $e->getMessage();
         }
