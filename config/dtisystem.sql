@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28-Out-2019 às 18:01
--- Versão do servidor: 10.4.8-MariaDB
--- versão do PHP: 7.3.10
+-- Generation Time: 28-Out-2019 às 19:26
+-- Versão do servidor: 10.1.28-MariaDB
+-- PHP Version: 7.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `dtisystem`
+-- Database: `dtisystem`
 --
 
 -- --------------------------------------------------------
@@ -47,6 +47,29 @@ INSERT INTO `campus` (`id`, `nome`, `cnpj`, `endereco`, `rua`, `numero`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `equipamento`
+--
+
+CREATE TABLE `equipamento` (
+  `id` int(11) NOT NULL,
+  `identificador` varchar(300) NOT NULL,
+  `nome` varchar(200) NOT NULL,
+  `quantidade` int(250) NOT NULL,
+  `descricao` varchar(300) NOT NULL,
+  `campus` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `equipamento`
+--
+
+INSERT INTO `equipamento` (`id`, `identificador`, `nome`, `quantidade`, `descricao`, `campus`) VALUES
+(1, 'tombo', 'nome', 6, 'desc', 2),
+(2, 'tombo', 'nome22222', 6, 'desc', 2);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `usuarios`
 --
 
@@ -65,39 +88,39 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nome`, `login`, `senha`, `email`, `cpf`, `nivel`) VALUES
-(1, 'Everton Pinheiro', 'teste', 'teste', 'teste', '11111111111', 'Teste');
+(12, 'Ãlisson', 'alisson1', '123', 'as119459@gmail.com', '12', 'Administrador / Func');
 
 --
--- Índices para tabelas despejadas
+-- Indexes for dumped tables
 --
 
 --
--- Índices para tabela `campus`
+-- Indexes for table `equipamento`
 --
-ALTER TABLE `campus`
+ALTER TABLE `equipamento`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `usuarios`
+-- Indexes for table `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de tabela `campus`
+-- AUTO_INCREMENT for table `equipamento`
 --
-ALTER TABLE `campus`
+ALTER TABLE `equipamento`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de tabela `usuarios`
+-- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

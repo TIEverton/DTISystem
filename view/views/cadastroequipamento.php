@@ -1,3 +1,8 @@
+<?php 
+include_once '../../config/sessions.php';
+require_once '../../config/DB.php';
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -22,13 +27,15 @@
 <div class="container">
 <div class="row justify-content-center">
   <div class="col-md-6">
+  <form method="POST" action="../../controller/equipamento/Equipamento.controller.php">
     <div class="form-group" style="margin-top: 3%;">
+      <input type="hidden" name="id" value="" />
       Numeração:
       <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>format_list_numbered</i></span>
             </div>
-            <input type="text" class="form-control" placeholder="Digite a numeração do Equipamento." aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" name="identificador" class="form-control" placeholder="Digite a numeração do Equipamento." aria-label="Username" aria-describedby="basic-addon1">
       </div>
 
       Nome:
@@ -36,47 +43,52 @@
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>text_fields</i></span>
             </div>
-            <input type="text" class="form-control" placeholder="Digite o nome do Equipamento, EX: Cabo VGA." aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" name="nome" class="form-control" placeholder="Digite o nome do Equipamento, EX: Cabo VGA." aria-label="Username" aria-describedby="basic-addon1">
       </div>
 
-      Tipo:
+      Quantidade:
       <div class="input-group mb-3">
             <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>lock</i></span>
+            <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>text_fields</i></span>
             </div>
-            <input type="text" class="form-control" placeholder="Digite uma senha." aria-label="Username" aria-describedby="basic-addon1">
+            <input type="number" name="quantidade" class="form-control" placeholder="Digite a quantidade unitária desse equipamento" aria-label="Username" aria-describedby="basic-addon1">
       </div>
+
+      Campus:
+      <select name="campus" class="form-control" id="exampleFormControlSelect1">
+          <option>Selecione um campus:</option>
+          <?php
+              $result_campus = "SELECT * FROM campus";
+              $exec = DB::prepare($result_campus);
+              $exec->execute();
+              while($dados = $exec->fetch(PDO::FETCH_ASSOC)):?>
+                <option value="<?php echo $dados['id']?>">
+                  <?php echo $dados['nome']?>
+                </option>
+            <?php
+              endwhile;
+              ?>
+      </select>
+      <br>
 
       Descrição:
       <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>insert_comment</i></span>
             </div>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+            <textarea name="descricao" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
       </div>
 
-      Campus:
-      <select class="form-control" id="exampleFormControlSelect1">
-          <option>Selecione um campus:</option>
-          <option>Prédio Principal</option>
-          <option>Anexo</option>
-          <option>Clínica Escola</option>
-      </select>
-      <br>
-      Sala:
-      <select class="form-control" id="exampleFormControlSelect1">
-          <option>Selecione uma Sala:</option>
-          <option>Prédio Principal</option>
-          <option>Anexo</option>
-          <option>Clínica Escola</option>
-      </select>
+      <input type="hidden" name="acao" class="form-control" value="inserir"/>
 
-      <div class="botaoentrar" style="margin-top: 10px;">
-          <a href="home.html"><button type="button" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button></a>
-          <a href="home.html"><button type="button" class="btn btn-warning"><i class="fa fa-eraser" aria-hidden="true"></i> Limpar</button></a>
-          <a href="home.html"><button type="button" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</button></a>
-      </div>
     </div>
+      <div class="botaoentrar" style="margin-top: 10px;">
+          <a href="home.html"><button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button></a>
+          <a href="home.html"><button type="reset" class="btn btn-warning"><i class="fa fa-eraser" aria-hidden="true"></i> Limpar</button></a>
+          <a href="####"><button type="button" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</button></a>
+      </div>
+
+    </form>
   </div>
 </div>
 </div>
