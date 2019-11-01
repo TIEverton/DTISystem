@@ -51,21 +51,14 @@ include_once '../../config/sessions.php';
             <input type="text" class="form-control" name="endereco" placeholder="Digite o endereço do Campus." aria-label="Username" aria-describedby="basic-addon1">
       </div>
 
-      Rua:
+      Bairro:
       <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>my_location</i></span>
             </div>
-            <input type="text" class="form-control" name="rua" placeholder="Digite a rua do Campus." aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" name="bairro" placeholder="Digite a rua do Campus." aria-label="Username" aria-describedby="basic-addon1">
       </div>
 
-      Número:
-      <div class="input-group mb-3">
-            <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>filter_1</i></span>
-            </div>
-            <input type="text" class="form-control" name="numero" placeholder="Digite o número do Campus." aria-label="Username" aria-describedby="basic-addon1">
-      </div>
       <input type="hidden" name="acao" class="form-control" value="inserir"/>
       <div class="botaoentrar" style="margin-top: 10px;">
         <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button>

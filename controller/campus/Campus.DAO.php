@@ -26,16 +26,15 @@
                 echo $erro->getMessage();
             }
         }
-        public function insert($nome,$cnpj,$endereco,$rua,$numero){
+        public function insert($nome,$cnpj,$endereco,$bairro){
             try{
-                $sql = "INSERT INTO $this->tabela(nome, cnpj, endereco , rua, numero)
-             VALUES (:nome, :endereco , :cnpj, :rua, :numero)";
+                $sql = "INSERT INTO $this->tabela(nome, cnpj, endereco , bairro)
+             VALUES (:nome, :endereco , :cnpj, :bairro)";
                 $exec = DB::prepare($sql);
                 $exec->bindParam(':nome',$nome);
                 $exec->bindParam(':cnpj',$cnpj);
                 $exec->bindParam(':endereco',$endereco);
-                $exec->bindParam(':rua',$rua);
-                $exec->bindParam(':numero',$numero);
+                $exec->bindParam(':bairro',$bairro);
                 echo "<script>alert('Campus cadastrado com sucesso!');window.location ='../../view/views/cadastrocampus.php';</script>";
                 return $exec->execute();
               
@@ -45,15 +44,13 @@
         }
         public function update($id){
             try{
-                $sql = "UPDATE $this->tabela SET nome = :nome, cnpj = :cnpj, endereco = :endereco, rua = :rua,
-                numero = :numero WHERE id = :id";
+                $sql = "UPDATE $this->tabela SET nome = :nome, cnpj = :cnpj, endereco = :endereco, bairro = :bairro WHERE id = :id";
                 $exec = DB::prepare($sql);
                 $exec->bindValue(':id', $id, PDO::PARAM_INT);
                 $exec->bindValue(':nome', $this->getNome());
                 $exec->bindValue(':cnpj', $this->getCNPJ());
                 $exec->bindValue(':endereco', $this->getEndereco());
-                $exec->bindValue(':rua',$this->getRua());
-                $exec->bindValue(':numero', $this->getNumero());
+                $exec->bindValue(':bairro',$this->getbairro());
                 echo "<script>alert('Campus editado com sucesso!');window.location ='../../view/views/listarcampus.php';</script>";
                 return $exec->execute();
             }catch(PDOException $erro){

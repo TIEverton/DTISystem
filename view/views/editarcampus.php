@@ -22,7 +22,7 @@ include_once '../../config/config.php';
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <title>DTI - Editar Usuário &copy;</title>
+    <title>DTI - Editar Bairro &copy;</title>
 </head>
 <body>
 <!-- INCLUDE MENU -->
@@ -69,22 +69,14 @@ include_once '../../config/config.php';
             <input type="text" class="form-control" name="endereco" placeholder="Digite o endereço do Campus." aria-label="Username" aria-describedby="basic-addon1" value="<?php if(isset($resultaEditar['endereco'])) { echo $resultaEditar['endereco']; } ?>">
       </div>
 
-      Rua:
+      Bairro:
       <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>my_location</i></span>
             </div>
-            <input type="text" class="form-control" name="rua" placeholder="Digite a rua do Campus." aria-label="Username" aria-describedby="basic-addon1" value="<?php if(isset($resultaEditar['rua'])) { echo $resultaEditar['rua']; } ?>">
+            <input type="text" class="form-control" name="bairro" placeholder="Digite o bairro do Campus." aria-label="Username" aria-describedby="basic-addon1" value="<?php if(isset($resultaEditar['bairro'])) { echo $resultaEditar['bairro']; } ?>">
       </div>
-
-      Número:
-      <div class="input-group mb-3">
-            <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>filter_1</i></span>
-            </div>
-            <input type="text" class="form-control" name="numero" placeholder="Digite o número do Campus." aria-label="Username" aria-describedby="basic-addon1" value="<?php if(isset($resultaEditar['numero'])) { echo $resultaEditar['numero']; } ?>">
-      </div>
-
+      
       <input type="hidden" name="acao" class="form-control" value="update">
       <input type="hidden" name="id" class="form-control" value="<?php echo $id?>"/>
       <div class="botaoentrar" style="margin-top: 10px;">

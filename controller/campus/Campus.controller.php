@@ -13,9 +13,8 @@
         $CampusClass->setId($_GET['id']);
     }
     if($acao != "delete"){
-        if(!empty($CampusClass->getnome()) || !empty($CampusClass->getRua()) ||
-           !empty($CampusClass->getCNPJ())   || !empty($CampusClass->getNumero()) ||
-           !empty($CampusClass->getEndereco())){
+        if(!empty($CampusClass->getnome()) || !empty($CampusClass->getBairro()) ||
+           !empty($CampusClass->getCNPJ())   || !empty($CampusClass->getEndereco())){
             echo "Algum dado vazio";
         }else{
             if($acao == "update"){
@@ -24,15 +23,14 @@
             $CampusClass->setNome($_POST['nome']);
             $CampusClass->setCNPJ($_POST['cnpj']);
             $CampusClass->setEndereco($_POST['endereco']);
-            $CampusClass->setRua($_POST['rua']);
-            $CampusClass->setNumero($_POST['numero']);
+            $CampusClass->setBairro($_POST['bairro']);
         }
     }
 
 switch($acao){
     case 'inserir':
         try{
-            $CampusClass->insert($CampusClass->getNome(),$CampusClass->getCNPJ(),$CampusClass->getEndereco(),$CampusClass->getRua(),$CampusClass->getNumero());
+            $CampusClass->insert($CampusClass->getNome(),$CampusClass->getCNPJ(),$CampusClass->getEndereco(),$CampusClass->getBairro());
         }catch(Exception $e){
             echo $e->getMessage();
         }
