@@ -19,6 +19,7 @@ if (!isset($_SESSION['logado'])) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="../../js/filtrotabela.js"></script>
     <title>DTI - Home &copy;</title>
 </head>
 <body>
@@ -29,8 +30,24 @@ if (!isset($_SESSION['logado'])) {
 <!-- FIM INCLUDE MENU -->
 
 <div class="container">
-        <div class="row col-md-13">
-        <table class="table table-striped custab text-center" border="1">
+  <br>
+<div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>search</i></span>
+          </div>
+          <input type="text" id="inputPesquisa" onkeyup="filtrarTable()" class="form-control w-25" style="margin-right: 10px;" name="endereco" placeholder="Consulte um item da tabela" aria-label="Username" aria-describedby="basic-addon1" value="<?php if(isset($resultaEditar['endereco'])) { echo $resultaEditar['endereco']; } ?>">
+
+      <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>location_city</i></span>
+      <select class="form-control" id="exampleFormControlSelect1">
+          <option>Filtre um Campus</option>
+          <option>Prédio Principal</option>
+          <option>Anexo</option>
+          <option>Clínica Escola</option>
+      </select>
+</div><br>
+
+  <div class="row md-13">
+        <table id="pesquisaTable" class="table table-striped custab text-center" border="1"style="margin: 0px;">
         <thead>
             <tr class="text-center" style="background-color: #0052aa; color: white;">
                 <th>Professor</th>
@@ -39,6 +56,27 @@ if (!isset($_SESSION['logado'])) {
                 <th class="text-center">Ação</th>
             </tr>
         </thead>
+                <tr>
+                    <td>Everton Pinheiro da Silva</td>
+                    <td>12/05/2002</td>
+                    <td>VGA 03</td>
+                    <td class="text-center"><a class="btn btn-primary btn-sm" href="#"><i class="fa fa-check-square" aria-hidden="true"></i></span> Devolver</a></td>
+                </tr>
+
+                <tr>
+                    <td>Everton Pinheiro da Silva</td>
+                    <td>13/05/2002</td>
+                    <td>VGA 03</td>
+                    <td class="text-center"><a class="btn btn-primary btn-sm" href="#"><i class="fa fa-check-square" aria-hidden="true"></i></span> Devolver</a></td>
+                </tr>
+
+                <tr>
+                    <td>Everton Pinheiro da Silva</td>
+                    <td>14/05/2002</td>
+                    <td>VGA 02</td>
+                    <td class="text-center"><a class="btn btn-primary btn-sm" href="#"><i class="fa fa-check-square" aria-hidden="true"></i></span> Devolver</a></td>
+                </tr>
+
                 <tr>
                     <td>Everton Pinheiro da Silva</td>
                     <td>14/05/2002</td>
