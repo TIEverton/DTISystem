@@ -29,7 +29,7 @@
         public function insert($nome,$cnpj,$endereco,$bairro){
             try{
                 $sql = "INSERT INTO $this->tabela(nome, cnpj, endereco , bairro)
-             VALUES (:nome, :endereco , :cnpj, :bairro)";
+             VALUES (:nome, :cnpj, :endereco, :bairro)";
                 $exec = DB::prepare($sql);
                 $exec->bindParam(':nome',$nome);
                 $exec->bindParam(':cnpj',$cnpj);

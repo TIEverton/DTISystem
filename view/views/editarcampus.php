@@ -22,7 +22,7 @@ include_once '../../config/config.php';
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <title>DTI - Editar Bairro &copy;</title>
+    <title>DTI - Editar Campus &copy;</title>
 </head>
 <body>
 <!-- INCLUDE MENU -->
