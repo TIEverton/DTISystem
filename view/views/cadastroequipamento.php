@@ -39,37 +39,43 @@ require_once '../../config/DB.php';
       </div>
 
       Agrupamento:
-      <select name="agrupamento" class="form-control" id="exampleFormControlSelect1" require>
-          <option>Selecione um agrupamento:</option>
-          <?php
-              $result_campus = "SELECT * FROM agrupamento";
-              $exec = DB::prepare($result_campus);
-              $exec->execute();
-              while($dados = $exec->fetch(PDO::FETCH_ASSOC)):?>
-                <option value="<?php echo $dados['id']?>">
-                  <?php echo $dados['nome']?>
-                </option>
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>folder</i></span>
+        <select name="agrupamento" class="form-control" id="exampleFormControlSelect1" require>
+            <option>Selecione um agrupamento:</option>
             <?php
-              endwhile;
-              ?>
-      </select>
+                $result_campus = "SELECT * FROM agrupamento";
+                $exec = DB::prepare($result_campus);
+                $exec->execute();
+                while($dados = $exec->fetch(PDO::FETCH_ASSOC)):?>
+                  <option value="<?php echo $dados['id']?>">
+                    <?php echo $dados['nome']?>
+                  </option>
+              <?php
+                endwhile;
+                ?>
+        </select>
+      </div>
       <br>
 
       Campus:
-      <select name="campus" class="form-control" id="exampleFormControlSelect1" require>
-          <option>Selecione um campus:</option>
-          <?php
-              $result_campus = "SELECT * FROM campus";
-              $exec = DB::prepare($result_campus);
-              $exec->execute();
-              while($dados = $exec->fetch(PDO::FETCH_ASSOC)):?>
-                <option value="<?php echo $dados['id']?>">
-                  <?php echo $dados['nome']?>
-                </option>
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>location_city</i></span>
+        <select name="campus" class="form-control" id="exampleFormControlSelect1" require>
+            <option>Selecione um campus:</option>
             <?php
-              endwhile;
-              ?>
-      </select>
+                $result_campus = "SELECT * FROM campus";
+                $exec = DB::prepare($result_campus);
+                $exec->execute();
+                while($dados = $exec->fetch(PDO::FETCH_ASSOC)):?>
+                  <option value="<?php echo $dados['id']?>">
+                    <?php echo $dados['nome']?>
+                  </option>
+              <?php
+                endwhile;
+                ?>
+        </select>
+      </div>
       <br>
 
       Descrição:

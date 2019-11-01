@@ -26,8 +26,8 @@
 
       Campus:
       <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>location_city</i></span>
-      <select class="form-control" id="exampleFormControlSelect1">
+      <span class="input-group-text" ><i class='material-icons left'>location_city</i></span>
+      <select class="form-control" id="select-campus" name="campus">
           <option>Selecione um campus:</option>
           <option>Prédio Principal</option>
           <option>Anexo</option>
@@ -37,8 +37,8 @@
 
       Sala:
       <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>people</i></span>
-      <select class="form-control" id="exampleFormControlSelect1">
+        <span class="input-group-text" ><i class='material-icons left'>people</i></span>
+      <select class="form-control" name="sala">
           <option>Selecione uma Sala:</option>
           <option>Prédio Principal</option>
           <option>Anexo</option>
@@ -48,8 +48,8 @@
 
       Equipamento:
       <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>keyboard</i></span>
-      <select class="form-control" id="exampleFormControlSelect1">
+            <span class="input-group-text" ><i class='material-icons left'>keyboard</i></span>
+      <select class="form-control" name="equipamento">
           <option>Selecione um Equipamento:</option>
           <option>Prédio Principal</option>
           <option>Anexo</option>
@@ -59,14 +59,14 @@
 
       Data:
       <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>date_range</i></span>
-            <input type="date" class="form-control" placeholder="Digite uma senha." aria-label="Username" aria-describedby="basic-addon1">
+            <span class="input-group-text" ><i class='material-icons left'>date_range</i></span>
+            <input type="date" class="form-control" placeholder="Escolha uma data.">
       </div>
 
       Turno:
       <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>schedule</i></span>
-      <select class="form-control" id="exampleFormControlSelect1">
+            <span class="input-group-text" ><i class='material-icons left'>schedule</i></span>
+      <select class="form-control" name="turno" id="select-turno">
           <option>Selecione um turno:</option>  
           <option>Manhã</option>
           <option>Tarde</option>
@@ -76,8 +76,8 @@
 
       Horário:
       <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>schedule</i></span>
-      <select class="form-control" id="exampleFormControlSelect1">
+            <span class="input-group-text" ><i class='material-icons left'>schedule</i></span>
+      <select class="form-control" name="horario" id="select-horario">
           <option>Selecione uma Horário:</option>
           <option>AB</option>
           <option>CD</option>
@@ -87,9 +87,9 @@
       Observação:
       <div class="input-group mb-3">
             <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>insert_comment</i></span>
+            <span class="input-group-text" ><i class='material-icons left'>insert_comment</i></span>
             </div>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="observacao"></textarea>
       </div>
       
 
@@ -140,5 +140,21 @@
       </div>
     </div>
   </div>
+
+<script>
+  $(document).ready(function(){
+    // SELECT HORARIO
+    $('#select-turno').on('change', function(){
+      $('#select-horario').empty();
+      if($('#select-turno').val() == 'Noite'){
+        $('#select-horario').append('<option value="ab">AB</option>');
+      }else{
+        $('#select-horario').append('<option value="ab">AB</option>');
+        $('#select-horario').append('<option value="cd">CD</option>');        
+      }
+    })
+  })
+</script>
+
 </body>
 </html>

@@ -48,7 +48,7 @@ include_once '../../config/sessions.php';
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>map</i></span>
             </div>
-            <input type="text" class="form-control" name="endereco" placeholder="Digite o endereço do Campus." aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" name="endereco" placeholder="Digite o endereço do Campus. (Rua, N°)" aria-label="Username" aria-describedby="basic-addon1">
       </div>
 
       Bairro:
@@ -56,7 +56,7 @@ include_once '../../config/sessions.php';
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>my_location</i></span>
             </div>
-            <input type="text" class="form-control" name="bairro" placeholder="Digite a rua do Campus." aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" name="bairro" placeholder="Digite o bairro do Campus." aria-label="Username" aria-describedby="basic-addon1">
       </div>
 
       <input type="hidden" name="acao" class="form-control" value="inserir"/>

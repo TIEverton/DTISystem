@@ -33,26 +33,28 @@ $resultado = $reser->listarSala();
 
 <div class="container">
 
-<table class="table table-striped custab text-center" border="1">
-                <thead>
-                    <tr class="text-center" style="background-color: #0052aa; color: white;">
-                        <th>Nome Sala</th>
-                        <th>Campus</th>
-                        <th class="text-center">Ação</th>
-                    </tr>
-                </thead>
-                <?php
-                foreach($resultado as $res){
-                ?>  
-                        <tr>
-                            <td><?php echo $res['nome'] ?></td>
-                            <td><?php echo $res['campus'] ?></td>
-                            <td>
-                              <a class="btn btn-danger btn-sm" href="../../controller/salas/Salas.controller.php?acao=delete&id=<?php echo $res['id'] ?>" name="acao" onClick="remover()"><i class="fa fa-times-circle" aria-hidden="true"></i> Excluir</span> </a>
-                              <a class="btn btn-primary btn-sm" href="editarsala.php?id=<?php echo $res['id'] ?>"><i class="fa fa-check-square" aria-hidden="true"></i> Atualizar</span> </a>
-                            </td>
-                        </tr>
-                <?php } ?>
+<table class="table table-striped custab text-center table-bordered">
+  <thead>
+      <tr class="text-center" style="background-color: #0052aa; color: white;">
+          <th>Nome Sala</th>
+          <th>Campus</th>
+          <th>Situação</th>
+          <th class="text-center">Ação</th>
+      </tr>
+  </thead>
+  <?php
+  foreach($resultado as $res){
+  ?>  
+          <tr>
+              <td><?php echo $res['nome'] ?></td>
+              <td><?php echo $res['campus'] ?></td>
+              <td><?php echo $res['situacao'] > 0 ? "Ativa" : "Inativa" ?></td>
+              <td>
+                <a class="btn btn-danger btn-sm" href="../../controller/salas/Salas.controller.php?acao=delete&id=<?php echo $res['id'] ?>" name="acao" onClick="remover()"><i class="fa fa-times-circle" aria-hidden="true"></i> Excluir</span> </a>
+                <a class="btn btn-primary btn-sm" href="editarsala.php?id=<?php echo $res['id'] ?>"><i class="fa fa-check-square" aria-hidden="true"></i> Atualizar</span> </a>
+              </td>
+          </tr>
+  <?php } ?>
 </table>
 
 </div>

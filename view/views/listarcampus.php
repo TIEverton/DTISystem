@@ -33,7 +33,7 @@ $resultado = $reser->listarCampus();
 
 <div class="container">
 
-<table class="table table-striped custab text-center" border="1">
+<table class="table table-striped custab text-center table-bordered">
   <thead>
       <tr class="text-center" style="background-color: #0052aa; color: white;">
           <th>Nome</th>

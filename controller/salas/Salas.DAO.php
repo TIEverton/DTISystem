@@ -83,6 +83,7 @@
                         'id' => $dados['id'],
                         'nome' => $dados['nome'],
                         'campus' => $dados['campus'],
+                        'situacao' => $dados['situacao']
                     );
                 }
                 return $result;
