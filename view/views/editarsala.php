@@ -1,6 +1,7 @@
 <?php 
-include_once '../../config/sessions.php';
-require_once '../../config/DB.php';
+$id =  filter_input(INPUT_GET,'id', FILTER_SANITIZE_NUMBER_INT);
+include_once '../../config/config.php';
+include_once '../../config/DB.php';
 ?>
 
 <!DOCTYPE html>
@@ -16,34 +17,44 @@ require_once '../../config/DB.php';
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <title>DTI - Cadastro Sala &copy;</title>
+    <title>DTI - Editar Sala &copy;</title>
 </head>
 <body>
 <!-- INCLUDE MENU -->
 <?php 
   include 'menu.php'; 
+
+  $resultaQuery = "SELECT * FROM sala where id= $id";
+
+  //selecionar os registros
+  $resulta = $conecta->prepare($resultaQuery);
+  $resulta->execute();
+  $resultaEditar = $resulta->fetch(PDO::FETCH_ASSOC);
 ?>
 <!-- FIM INCLUDE MENU -->
-<div class="container">
 <form method="POST" action="../../controller/salas/Salas.controller.php">
+<div class="container">
+
 <div class="row justify-content-center">
   <div class="col-md-6">
     <div class="form-group" style="margin-top: 3%;">
-
+    <input type="hidden" name="id" value="">
       Nome:
       <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>text_fields</i></span>
             </div>
-            <input type="text" name="nome" class="form-control" placeholder="Digite o nome da Sala." aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" name="nome" class="form-control" placeholder="Digite o nome da Sala." aria-label="Username" aria-describedby="basic-addon1" value="<?php if(isset($resultaEditar['nome'])) { echo $resultaEditar['nome']; } ?>">
       </div>
 
       Campus:
       <div class="input-group mb-3">
       <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>location_city</i></span>
       <select class="form-control" name="select_campus" id="exampleFormControlSelect1">
-            <option>Selecione um campus:</option>
-            <?php
+          <?php if(isset($resultaEditar['campus'])) { ?>
+            <option><?php echo $resultaEditar['campus']; ?></option>          
+          <?php }?>
+          <?php
               $result_campus = "SELECT * FROM campus";
               $exec = DB::prepare($result_campus);
               $exec->execute();
@@ -67,18 +78,17 @@ require_once '../../config/DB.php';
       </select>
       </div>
 
-      <input type="hidden" name="acao" class="form-control" value="inserir"/>
+      <input type="hidden" name="acao" class="form-control" value="update">
+      <input type="hidden" name="id" class="form-control" value="<?php echo $id?>"/>
       <div class="botaoentrar" style="margin-top: 10px;">
-         <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button>
+          <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button>
           <button type="reset" class="btn btn-warning"><i class="fa fa-eraser" aria-hidden="true"></i> Limpar</button>
-          <a href="listarsala.php"><button type="button" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</button></a>
       </div>
     </div>
   </div>
 </div>
-</form>
 </div>
-
+</form>
 <!-- Modal -->
 <div class="modal fade" id="modalNotificacao" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
