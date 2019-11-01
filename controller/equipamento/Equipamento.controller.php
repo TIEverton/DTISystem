@@ -13,17 +13,15 @@
         $equipClass->setId($_GET['id']);
     }
     if($acao != "delete"){
-        if(!empty($equipClass->getIdentificador()) || !empty($equipClass->getDescricao()) ||
-           !empty($equipClass->getNome())   || !empty($equipClass->getCampus()) ||
-           !empty($equipClass->getQtd())){
+        if(!empty($equipClass->getNumeracao()) || !empty($equipClass->getDescricao()) ||
+           !empty($equipClass->getAgrupamento())   || !empty($equipClass->getCampus())){
             echo "Algum dado vazio";
         }else{
             if($acao == "update"){
                 $equipClass->setId($_POST['id']);
             }
-            $equipClass->setIdentificador($_POST['identificador']);
-            $equipClass->setNome($_POST['nome']);
-            $equipClass->setQtd($_POST['quantidade']);
+            $equipClass->setNumeracao($_POST['numeracao']);
+            $equipClass->setAgrupamento($_POST['agrupamento']);
             $equipClass->setDescricao($_POST['descricao']);
             $equipClass->setCampus($_POST['campus']);
         }
@@ -33,7 +31,7 @@
 switch($acao){
     case 'inserir':
         try{
-            $equipClass->insert($equipClass->getIdentificador(),$equipClass->getNome(),$equipClass->getQtd(), $equipClass->getDescricao(),$equipClass->getCampus());
+            $equipClass->insert($equipClass->getNumeracao(),$equipClass->getAgrupamento(), $equipClass->getCampus(), $equipClass->getDescricao());
         }catch(Exception $e){
             echo $e->getMessage();
         }

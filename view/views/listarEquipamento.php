@@ -1,6 +1,6 @@
 <?php 
 include_once '../../config/config.php';
-include_once '../../controller/campus/Campus.DAO.php';
+include_once '../../controller/equipamento/Equipamento.DAO.php';
 
 include_once '../../config/sessions.php';
 ?>
@@ -18,7 +18,7 @@ include_once '../../config/sessions.php';
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <title>DTI - Listar Campus &copy;</title>
+    <title>DTI - Listar equipamento &copy;</title>
 </head>
 <body>
 <!-- INCLUDE MENU -->
@@ -27,8 +27,8 @@ include_once '../../config/sessions.php';
 ?>
 <!-- FIM INCLUDE MENU -->
 <?php 
-$reser = new campus_DAO;
-$resultado = $reser->listarCampus();
+$reser = new equipamento_DAO;
+$resultado = $reser->listarEquipamento();
 ?>
 
 <div class="container">
@@ -36,8 +36,11 @@ $resultado = $reser->listarCampus();
 <table class="table table-striped custab text-center" border="1">
   <thead>
       <tr class="text-center" style="background-color: #0052aa; color: white;">
-          <th>Nome</th>
-          <th>Endereço</th>
+          <th>Numeração</th>
+          <th>Agrupamento</th>
+          <th>Campus</th>
+          <th>Descrição</th>
+
           <th class="text-center">Ação</th>
       </tr>
   </thead>
@@ -45,11 +48,14 @@ $resultado = $reser->listarCampus();
   foreach($resultado as $res){
   ?>  
           <tr>
-              <td><?php echo $res['nome'] ?></td>
-              <td><?php echo $res['endereco'] ?></td>
+              <td><?php echo $res['numeracao'] ?></td>
+              <td><?php echo $res['agrupamento'] ?></td>
+              <td><?php echo $res['campus'] ?></td>
+              <td><?php echo $res['descricao'] ?></td>
+
               <td>
-                <a class="btn btn-danger btn-sm" href="../../controller/campus/Campus.controller.php?acao=delete&id=<?php echo $res['id'] ?>" name="acao" onClick="remover()"><i class="fa fa-times-circle" aria-hidden="true"></i> Excluir</span> </a>
-                <a class="btn btn-primary btn-sm" href="editarcampus.php?id=<?php echo $res['id'] ?>"><i class="fa fa-refresh" aria-hidden="true"></i></i> Atualizar</span> </a>
+                <a class="btn btn-danger btn-sm" href="../../controller/equipamento/Equipamento.controller.php?acao=delete&id=<?php echo $res['id'] ?>" name="acao" onClick="remover()"><i class="fa fa-times-circle" aria-hidden="true"></i> Excluir</span> </a>
+                <a class="btn btn-primary btn-sm" href="editarEquipamento.php?id=<?php echo $res['id'] ?>"><i class="fa fa-refresh" aria-hidden="true"></i></i> Atualizar</span> </a>
               </td>
           </tr>
   <?php } ?>

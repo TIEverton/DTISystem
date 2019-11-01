@@ -4,25 +4,22 @@
     class equipamento_class{
         protected $tabela;
         private $id;
-        private $identificador;
-        private $nome;
-        private $quantidade;
-        private $descricao;
+        private $numeracao;
+        private $agrupamento;
         private $campus;
+        private $descricao;
 
         //set's
         public function setId($id){$this->id = $id;}
-        public function setIdentificador($i){$this->identificador = $i;}
-        public function setNome($nome){$this->nome = $nome;}
-        public function setQtd($q){$this->quantidade = $q;}
-        public function setDescricao($descricao){$this->descricao = $descricao;}
+        public function setNumeracao($i){$this->numeracao = $i;}
+        public function setAgrupamento($agrupamento){$this->agrupamento = $agrupamento;}
         public function setCampus($campus){$this->campus = $campus;}
+        public function setDescricao($descricao){$this->descricao = $descricao;}
         //get's
         public function getId(){return $this->id;}
-        public function getIdentificador(){return $this->identificador;}
-        public function getNome(){return $this->nome;}
-        public function getQtd(){return $this->quantidade;}
-        public function getDescricao(){return $this->descricao;}
+        public function getNumeracao(){return $this->numeracao;}
+        public function getAgrupamento(){return $this->agrupamento;}
         public function getCampus(){return $this->campus;}
+        public function getDescricao(){return $this->descricao;}
     }
 ?>

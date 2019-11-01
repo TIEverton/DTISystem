@@ -1,8 +1,15 @@
 <?php 
-include_once '../../config/sessions.php';
-require_once '../../config/DB.php';
+session_start();
+if (!isset($_SESSION['logado'])) {
+  header("location: index.php");
+  session_destroy();
+}
+$id =  filter_input(INPUT_GET,'id', FILTER_SANITIZE_NUMBER_INT);
+include_once '../../config/config.php';
+include_once '../../config/DB.php';
 
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -16,84 +23,90 @@ require_once '../../config/DB.php';
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <title>DTI - Cadastro Equipamento &copy;</title>
+    <title>DTI - Editar Equipamento &copy;</title>
 </head>
 <body>
 <!-- INCLUDE MENU -->
 <?php 
   include 'menu.php'; 
+
+  $resultaQuery = "SELECT * FROM equipamento where id= $id";
+
+  //selecionar os registros
+  $resulta = $conecta->prepare($resultaQuery);
+  $resulta->execute();
+  $resultaEditar = $resulta->fetch(PDO::FETCH_ASSOC);
 ?>
 <!-- FIM INCLUDE MENU -->
+
 <div class="container">
+<form method="POST" action="../../controller/equipamento/Equipamento.controller.php">
 <div class="row justify-content-center">
   <div class="col-md-6">
-  <form method="POST" action="../../controller/equipamento/Equipamento.controller.php">
     <div class="form-group" style="margin-top: 3%;">
-      <input type="hidden" name="id" value="" />
-      Numeração:
-      <div class="input-group mb-3">
-            <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>format_list_numbered</i></span>
-            </div>
-            <input type="text" name="numeracao" class="form-control" placeholder="Digite a numeração do Equipamento." require="true" aria-label="Username" aria-describedby="basic-addon1">
-      </div>
+    <input type="hidden" name="id" value="" />
 
-      Agrupamento:
-      <select name="agrupamento" class="form-control" id="exampleFormControlSelect1" require>
-          <option>Selecione um agrupamento:</option>
-          <?php
-              $result_campus = "SELECT * FROM agrupamento";
-              $exec = DB::prepare($result_campus);
-              $exec->execute();
-              while($dados = $exec->fetch(PDO::FETCH_ASSOC)):?>
-                <option value="<?php echo $dados['id']?>">
-                  <?php echo $dados['nome']?>
-                </option>
-            <?php
-              endwhile;
-              ?>
-      </select>
-      <br>
-
-      Campus:
-      <select name="campus" class="form-control" id="exampleFormControlSelect1" require>
-          <option>Selecione um campus:</option>
-          <?php
-              $result_campus = "SELECT * FROM campus";
-              $exec = DB::prepare($result_campus);
-              $exec->execute();
-              while($dados = $exec->fetch(PDO::FETCH_ASSOC)):?>
-                <option value="<?php echo $dados['id']?>">
-                  <?php echo $dados['nome']?>
-                </option>
-            <?php
-              endwhile;
-              ?>
-      </select>
-      <br>
-
-      Descrição:
-      <div class="input-group mb-3">
-            <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>insert_comment</i></span>
-            </div>
-            <textarea name="descricao" class="form-control" id="exampleFormControlTextarea1" rows="5" require></textarea>
-      </div>
-
-      <input type="hidden" name="acao" class="form-control" value="inserir"/>
-
+    Numeração:
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>format_list_numbered</i></span>
+        </div>
+        <input type="text" name="numeracao" class="form-control" placeholder="Digite a numeração do Equipamento." require="true" aria-label="Username" aria-describedby="basic-addon1" value=<?php echo $resultaEditar['numeracao'] ?> >
     </div>
-      <div class="botaoentrar" style="margin-top: 10px;">
-          <a href="home.html"><button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button></a>
-          <a href="home.html"><button type="reset" class="btn btn-warning"><i class="fa fa-eraser" aria-hidden="true"></i> Limpar</button></a>
-          <a href="listarEquipamento.php"><button type="button" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</button></a>
-      </div>
 
-    </form>
+    Agrupamento:
+    <select name="agrupamento" class="form-control" id="exampleFormControlSelect1" require>
+        <?php
+            $result_campus = "SELECT * FROM agrupamento";
+            $exec = DB::prepare($result_campus);
+            $exec->execute();
+            while($dados = $exec->fetch(PDO::FETCH_ASSOC)):?>
+            <option value="<?php echo $dados['id']?>" <?php echo $dados['id'] == $resultaEditar['agrupamento'] ? "selected" : "" ?> >
+                <?php echo $dados['nome']?>
+            </option>
+        <?php
+            endwhile;
+            ?>
+    </select>
+    <br>
+
+    Campus:
+    <select name="campus" class="form-control" id="exampleFormControlSelect1" require>
+        <?php
+            $result_campus = "SELECT * FROM campus";
+            $exec = DB::prepare($result_campus);
+            $exec->execute();
+            while($dados = $exec->fetch(PDO::FETCH_ASSOC)):?>
+            <option value="<?php echo $dados['id']?>  <?php echo $dados['id'] == $resultaEditar['agrupamento'] ? "selected" : "" ?>">
+                <?php echo $dados['nome']?>
+            </option>
+        <?php
+            endwhile;
+            ?>
+    </select>
+    <br>
+
+    Descrição:
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>insert_comment</i></span>
+        </div>
+        <textarea name="descricao" class="form-control" id="exampleFormControlTextarea1" rows="5" require><?php echo $resultaEditar['descricao'] ?></textarea>
+    </div>
+
+    
+      <input type="hidden" name="acao" class="form-control" value="update">
+      <input type="hidden" name="id" class="form-control" value="<?php echo $id?>"/>
+
+      <div class="botaoentrar" style="margin-top: 10px;">
+          <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button></a>
+          <button type="reset" class="btn btn-warning"><i class="fa fa-eraser" aria-hidden="true"></i> Limpar</button></a>
+      </div>
+    </div>
   </div>
 </div>
 </div>
-
+</form>
 <!-- Modal -->
 <div class="modal fade" id="modalNotificacao" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">

@@ -26,16 +26,15 @@
                 echo $erro->getMessage();
             }
         }
-        public function insert($identificador,$nome,$quantidade,$descricao,$campus){
+        public function insert($numeracao,$agrupamento,$campus,$descricao){
             try{
-                $sql = "INSERT INTO $this->tabela(identificador, nome, quantidade, descricao, campus)
-             VALUES (:identificador, :nome, :quantidade, :descricao, :campus)";
+                $sql = "INSERT INTO $this->tabela(numeracao, agrupamento, campus, descricao)
+             VALUES (:numeracao, :agrupamento, :campus, :descricao)";
                 $exec = DB::prepare($sql);
-                $exec->bindParam(':identificador',$identificador);
-                $exec->bindParam(':nome',$nome);
-                $exec->bindParam(':quantidade',$quantidade);
-                $exec->bindParam(':descricao',$descricao);
+                $exec->bindParam(':numeracao',$numeracao);
+                $exec->bindParam(':agrupamento',$agrupamento);
                 $exec->bindParam(':campus',$campus);
+                $exec->bindParam(':descricao',$descricao);
                 echo "<script>alert('Equipamento cadastrado com sucesso');window.location ='../../view/views/cadastroequipamento.php';</script>";
                 return $exec->execute();
             }catch(PDOException $erro){
@@ -44,16 +43,15 @@
         }
         public function update($id){
             try{
-                $sql = "UPDATE $this->tabela SET identificador = :identificador ,nome = :nome, quantidade = :quantidade,
-                descricao = :descricao, campus = :campus WHERE id = :id";
+                $sql = "UPDATE $this->tabela SET numeracao = :numeracao ,agrupamento = :agrupamento,
+                campus = :campus, descricao = :descricao WHERE id = :id";
 
                 $exec = DB::prepare($sql);
                 $exec->bindValue(':id', $id, PDO::PARAM_INT);
-                $exec->bindValue(':identificador', $this->getIdentificador());
-                $exec->bindValue(':nome', $this->getNome());
-                $exec->bindValue(':quantidade', $this->getQtd());
-                $exec->bindValue(':descricao', $this->getDescricao());
+                $exec->bindValue(':numeracao', $this->getnumeracao());
+                $exec->bindValue(':agrupamento', $this->getagrupamento());
                 $exec->bindValue(':campus', $this->getCampus());
+                $exec->bindValue(':descricao', $this->getDescricao());
                 return $exec->execute();
                 echo "<script>alert('Equipamento Editado com sucesso!!');window.location ='../../view/views/cadastroequipamento.php';</script>";
             }catch(PDOException $erro){
@@ -71,6 +69,31 @@
             }catch(PDOException $erro){
                 echo $erro->getMessage();
             }
+        }
+        function listarEquipamento(){
+            $resultado = "SELECT equipamento.*, agrupamento.`nome` AS agrupamento, campus.`nome` AS campus
+            FROM equipamento
+            INNER JOIN agrupamento
+            INNER JOIN campus
+            ON equipamento.`agrupamento` = agrupamento.`id`
+            AND equipamento.`campus` = campus.`id`
+            ORDER BY id ASC";
+
+            $resultado = DB::prepare($resultado);
+            $resultado->execute();
+            if($resultado->rowCount()>0){
+                while($dados = $resultado->fetch(PDO::FETCH_ASSOC)){
+                    $result[] = array(
+                        'id' => $dados['id'],
+                        'numeracao' => $dados['numeracao'],
+                        'agrupamento' => $dados['agrupamento'],
+                        'campus' => $dados['campus'],
+                        'descricao' => $dados['descricao'],
+                    );
+                }
+                return $result;
+            }
+       
         }
     }
 ?>
