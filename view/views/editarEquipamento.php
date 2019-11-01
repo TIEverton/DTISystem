@@ -77,7 +77,7 @@ include_once '../../config/DB.php';
             $exec = DB::prepare($result_campus);
             $exec->execute();
             while($dados = $exec->fetch(PDO::FETCH_ASSOC)):?>
-            <option value="<?php echo $dados['id']?>  <?php echo $dados['id'] == $resultaEditar['agrupamento'] ? "selected" : "" ?>">
+            <option value="<?php echo $dados['id']?>" <?php echo $dados['id'] == $resultaEditar['campus'] ? "selected" : "" ?>>
                 <?php echo $dados['nome']?>
             </option>
         <?php

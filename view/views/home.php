@@ -1,7 +1,7 @@
 <?php  
 session_start();
 if (!isset($_SESSION['logado'])) {
-  header("location: TelaLogin.php");
+  header("location: index.php");
 
     session_destroy();
 } 

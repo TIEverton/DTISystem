@@ -51,20 +51,18 @@ include_once '../../config/DB.php';
       <div class="input-group mb-3">
       <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>location_city</i></span>
       <select class="form-control" name="select_campus" id="exampleFormControlSelect1">
-          <?php if(isset($resultaEditar['campus'])) { ?>
-            <option><?php echo $resultaEditar['campus']; ?></option>          
-          <?php }?>
-          <?php
+        <?php
               $result_campus = "SELECT * FROM campus";
               $exec = DB::prepare($result_campus);
               $exec->execute();
               while($dados = $exec->fetch(PDO::FETCH_ASSOC)):?>
-                <option value="<?php echo $dados['id']?>">
+
+              <option value="<?php echo $dados['id']?>"  <?php echo $dados['id'] == $resultaEditar['campus'] ? "selected" : "" ?>>
                   <?php echo $dados['nome']?>
-                </option>
-            <?php
+              </option>
+          <?php
               endwhile;
-            ?>
+              ?>
       </select>
       </div>
   
@@ -72,9 +70,8 @@ include_once '../../config/DB.php';
       <div class="input-group mb-3">
       <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>done_all</i></span>
       <select class="form-control" name="situacao" id="exampleFormControlSelect1">
-            <option>Selecione a situação da sala:</option>
             <option value="1">Ativa</option>
-            <option value="0">Inativa</option>
+            <option value="0" <?php echo $resultaEditar['situacao'] == 0 ? "selected" : "" ?>>Inativa</option>
       </select>
       </div>
 
