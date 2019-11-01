@@ -52,7 +52,9 @@ if (!isset($_SESSION['logado'])) {
             <tr class="text-center" style="background-color: #0052aa; color: white;">
                 <th>Professor</th>
                 <th>Data</th>
+                <th>Campus</th>
                 <th>Equipamento</th>
+                <th>Horário</th>
                 <th class="text-center">Ação</th>
             </tr>
         </thead>
@@ -60,36 +62,10 @@ if (!isset($_SESSION['logado'])) {
                     <td>Everton Pinheiro da Silva</td>
                     <td>12/05/2002</td>
                     <td>VGA 03</td>
-                    <td class="text-center"><a class="btn btn-primary btn-sm" href="#"><i class="fa fa-check-square" aria-hidden="true"></i></span> Devolver</a></td>
-                </tr>
-
-                <tr>
-                    <td>Everton Pinheiro da Silva</td>
-                    <td>13/05/2002</td>
+                    <td>VGA 03</td>
                     <td>VGA 03</td>
                     <td class="text-center"><a class="btn btn-primary btn-sm" href="#"><i class="fa fa-check-square" aria-hidden="true"></i></span> Devolver</a></td>
                 </tr>
-
-                <tr>
-                    <td>Everton Pinheiro da Silva</td>
-                    <td>14/05/2002</td>
-                    <td>VGA 02</td>
-                    <td class="text-center"><a class="btn btn-primary btn-sm" href="#"><i class="fa fa-check-square" aria-hidden="true"></i></span> Devolver</a></td>
-                </tr>
-
-                <tr>
-                    <td>Everton Pinheiro da Silva</td>
-                    <td>14/05/2002</td>
-                    <td>VGA 03</td>
-                    <td class="text-center"><a class="btn btn-primary btn-sm" href="#"><i class="fa fa-check-square" aria-hidden="true"></i></span> Devolver</a></td>
-                </tr>
-
-                <tr>
-                  <td>1</td>
-                  <td>News</td>
-                  <td>News Cate</td>
-                  <td class="text-center"><a class="btn btn-primary btn-sm" href="#"><i class="fa fa-check-square" aria-hidden="true"></i></span> Devolver</a></td>
-              </tr>
         </table>
         </div>
     </div>
