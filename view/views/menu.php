@@ -7,7 +7,7 @@ if(!isset($_SESSION)){
 <nav class="navbar navbar-expand-lg navbar-dark lighten-1">
         <a class="navbar-brand" href="#">
                 <div class="img-login"> 
-                        <img class="img-login" src="../../img/logodtisystembranca.png" style="height: 80px;"> 
+                        <img class="img-login" src="../../img/logodtisysteminicial.png" style="height: 60px;"> 
                 </div> 
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"

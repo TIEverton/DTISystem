@@ -22,8 +22,8 @@
 <form method="POST" action="../../controller/usuario/Usuario.controller.php">
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-6">
-                 <div class="img-login"> 
+        <div class="col-md-5">
+                <div class="img-login"> 
                      <img class="img-login" src="../../img/logodtisystembranca.png"> 
                  </div> 
 

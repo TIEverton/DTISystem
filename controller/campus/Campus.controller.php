@@ -9,6 +9,7 @@
         case 'POST': $acao = $_POST['acao']; break;
     }
     if($acao == "delete"){
+        //comencortano
         $CampusClass->setId($_GET['id']);
     }
     if($acao != "delete"){
