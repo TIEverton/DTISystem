@@ -81,17 +81,17 @@
             }
         }
         public function ListarReservas(){
-            $resultado = "SELECT reserva.*, campus.`nome` AS campus, equipamento.`nome` AS equipamento, 
-            sala.`nome` AS sala, usuario.`nome` AS reponsavel FROM reserva 
+            $resultado = "SELECT reserva.*, campus.`nome` AS campus, equipamento.`agrupamento` AS equipamento, 
+            sala.`nome` AS sala, usuarios.`nome` AS reponsavel FROM reserva 
 
             INNER JOIN campus
             INNER JOIN sala
             INNER JOIN equipamento
-            INNER JOIN usuario
+            INNER JOIN usuarios
             ON reserva.`campus`= campus.`id` 
             AND reserva.`equipamento`= equipamento.`id` 
             AND reserva.`sala`= sala.`id` 
-            AND reserva.`responsavel` = usuario.`id`
+            AND reserva.`responsavel` = usuarios.`id`
             ORDER BY id ASC
             ";
 
