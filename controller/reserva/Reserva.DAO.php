@@ -42,7 +42,7 @@
                 $exec->bindParam('false', false);
 
 
-                echo "<script>alert('Reserva Cadastrada com sucesso');window.location ='../../view/telas/TelaRealizarReserva.php';</script>";
+                echo "<script>alert('Reserva Cadastrada com sucesso');window.location ='../../view/views/cadastroReserva.php';</script>";
                 return $exec->execute();
               
             }catch(PDOException $erro){
@@ -64,7 +64,7 @@
                 $exec->bindValue(':observacao', $this->getObservacao());
                 $exec->bindValue(':devolvido', $this->getDevolvido());
 
-                echo "<script>alert('Reserva Editada com Sucesso');window.location ='../../view/telas/';</script>";
+                echo "<script>alert('Reserva Editada com Sucesso');window.location ='../../view/views/';</script>";
                 return $exec->execute();
             }catch(PDOException $erro){
                 echo $erro->getMessage();
@@ -76,7 +76,7 @@
                 $sql = "DELETE FROM $this->tabela WHERE id = :id";
                 $exec = DB::prepare($sql);
                 $exec->bindValue(':id', $id, PDO::PARAM_INT);
-                echo "<script>alert('Reserva deletada com sucesso');window.location ='../../view/telas/TelaListarReserva.php';</script>";
+                echo "<script>alert('Reserva deletada com sucesso');window.location ='../../view/views/listarReserva.php';</script>";
                 return $exec->execute();
             }catch(PDOException $erro){
                 echo $erro->getMessage();

@@ -1,3 +1,8 @@
+<?php 
+include_once '../../config/sessions.php';
+require_once '../../config/DB.php';
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -5,6 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../../css/home.css">
@@ -27,46 +34,48 @@
       Campus:
       <div class="input-group mb-3">
       <span class="input-group-text" ><i class='material-icons left'>location_city</i></span>
-      <select class="form-control" id="select-campus" name="campus">
+      <select class="form-control" id="select_campus" name="campus">
           <option>Selecione um campus:</option>
-          <option>Prédio Principal</option>
-          <option>Anexo</option>
-          <option>Clínica Escola</option>
+          <?php
+                $result_campus = "SELECT * FROM campus";
+                $exec = DB::prepare($result_campus);
+                $exec->execute();
+                while($dados = $exec->fetch(PDO::FETCH_ASSOC)):?>
+                  <option value="<?php echo $dados['id']?>">
+                    <?php echo $dados['nome']?>
+                  </option>
+              <?php
+                endwhile;
+                ?>
       </select>
       </div>
 
       Sala:
       <div class="input-group mb-3">
         <span class="input-group-text" ><i class='material-icons left'>people</i></span>
-      <select class="form-control" name="sala">
+      <select class="form-control" name="sala" id="select_salas">
           <option>Selecione uma Sala:</option>
-          <option>Prédio Principal</option>
-          <option>Anexo</option>
-          <option>Clínica Escola</option>
       </select>
       </div>
 
       Equipamento:
       <div class="input-group mb-3">
             <span class="input-group-text" ><i class='material-icons left'>keyboard</i></span>
-      <select class="form-control" name="equipamento">
+      <select class="form-control" name="equipamento" id="select_equipamentos">
           <option>Selecione um Equipamento:</option>
-          <option>Prédio Principal</option>
-          <option>Anexo</option>
-          <option>Clínica Escola</option>
       </select>
       </div>
 
       Data:
       <div class="input-group mb-3">
             <span class="input-group-text" ><i class='material-icons left'>date_range</i></span>
-            <input type="date" class="form-control" placeholder="Escolha uma data.">
+            <input type="date" class="form-control" placeholder="Escolha uma data." id="data">
       </div>
 
       Turno:
       <div class="input-group mb-3">
             <span class="input-group-text" ><i class='material-icons left'>schedule</i></span>
-      <select class="form-control" name="turno" id="select-turno">
+      <select class="form-control" name="turno" id="select_turno">
           <option>Selecione um turno:</option>  
           <option>Manhã</option>
           <option>Tarde</option>
@@ -77,7 +86,7 @@
       Horário:
       <div class="input-group mb-3">
             <span class="input-group-text" ><i class='material-icons left'>schedule</i></span>
-      <select class="form-control" name="horario" id="select-horario">
+      <select class="form-control" name="horario" id="select_horario">
           <option>Selecione uma Horário:</option>
           <option>AB</option>
           <option>CD</option>
@@ -89,7 +98,7 @@
             <div class="input-group-prepend">
             <span class="input-group-text" ><i class='material-icons left'>insert_comment</i></span>
             </div>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="observacao"></textarea>
+            <textarea id="observacao" class="form-control" id="exampleFormControlTextarea1" rows="5" name="observacao"></textarea>
       </div>
       
 
@@ -104,7 +113,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="modalNotificacao" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<div class="modal fade" id="modalNotificacao" tabi="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -142,18 +151,64 @@
   </div>
 
 <script>
-  $(document).ready(function(){
+  $(function(){
     // SELECT HORARIO
-    $('#select-turno').on('change', function(){
-      $('#select-horario').empty();
-      if($('#select-turno').val() == 'Noite'){
-        $('#select-horario').append('<option value="ab">AB</option>');
+    $('#select_turno').change(function(){
+      $('#select_horario').empty();
+      if($('#select_turno').val() == 'Noite'){
+        $('#select_horario').append('<option value="ab">AB</option>')
       }else{
-        $('#select-horario').append('<option value="ab">AB</option>');
-        $('#select-horario').append('<option value="cd">CD</option>');        
+        $('#select_horario').append('<option value="ab">AB</option>')
+        $('#select_horario').append('<option value="cd">CD</option>')        
+      }
+    });
+  });
+
+  $(function(){
+    //PREENCHER SELECT_SALAS
+    $('#select_campus').change(function(){
+      $('#select_salas').empty()
+      $('#select_salas').append(`<option value="">Selecione uma Sala</option>`); 
+
+      if($(this).val()){
+        $.getJSON('../../querys/querysSalas.php?search=', {
+          select_campus: $('#select_campus').val(),
+          ajax: 'true'
+        },
+        function(j){
+            for(var i = 0; i < j.length; i++){
+              id =j[i].id
+              nome =j[i].nome
+              $('#select_salas').append(`<option value="${id}">${nome}</option>`)
+            }
+        })
+      }
+    })   
+  })
+
+  $(function(){
+    //PREENCHER SELECT_EQUIPAMENTOS
+    $('#select_campus').change(function(){
+      $('#select_equipamentos').empty()
+      $('#select_equipamentos').append(`<option value="">Selecione um Equipamento</option>`); 
+
+      if($(this).val()){
+        $.getJSON('../../querys/querysEquipamentos.php?search=', {
+          select_campus: $('#select_campus').val(),
+          ajax: 'true'
+        },
+        function(j){
+            for(var i = 0; i < j.length; i++){
+              id =j[i].id
+              nome =j[i].nome
+              numeracao = j[i].numeracao
+              $('#select_equipamentos').append(`<option value="${id}">${nome} | N° ${numeracao}</option>`)
+            }
+        })
       }
     })
   })
+  
 </script>
 
 </body>
