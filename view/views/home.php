@@ -3,7 +3,7 @@ session_start();
 if (!isset($_SESSION['logado'])) {
   header("location: index.php");
 
-    session_destroy();
+  session_destroy();
 } 
 ?>
 <!DOCTYPE html>

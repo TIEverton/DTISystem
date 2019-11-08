@@ -20,7 +20,7 @@
             if($acao == "update"){
                 $ReservaClass->setId($_POST['id']);
             }
-            $ReservaClass->setEquipamento($_POST['select_equipamento']);
+            $ReservaClass->setEquipamento($_POST['select_equipamentos']);
             $ReservaClass->seCampus($_POST['select_campus']);
             $ReservaClass->setSala($_POST['select_salas']);
             $ReservaClass->setData($_POST['data']);
@@ -28,7 +28,6 @@
             $ReservaClass->setTurno($_POST['select_turno']);
             $ReservaClass->setObservacao($_POST['observacao']);
             $ReservaClass->setResponsavel($_POST['responsavel']);
-            $ReservaClass->setDevolvido($_POST['devolvido']);
         }
     }
 

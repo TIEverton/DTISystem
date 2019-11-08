@@ -26,10 +26,10 @@
                 echo $erro->getMessage();
             }
         }
-        public function insert($idEquipamento, $idSala, $idCampus, idResponsavel, $data, $turno, $horario, $observacao){
+        public function insert($idEquipamento, $idSala, $idCampus, $idResponsavel, $data, $turno, $horario, $observacao){
             try{
-                $sql = "INSERT INTO $this->tabela(equipamento, sala, campus, responsavel, data, turno, horario, observacao, devolvido)
-             VALUES (:idEquipamento, :idSala, :idCampus, :idResponsavel, :data, :turno, :horario, :observacao, false)";
+                $sql = "INSERT INTO $this->tabela(equipamento, sala, campus, responsavel, data, turno, horario, observacoes)
+             VALUES (:idEquipamento, :idSala, :idCampus, :idResponsavel, :data, :turno, :horario, :observacao)";
                 $exec = DB::prepare($sql);
                 $exec->bindParam(':idEquipamento',$idEquipamento);
                 $exec->bindParam(':idSala',$idSala, PDO::PARAM_INT);
@@ -39,8 +39,6 @@
                 $exec->bindParam(':turno',$turno);
                 $exec->bindParam(':horario',$horario);
                 $exec->bindParam(':observacao',$observacao);
-                $exec->bindParam('false', false);
-
 
                 echo "<script>alert('Reserva Cadastrada com sucesso');window.location ='../../view/views/cadastroReserva.php';</script>";
                 return $exec->execute();
