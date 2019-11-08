@@ -56,7 +56,6 @@ require_once '../../config/DB.php';
                 ?>
         </select>
       </div>
-      <br>
 
       Campus:
       <div class="input-group mb-3">
@@ -76,7 +75,6 @@ require_once '../../config/DB.php';
                 ?>
         </select>
       </div>
-      <br>
 
       Descrição:
       <div class="input-group mb-3">

@@ -55,9 +55,15 @@ $resultado = $reser->ListarReservas();
               <td><?php echo $res['responsavel'] ?></td>
               <td><?php echo $res['campus'] ?></td>
               <td><?php echo $res['sala']?></td>
+              <td><?php echo $res['equipamento']?></td>
+              <td><?php echo $res['data']?></td>
+              <td><?php echo $res['turno']?></td>
+              <td><?php echo $res['horario']?></td>
+              <td><?php echo $res['observacao']?></td>
+              <td><?php echo $res['devolvido']?></td>
               <td>
-                <a class="btn btn-danger btn-sm" href="../../controller/salas/Salas.controller.php?acao=delete&id=<?php echo $res['id'] ?>" name="acao" onClick="remover()"><i class="fa fa-times-circle" aria-hidden="true"></i> Excluir</span> </a>
-                <a class="btn btn-primary btn-sm" href="editarsala.php?id=<?php echo $res['id'] ?>"><i class="fa fa-check-square" aria-hidden="true"></i> Atualizar</span> </a>
+                <a class="btn btn-danger btn-sm" href="../../controller/reserva/Reserva.controller.php?acao=delete&id=<?php echo $res['id'] ?>" name="acao" onClick="remover()"><i class="fa fa-times-circle" aria-hidden="true"></i> Excluir</span> </a>
+                <a class="btn btn-primary btn-sm" href="editarReserva.php?id=<?php echo $res['id'] ?>"><i class="fa fa-check-square" aria-hidden="true"></i> Atualizar</span> </a>
               </td>
           </tr>
   <?php } ?>
