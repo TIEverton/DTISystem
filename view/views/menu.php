@@ -32,6 +32,7 @@ if(!isset($_SESSION)){
                     <a class="dropdown-item" href="cadastrocampus.php"><i class="fa fa-university" aria-hidden="true"></i> Campus</a>
                     <a class="dropdown-item" href="cadastrosala.php"><i class="fa fa-users" aria-hidden="true"></i> Sala</a>
                     <a class="dropdown-item" href="cadastroReserva.php"><i class="fa fa-inbox" aria-hidden="true"></i> Reserva</a>
+                    <a class="dropdown-item" href="cadastroagrupamento.php"><i class="fa fa-inbox" aria-hidden="true"></i> Agrupamento</a>
             </div>
             </li>
 
