@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 01-Nov-2019 às 12:09
+-- Generation Time: 08-Nov-2019 às 14:49
 -- Versão do servidor: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -33,6 +33,13 @@ CREATE TABLE `agrupamento` (
   `nome` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `agrupamento`
+--
+
+INSERT INTO `agrupamento` (`id`, `nome`) VALUES
+(1, 'caixa de som');
+
 -- --------------------------------------------------------
 
 --
@@ -46,6 +53,15 @@ CREATE TABLE `campus` (
   `endereco` varchar(200) NOT NULL,
   `bairro` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `campus`
+--
+
+INSERT INTO `campus` (`id`, `nome`, `cnpj`, `endereco`, `bairro`) VALUES
+(4, 'clinica escola', '1123', 'Rua B', 'Centro'),
+(5, 'sede', '123', 'Rua a', 'Centro'),
+(6, '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -61,6 +77,13 @@ CREATE TABLE `equipamento` (
   `descricao` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `equipamento`
+--
+
+INSERT INTO `equipamento` (`id`, `numeracao`, `agrupamento`, `campus`, `descricao`) VALUES
+(9, '2', 1, 4, 'descricao 2');
+
 -- --------------------------------------------------------
 
 --
@@ -72,10 +95,12 @@ CREATE TABLE `reserva` (
   `campus` int(11) NOT NULL,
   `sala` int(11) NOT NULL,
   `equipamento` int(11) NOT NULL,
+  `responsavel` int(11) NOT NULL,
   `data` date NOT NULL,
   `turno` varchar(30) NOT NULL,
   `horario` varchar(10) NOT NULL,
-  `observacoes` varchar(300) NOT NULL
+  `observacoes` varchar(300) NOT NULL,
+  `devolvido` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -90,6 +115,14 @@ CREATE TABLE `sala` (
   `campus` int(11) NOT NULL,
   `situacao` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `sala`
+--
+
+INSERT INTO `sala` (`id`, `nome`, `campus`, `situacao`) VALUES
+(2, 'sala1', 5, 1),
+(3, 'sala2', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -147,7 +180,8 @@ ALTER TABLE `reserva`
   ADD PRIMARY KEY (`id`),
   ADD KEY `campus` (`campus`),
   ADD KEY `equipamento` (`equipamento`),
-  ADD KEY `sala` (`sala`);
+  ADD KEY `sala` (`sala`),
+  ADD KEY `responsavel` (`responsavel`);
 
 --
 -- Indexes for table `sala`
@@ -170,19 +204,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `agrupamento`
 --
 ALTER TABLE `agrupamento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `campus`
 --
 ALTER TABLE `campus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `equipamento`
 --
 ALTER TABLE `equipamento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `reserva`
@@ -194,7 +228,7 @@ ALTER TABLE `reserva`
 -- AUTO_INCREMENT for table `sala`
 --
 ALTER TABLE `sala`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
@@ -219,7 +253,8 @@ ALTER TABLE `equipamento`
 ALTER TABLE `reserva`
   ADD CONSTRAINT `reserva_ibfk_1` FOREIGN KEY (`campus`) REFERENCES `campus` (`id`),
   ADD CONSTRAINT `reserva_ibfk_2` FOREIGN KEY (`equipamento`) REFERENCES `equipamento` (`id`),
-  ADD CONSTRAINT `reserva_ibfk_3` FOREIGN KEY (`sala`) REFERENCES `sala` (`id`);
+  ADD CONSTRAINT `reserva_ibfk_3` FOREIGN KEY (`sala`) REFERENCES `sala` (`id`),
+  ADD CONSTRAINT `reserva_ibfk_4` FOREIGN KEY (`responsavel`) REFERENCES `usuarios` (`id`);
 
 --
 -- Limitadores para a tabela `sala`
