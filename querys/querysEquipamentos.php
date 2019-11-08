@@ -1,7 +1,9 @@
 <?php
     require_once '../config/DB.php';
     $campus = $_REQUEST['select_campus'];
-    $result_equipamentos = "SELECT equipamento.id, equipamento.numeracao, agrupamento.nome FROM equipamento INNER JOIN agrupamento
+    $result_equipamentos = "SELECT equipamento.id, equipamento.numeracao, agrupamento.nome FROM equipamento
+    INNER JOIN agrupamento
+    ON equipamento.agrupamento = agrupamento.id
     WHERE campus = '$campus' AND emprestado = 0";
 
     $exec = DB::prepare($result_equipamentos);
