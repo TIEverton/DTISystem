@@ -27,6 +27,7 @@ require_once '../../config/DB.php';
 ?>
 <!-- FIM INCLUDE MENU -->
 <div class="container">
+<form method="POST" action="../../controller/reserva/Reserva.controller.php">
 <div class="row justify-content-center">
   <div class="col-md-6">
     <div class="form-group" style="margin-top: 3%;">
@@ -34,7 +35,7 @@ require_once '../../config/DB.php';
       Campus:
       <div class="input-group mb-3">
       <span class="input-group-text" ><i class='material-icons left'>location_city</i></span>
-      <select class="form-control" id="select_campus" name="campus">
+      <select class="form-control" id="select_campus" name="select_campus">
           <option>Selecione um campus:</option>
           <?php
                 $result_campus = "SELECT * FROM campus";
@@ -53,7 +54,7 @@ require_once '../../config/DB.php';
       Sala:
       <div class="input-group mb-3">
         <span class="input-group-text" ><i class='material-icons left'>people</i></span>
-      <select class="form-control" name="sala" id="select_salas">
+      <select class="form-control" name="select_salas" id="select_salas">
           <option>Selecione uma Sala:</option>
       </select>
       </div>
@@ -61,7 +62,7 @@ require_once '../../config/DB.php';
       Equipamento:
       <div class="input-group mb-3">
             <span class="input-group-text" ><i class='material-icons left'>keyboard</i></span>
-      <select class="form-control" name="equipamento" id="select_equipamentos">
+      <select class="form-control" name="select_equipamentos" id="select_equipamentos">
           <option>Selecione um Equipamento:</option>
       </select>
       </div>
@@ -69,13 +70,13 @@ require_once '../../config/DB.php';
       Data:
       <div class="input-group mb-3">
             <span class="input-group-text" ><i class='material-icons left'>date_range</i></span>
-            <input type="date" class="form-control" placeholder="Escolha uma data." id="data">
+            <input type="date" name="data" class="form-control" placeholder="Escolha uma data." id="data">
       </div>
 
       Turno:
       <div class="input-group mb-3">
             <span class="input-group-text" ><i class='material-icons left'>schedule</i></span>
-      <select class="form-control" name="turno" id="select_turno">
+      <select class="form-control" name="select_turno" id="select_turno">
           <option>Selecione um turno:</option>  
           <option>Manhã</option>
           <option>Tarde</option>
@@ -86,7 +87,7 @@ require_once '../../config/DB.php';
       Horário:
       <div class="input-group mb-3">
             <span class="input-group-text" ><i class='material-icons left'>schedule</i></span>
-      <select class="form-control" name="horario" id="select_horario">
+      <select class="form-control" name="select_horario" id="select_horario">
           <option>Selecione uma Horário:</option>
           <option>AB</option>
           <option>CD</option>
@@ -101,15 +102,17 @@ require_once '../../config/DB.php';
             <textarea id="observacao" class="form-control" id="exampleFormControlTextarea1" rows="5" name="observacao"></textarea>
       </div>
       
-
+      <input type="hidden" name="acao" class="form-control" value="inserir"/>
+      <input type="hidden" name="responsavel" value="<?php echo $_SESSION['user_id'];?>"/>
       <div class="botaoentrar" style="margin-top: 10px;">
-          <a href="home.html"><button type="button" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button></a>
-          <a href="home.html"><button type="button" class="btn btn-warning"><i class="fa fa-eraser" aria-hidden="true"></i> Limpar</button></a>
-          <a href="home.html"><button type="button" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</button></a>
+          <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button></a>
+          <button type="reset" class="btn btn-warning"><i class="fa fa-eraser" aria-hidden="true"></i> Limpar</button></a>
+          <a href="listarReserva.php"><button type="button" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</button></a>
       </div>
     </div>
   </div>
 </div>
+</form>
 </div>
 
 <!-- Modal -->
