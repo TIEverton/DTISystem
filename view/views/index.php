@@ -7,6 +7,7 @@
   }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -35,17 +36,20 @@
                                 <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>email</i></span>
                                 </div>
-                                <input type="text" name="email" class="form-control" placeholder="Seu email"  aria-label="Username" aria-describedby="basic-addon1">
+                                <input type="email" name="email" class="form-control" placeholder="Seu email"  aria-label="Username" aria-describedby="basic-addon1" required>
                         </div>
 
                         <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>lock</i></span>
                                 </div>
-                                <input type="password" name="senha" class="form-control"  placeholder="Sua senha" aria-label="Password" aria-describedby="basic-addon1">
+                                <input type="password" name="senha" class="form-control"  placeholder="Sua senha" aria-label="Password" aria-describedby="basic-addon1" required>
                         </div>
+                        
                         <input type="hidden" id="acao" name="acao" value="autenticar">
+                        <a href="" id="recuperar-senha">Solicitar recuperação de login</a>
                         <div class="botaoentrar">
+
                             <button type="submit" class="btn btn-primary">Entrar</button>
                         </div>
                     </div>

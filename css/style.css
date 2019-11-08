@@ -24,9 +24,15 @@ body {
 
 .botaoentrar {
     text-align: right;
+    margin-top: -17px;
 }
 
 .card {
     margin-top: 10%;
-    height: 270px;
+    height: 280px;
+}
+
+#recuperar-senha {
+    display: flex;
+    font-size: 14px;
 }

@@ -71,7 +71,7 @@ if(!isset($_SESSION)){
               <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
                 aria-labelledby="navbarDropdownMenuLink-55">
                 <a class="dropdown-item" href="#"><i class="fa fa-id-card" aria-hidden="true"></i> Editar Perfil</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-sign-out" aria-hidden="true"></i> Sair</a>
+                <a class="dropdown-item" href="index.php"><i class="fa fa-sign-out" aria-hidden="true"></i> Sair</a>
               </div>
             </li>
           </ul>
