@@ -4,7 +4,9 @@ if (!isset($_SESSION['logado'])) {
   header("location: index.php");
 
   session_destroy();
-} 
+}
+require_once '../../config/DB.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -15,6 +17,8 @@ if (!isset($_SESSION['logado'])) {
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
     <link rel="stylesheet" href="../../css/home.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -38,11 +42,19 @@ if (!isset($_SESSION['logado'])) {
           <input type="text" id="inputPesquisa" onkeyup="filtrarTable()" class="form-control w-25" style="margin-right: 10px;" name="endereco" placeholder="Consulte um item da tabela" aria-label="Username" aria-describedby="basic-addon1" value="<?php if(isset($resultaEditar['endereco'])) { echo $resultaEditar['endereco']; } ?>">
 
       <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>location_city</i></span>
-      <select class="form-control" id="exampleFormControlSelect1">
+      <select class="form-control" id="select_campus" name="select_campus">
           <option>Filtre um Campus</option>
-          <option>Prédio Principal</option>
-          <option>Anexo</option>
-          <option>Clínica Escola</option>
+          <?php
+                $result_campus = "SELECT * FROM campus";
+                $exec = DB::prepare($result_campus);
+                $exec->execute();
+                while($dados = $exec->fetch(PDO::FETCH_ASSOC)):?>
+                  <option value="<?php echo $dados['id']?>">
+                    <?php echo $dados['nome']?>
+                  </option>
+              <?php
+                endwhile;
+                ?>
       </select>
 </div><br>
 
@@ -106,5 +118,24 @@ if (!isset($_SESSION['logado'])) {
       </div>
     </div>
   </div>
+
+  <script>
+    $(document).ready(function(){
+      atualizarTabela()
+      setInterval(() => {
+        atualizarTabela()
+      }, 20000);
+
+      function atualizarTabela(){
+        $.getJSON('', {
+          select_campus: $('#select_campus').val(),
+          ajax: 'true',
+        }, function(j){
+
+        })
+      }
+    })
+  </script>
+
 </body>
 </html>

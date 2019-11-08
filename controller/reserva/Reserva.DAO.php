@@ -81,8 +81,8 @@
             }
         }
         public function ListarReservas(){
-            $resultado = "SELECT reserva.*, campus.`nome` AS campus, equipamento.`agrupamento` AS equipamento, 
-            sala.`nome` AS sala, usuarios.`nome` AS reponsavel FROM reserva 
+            $resultado = "SELECT reserva.*, campus.`nome` AS campus, equipamento.`agrupamento` AS equipamento, equipamento.`numeracao` AS numeracaoEqui,
+            sala.`nome` AS sala, usuarios.`nome` AS responsavel FROM reserva 
 
             INNER JOIN campus
             INNER JOIN sala
@@ -103,13 +103,13 @@
                         'campus' => $dados['campus'],
                         'sala' => $dados['sala'],
                         'equipamento' => $dados['equipamento'],
+                        'numeracaoEqui' => $dados['numeracaoEqui'],
+                        'responsavel' => $dados['responsavel'],
                         'data' => $dados['data'],
                         'turno' => $dados['turno'],
                         'horario' => $dados['horario'],
-                        'observacao' => $dados['observacao'],
+                        'observacao' => $dados['observacoes'],
                         'devolvido' => $dados['devolvido'],
-
-
                     );
                 }
                 return $result;
