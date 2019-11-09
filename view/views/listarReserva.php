@@ -55,7 +55,7 @@ $resultado = $reser->ListarReservas();
               <td><?php echo $res['responsavel'] ?></td>
               <td><?php echo $res['campus'] ?></td>
               <td><?php echo $res['sala']?></td>
-              <td><?php echo $res['equipamento']?></td>
+              <td><?php echo $res['equipamento']?> | N° <?php echo $res['numeracaoEqui']?></td>
               <td><?php echo $res['data']?></td>
               <td><?php echo $res['turno']?></td>
               <td><?php echo $res['horario']?></td>
