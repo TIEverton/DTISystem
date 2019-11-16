@@ -43,7 +43,7 @@ require_once '../../config/DB.php';
 
       <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>location_city</i></span>
       <select class="form-control" id="select_campus" name="select_campus">
-          <option>Filtre um Campus</option>
+          <option value='0'>Filtre um Campus</option>
           <?php
                 $result_campus = "SELECT * FROM campus";
                 $exec = DB::prepare($result_campus);
@@ -60,7 +60,7 @@ require_once '../../config/DB.php';
 
   <div class="row md-13">
         <table id="pesquisaTable" class="table table-striped custab text-center" border="1"style="margin: 0px;">
-        <thead>
+          <thead>
             <tr class="text-center" style="background-color: #0052aa; color: white;">
                 <th>Professor</th>
                 <th>Data</th>
@@ -69,15 +69,17 @@ require_once '../../config/DB.php';
                 <th>Horário</th>
                 <th class="text-center">Ação</th>
             </tr>
-        </thead>
-                <tr>
-                    <td>Everton Pinheiro da Silva</td>
-                    <td>12/05/2002</td>
-                    <td>VGA 03</td>
-                    <td>VGA 03</td>
-                    <td>VGA 03</td>
-                    <td class="text-center"><a class="btn btn-primary btn-sm" href="#"><i class="fa fa-check-square" aria-hidden="true"></i></span> Devolver</a></td>
-                </tr>
+          </thead>
+          <tbody class="table_body">
+              <tr>
+                  <td>Everton Pinheiro da Silva</td>
+                  <td>12/05/2002</td>
+                  <td>VGA 03</td>
+                  <td>VGA 03</td>
+                  <td>VGA 03</td>
+                  <td class="text-center"><a class="btn btn-primary btn-sm" href="#"><i class="fa fa-check-square" aria-hidden="true"></i></span> Devolver</a></td>
+              </tr>
+            </tbody>
         </table>
         </div>
     </div>
@@ -124,14 +126,18 @@ require_once '../../config/DB.php';
       atualizarTabela()
       setInterval(() => {
         atualizarTabela()
-      }, 20000);
+      }, 10000);
 
       function atualizarTabela(){
-        $.getJSON('', {
+        $.getJSON('../../querys/queryReservas.php?search=', {
           select_campus: $('#select_campus').val(),
           ajax: 'true',
         }, function(j){
+          $('.table_body').empty()
 
+          for(var reserva in j){
+            console.log(j[reserva])
+          }
         })
       }
     })

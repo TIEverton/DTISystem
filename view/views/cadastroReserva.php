@@ -191,13 +191,16 @@ require_once '../../config/DB.php';
 
   $(function(){
     //PREENCHER SELECT_EQUIPAMENTOS
-    $('#select_campus').change(function(){
+    $('#select_campus, #data, #select_turno, #select_horario').change(function(){
       $('#select_equipamentos').empty()
       $('#select_equipamentos').append(`<option value="">Selecione um Equipamento</option>`); 
 
       if($(this).val()){
         $.getJSON('../../querys/querysEquipamentos.php?search=', {
           select_campus: $('#select_campus').val(),
+          data: $('#data').val(),
+          select_turno: $('#select_turno').val(),
+          select_horario: $('#select_horario').val(),
           ajax: 'true'
         },
         function(j){

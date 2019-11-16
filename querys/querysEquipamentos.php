@@ -1,10 +1,20 @@
 <?php
     require_once '../config/DB.php';
     $campus = $_REQUEST['select_campus'];
-    $result_equipamentos = "SELECT equipamento.id, equipamento.numeracao, agrupamento.nome FROM equipamento
+    $data = $_REQUEST['data'];
+    $turno = $_REQUEST['select_turno'];
+    $horario = $_REQUEST['select_horario'];
+
+    $result_equipamentos = "SELECT equipamento.id, equipamento.numeracao, agrupamento.nome AS nome FROM reserva
+    RIGHT JOIN equipamento
+    ON reserva.equipamento = equipamento.id
+    AND reserva.campus = '$campus'
+    AND reserva.data = '$data'
+    AND reserva.turno = '$turno'
+    AND reserva.horario = '$horario'
     INNER JOIN agrupamento
     ON equipamento.agrupamento = agrupamento.id
-    WHERE campus = '$campus' AND emprestado = 0";
+    WHERE reserva.equipamento IS null";
 
     $exec = DB::prepare($result_equipamentos);
     $exec->execute();
@@ -15,6 +25,8 @@
             'numeracao' => $dados['numeracao']
         );
     }
+
+
 
     echo (json_encode($result));
     
