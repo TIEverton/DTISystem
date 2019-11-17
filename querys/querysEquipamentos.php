@@ -14,7 +14,9 @@
     AND reserva.horario = '$horario'
     INNER JOIN agrupamento
     ON equipamento.agrupamento = agrupamento.id
-    WHERE reserva.equipamento IS null";
+    WHERE reserva.equipamento IS null
+    AND equipamento.campus = '$campus'
+    ORDER BY agrupamento.nome";
 
     $exec = DB::prepare($result_equipamentos);
     $exec->execute();
