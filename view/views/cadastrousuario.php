@@ -26,7 +26,7 @@
   <div class="col-md-6">
     <div class="form-group" style="margin-top: 3%;">
     <input type="hidden" name="id" value="" />
-      Nome:
+      <b>Nome:</b>
       <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>perm_contact_calendar</i></span>
@@ -34,7 +34,7 @@
             <input type="text" name="nome" class="form-control" placeholder="Digite seu nome e sobrenome." aria-label="Username" aria-describedby="basic-addon1">
       </div>
 
-      Login:
+      <b>Login:</b>
       <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>account_circle</i></span>
@@ -42,7 +42,7 @@
             <input type="text" name="login" class="form-control" placeholder="Digite um login." aria-label="Username" aria-describedby="basic-addon1">
       </div>
 
-      Senha:
+      <b>Senha:</b>
       <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>lock</i></span>
@@ -50,7 +50,7 @@
             <input type="password" name="senha" class="form-control" placeholder="Digite uma senha." aria-label="Username" aria-describedby="basic-addon1">
       </div>
 
-      Email:
+      <b>Email:</b>
       <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>email</i></span>
@@ -58,7 +58,7 @@
             <input type="email" name="email" class="form-control" placeholder="Digite um email válido." aria-label="Username" aria-describedby="basic-addon1">
       </div>
 
-      CPF:
+      <b>CPF:</b>
       <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>call_to_action</i></span>
@@ -66,7 +66,7 @@
             <input type="text" name="cpf" class="form-control" placeholder="Digite seu CPF." aria-label="Username" aria-describedby="basic-addon1">
       </div>
 
-      Nível de Acesso:
+      <b>Nível de Acesso:</b>
       <select class="form-control" name="nivel" id="exampleFormControlSelect1">
           <option>Selecione um nível de acesso:</option>
           <option value="Administrador / Funcionário">Administrador / Funcionário</option>

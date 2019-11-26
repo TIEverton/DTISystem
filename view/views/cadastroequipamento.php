@@ -30,7 +30,7 @@ require_once '../../config/DB.php';
   <form method="POST" action="../../controller/equipamento/Equipamento.controller.php">
     <div class="form-group" style="margin-top: 3%;">
       <input type="hidden" name="id" value="" />
-      Numeração:
+      <b>Numeração:</b>
       <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>format_list_numbered</i></span>
@@ -38,7 +38,7 @@ require_once '../../config/DB.php';
             <input type="text" name="numeracao" class="form-control" placeholder="Digite a numeração do Equipamento." require="true" aria-label="Username" aria-describedby="basic-addon1">
       </div>
 
-      Agrupamento:
+      <b>Agrupamento:</b>
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>folder</i></span>
         <select name="agrupamento" class="form-control" id="exampleFormControlSelect1" require>
@@ -57,7 +57,7 @@ require_once '../../config/DB.php';
         </select>
       </div>
 
-      Campus:
+      <b>Campus:</b>
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>location_city</i></span>
         <select name="campus" class="form-control" id="exampleFormControlSelect1" require>
@@ -76,7 +76,7 @@ require_once '../../config/DB.php';
         </select>
       </div>
 
-      Descrição:
+      <b>Descrição:</b>
       <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>insert_comment</i></span>
