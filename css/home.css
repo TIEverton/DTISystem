@@ -30,3 +30,53 @@ html {
     box-shadow: 3px 3px 0px transparent;
     transition: 0.5s;
 }
+
+#tituloCard1 {
+    margin-top: 20px;
+    margin-left: 10px;
+    color: #0052aa;
+    font-weight: bold;
+}
+
+#nameCard {
+    margin-top: -31px;
+    margin-left: 30px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#tituloCard2 {
+    margin-top: 20px;
+    margin-left: 10px;
+    color: #0052aa;
+    font-weight: bold;
+}
+
+#nameCard2 {
+    margin-top: -31px;
+    margin-left: 30px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#tituloCard3 {
+    margin-top: 20px;
+    margin-left: 10px;
+    color: #0052aa;
+    font-weight: bold;
+}
+
+#nameCard3 {
+    margin-top: -31px;
+    margin-left: 30px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#tituloCards {
+    margin-bottom: -3px;
+}
+
+#accordionExample {
+    margin-top: 10px;
+}
