@@ -157,7 +157,7 @@ require_once '../../config/DB.php';
         <!-- Titulo do Card -->
           <div class="card-header" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
             <div id="tituloCard3">
-                <i class='material-icons left'>keyboard</i><p id="nameCard3">Equipamento</p>
+                <i class='material-icons left'>keyboard</i><p id="nameCard3">Equipamento:</p>
             </div>
           </div>
 

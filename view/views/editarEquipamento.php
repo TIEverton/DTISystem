@@ -46,7 +46,7 @@ include_once '../../config/DB.php';
     <div class="form-group" style="margin-top: 3%;">
     <input type="hidden" name="id" value="" />
 
-    Numeração:
+    <b>Numeração:</b>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>format_list_numbered</i></span>
@@ -54,7 +54,7 @@ include_once '../../config/DB.php';
         <input type="text" name="numeracao" class="form-control" placeholder="Digite a numeração do Equipamento." require="true" aria-label="Username" aria-describedby="basic-addon1" value=<?php echo $resultaEditar['numeracao'] ?> >
     </div>
 
-    Agrupamento:
+    <b>Agrupamento:</b>
     <select name="agrupamento" class="form-control" id="exampleFormControlSelect1" require>
         <?php
             $result_campus = "SELECT * FROM agrupamento";
@@ -70,7 +70,7 @@ include_once '../../config/DB.php';
     </select>
     <br>
 
-    Campus:
+    <b>Campus:</b>
     <select name="campus" class="form-control" id="exampleFormControlSelect1" require>
         <?php
             $result_campus = "SELECT * FROM campus";
@@ -86,7 +86,7 @@ include_once '../../config/DB.php';
     </select>
     <br>
 
-    Descrição:
+    <b>Descrição:</b>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>insert_comment</i></span>

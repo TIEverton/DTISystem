@@ -27,7 +27,7 @@ include_once '../../config/sessions.php';
 <div class="row justify-content-center">
   <div class="col-md-6">
     <div class="form-group" style="margin-top: 3%;">
-      Nome:
+      <b>Nome:</b>
       <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>text_fields</i></span>

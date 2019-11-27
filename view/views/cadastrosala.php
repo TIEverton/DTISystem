@@ -30,7 +30,7 @@ require_once '../../config/DB.php';
   <div class="col-md-6">
     <div class="form-group" style="margin-top: 3%;">
 
-      Nome:
+      <b>Nome:</b>
       <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>text_fields</i></span>
@@ -38,7 +38,7 @@ require_once '../../config/DB.php';
             <input type="text" name="nome" class="form-control" placeholder="Digite o nome da Sala." aria-label="Username" aria-describedby="basic-addon1">
       </div>
 
-      Campus:
+      <b>Campus:</b>
       <div class="input-group mb-3">
       <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>location_city</i></span>
       <select class="form-control" name="select_campus" id="exampleFormControlSelect1">
@@ -57,7 +57,7 @@ require_once '../../config/DB.php';
       </select>
       </div>
   
-      Situação:
+      <b>Situação:</b>
       <div class="input-group mb-3">
       <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>done_all</i></span>
       <select class="form-control" name="situacao" id="exampleFormControlSelect1">

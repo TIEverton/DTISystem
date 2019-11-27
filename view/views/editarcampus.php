@@ -45,7 +45,7 @@ include_once '../../config/config.php';
     <div class="form-group" style="margin-top: 3%;">
     <input type="hidden" name="id" value="" />
 
-    Nome:
+      <b>Nome:</b>
       <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>text_fields</i></span>
@@ -53,7 +53,7 @@ include_once '../../config/config.php';
             <input type="text" class="form-control" name="nome" placeholder="Digite o nome do Campus." aria-label="Username" aria-describedby="basic-addon1" value="<?php if(isset($resultaEditar['nome'])) { echo $resultaEditar['nome']; } ?>">
       </div>
 
-      CNPJ:
+      <b>CNPJ:</b>
       <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>featured_play_list</i></span>
@@ -61,7 +61,7 @@ include_once '../../config/config.php';
             <input type="text" class="form-control" name="cnpj" placeholder="Digite o CNPJ do Campus." aria-label="Username" aria-describedby="basic-addon1" value="<?php if(isset($resultaEditar['cnpj'])) { echo $resultaEditar['cnpj']; } ?>">
       </div>
 
-      Endereço:
+      <b>Endereço:</b>
       <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>map</i></span>
@@ -69,7 +69,7 @@ include_once '../../config/config.php';
             <input type="text" class="form-control" name="endereco" placeholder="Digite o endereço do Campus." aria-label="Username" aria-describedby="basic-addon1" value="<?php if(isset($resultaEditar['endereco'])) { echo $resultaEditar['endereco']; } ?>">
       </div>
 
-      Bairro:
+      <b>Bairro:</b>
       <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>my_location</i></span>

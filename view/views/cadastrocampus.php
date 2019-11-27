@@ -27,7 +27,7 @@ include_once '../../config/sessions.php';
 <div class="row justify-content-center">
   <div class="col-md-6">
     <div class="form-group" style="margin-top: 3%;">
-      Nome:
+      <b>Nome:</b>
       <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>text_fields</i></span>
@@ -35,7 +35,7 @@ include_once '../../config/sessions.php';
             <input type="text" class="form-control" name="nome" placeholder="Digite o nome do Campus." aria-label="Username" aria-describedby="basic-addon1">
       </div>
 
-      CNPJ:
+      <b>CNPJ:</b>
       <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>featured_play_list</i></span>
@@ -43,7 +43,7 @@ include_once '../../config/sessions.php';
             <input type="text" class="form-control" name="cnpj" placeholder="Digite o CNPJ do Campus." aria-label="Username" aria-describedby="basic-addon1">
       </div>
 
-      Endereço:
+      <b>Endereço:</b>
       <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>map</i></span>
@@ -51,7 +51,7 @@ include_once '../../config/sessions.php';
             <input type="text" class="form-control" name="endereco" placeholder="Digite o endereço do Campus. (Rua, N°)" aria-label="Username" aria-describedby="basic-addon1">
       </div>
 
-      Bairro:
+      <b>Bairro:</b>
       <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>my_location</i></span>
