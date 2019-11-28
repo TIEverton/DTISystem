@@ -3,7 +3,8 @@
     $campus = $_REQUEST['select_campus'];
     $data = $_REQUEST['data'];
     $turno = $_REQUEST['select_turno'];
-    $horario = $_REQUEST['select_horario'];
+    $horario_inicial = $_REQUEST['select_horario_inicial'];
+    $horario_final = $_REQUEST['select_horario_final'];
 
     $result_equipamentos = "SELECT equipamento.id, equipamento.numeracao, agrupamento.nome AS nome FROM reserva
     RIGHT JOIN equipamento
@@ -11,7 +12,8 @@
     AND reserva.campus = '$campus'
     AND reserva.data = '$data'
     AND reserva.turno = '$turno'
-    AND reserva.horario = '$horario'
+    AND (reserva.horario LIKE '%$horario_inicial%'
+    OR reserva.horario LIKE '%$horario_final%')
     INNER JOIN agrupamento
     ON equipamento.agrupamento = agrupamento.id
     WHERE reserva.equipamento IS null
@@ -27,8 +29,6 @@
             'numeracao' => $dados['numeracao']
         );
     }
-
-
 
     echo (json_encode($result));
     

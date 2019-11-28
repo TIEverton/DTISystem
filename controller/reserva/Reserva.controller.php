@@ -20,11 +20,17 @@
             if($acao == "update"){
                 $ReservaClass->setId($_POST['id']);
             }
+            $horario = ''; 
+
+            for ($i=$_POST['select_horario_inicial']; $i <= $_POST['select_horario_final']; $i++) { 
+                $horario = $horario.$i;
+            }
+
             $ReservaClass->setEquipamento($_POST['select_equipamentos']);
             $ReservaClass->seCampus($_POST['select_campus']);
             $ReservaClass->setSala($_POST['select_salas']);
             $ReservaClass->setData($_POST['data']);
-            $ReservaClass->setHorario($_POST['select_horario']);
+            $ReservaClass->setHorario($horario);
             $ReservaClass->setTurno($_POST['select_turno']);
             $ReservaClass->setObservacao($_POST['observacao']);
             $ReservaClass->setResponsavel($_POST['responsavel']);

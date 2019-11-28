@@ -131,7 +131,6 @@ require_once '../../config/DB.php';
               </select>
               </div>
               
-              
                     <!-- Observação:
                     <div class="input-group mb-3">
                           <div class="input-group-prepend">
@@ -164,7 +163,7 @@ require_once '../../config/DB.php';
               <b>Agrupamento:</b>
               <div class="input-group mb-3">
                       <span class="input-group-text" ><i class='material-icons left'>keyboard</i></span>
-              <select class="form-control" name="select_equipamentos" id="select_equipamentos">
+              <select class="form-control" name="select_agrupamento" id="select_agrupamento">
                     <option>Selecione o tipo de Equipamento:</option>
               </select>
               </div>
@@ -174,6 +173,17 @@ require_once '../../config/DB.php';
                     <span class="input-group-text" ><i class='material-icons left'>keyboard</i></span>
               <select class="form-control" name="select_equipamentos" id="select_equipamentos">
                   <option>Selecione um Equipamento:</option>
+                  <?php
+                    $result_campus = "SELECT * FROM equipamento";
+                    $exec = DB::prepare($result_campus);
+                    $exec->execute();
+                    while($dados = $exec->fetch(PDO::FETCH_ASSOC)):?>
+                      <option value="<?php echo $dados['id']?>">
+                        <?php echo $dados['agrupamento']?>
+                      </option>
+                  <?php
+                    endwhile;
+                    ?>
               </select>
               </div>
               
@@ -325,7 +335,7 @@ require_once '../../config/DB.php';
 
   $(function(){
     //PREENCHER SELECT_EQUIPAMENTOS
-    $('#select_campus, #data, #select_turno, #select_horario').change(function(){
+    $('#select_campus, #data, #select_turno, #select_horario_inicial, #select_horario_final').change(function(){
       $('#select_equipamentos').empty()
       $('#select_equipamentos').append(`<option value="">Selecione um Equipamento</option>`); 
 
@@ -334,7 +344,8 @@ require_once '../../config/DB.php';
           select_campus: $('#select_campus').val(),
           data: $('#data').val(),
           select_turno: $('#select_turno').val(),
-          select_horario: $('#select_horario').val(),
+          select_horario_inicial: $('#select_horario_inicial').val(),
+          select_horario_final: $('#select_horario_final').val(),
           ajax: 'true'
         },
         function(j){
