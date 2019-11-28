@@ -3,6 +3,11 @@ if(!isset($_SESSION)){
     session_start(); 
 } 
 ?>
+<style>
+  .navbar {
+    z-index: 1;
+  }
+</style>
 <!--Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark lighten-1">
         <a class="navbar-brand" href="#">
@@ -38,12 +43,11 @@ if(!isset($_SESSION)){
 
             <li class="nav-item dropdown active">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-555" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false"><i class="fa fa-id-badge" aria-hidden="true"></i> Documentos
+                  aria-haspopup="true" aria-expanded="false"><i class="fa fa-id-badge" aria-hidden="true"></i> Solicitações
                 </a>
         <div class="dropdown-menu dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-555">
-                <a class="dropdown-item" href="#"><i class="fa fa-address-card-o" aria-hidden="true"></i> Carteira de Estudante</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-address-card" aria-hidden="true"></i> Crachá Estágio</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-address-card-o" aria-hidden="true"></i> Crachá Funcionário</a>
+                <a class="dropdown-item" href="#"><i class="fa fa-address-card-o" aria-hidden="true"></i> Crachás/Carterinha</a>
+                <a class="dropdown-item" href="#"><i class="fa fa-address-card" aria-hidden="true"></i> Suporte a Eventos</a>
         </div>
         </li> 
 
