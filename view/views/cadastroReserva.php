@@ -121,17 +121,13 @@ require_once '../../config/DB.php';
               <b>Horário:</b>
               <div class="input-group mb-3">
               <span class="input-group-text" ><i class='material-icons left'>schedule</i></span>
-              <select class="form-control" name="select_horario" id="select_horario">
+              <select class="form-control" name="select_horario_inicial" id="select_horario_inicial">
                   <option>Selecione horário inicial:</option>
-                  <option>AB</option>
-                  <option>CD</option>
               </select>
               &nbsp;&nbsp;&nbsp;
               <span class="input-group-text" ><i class='material-icons left'>schedule</i></span>
-              <select class="form-control" name="select_horario" id="select_horario">
+              <select class="form-control" name="select_horario_final" id="select_horario_final">
                   <option>Selecione horário final:</option>
-                  <option>AB</option>
-                  <option>CD</option>
               </select>
               </div>
               
@@ -256,12 +252,51 @@ require_once '../../config/DB.php';
   $(function(){
     // SELECT HORARIO
     $('#select_turno').change(function(){
-      $('#select_horario').empty();
+      $('#select_horario_inicial').empty();
+      $('#select_horario_final').empty();
       if($('#select_turno').val() == 'Noite'){
-        $('#select_horario').append('<option value="ab">AB</option>')
-      }else{
-        $('#select_horario').append('<option value="ab">AB</option>')
-        $('#select_horario').append('<option value="cd">CD</option>')        
+        //HORÁRIOS INICIAIS
+        $('#select_horario_inicial').append('<option>Selecione um horário inicial:</option>')
+        $('#select_horario_inicial').append('<option value="0">A - 18:30h</option>')
+        $('#select_horario_inicial').append('<option value="1">B - 19:20h</option>')
+        $('#select_horario_inicial').append('<option value="2">C - 20:30h</option>')
+        $('#select_horario_inicial').append('<option value="3">D - 21:20h</option>')
+        //HORÁRIOS FINAIS
+        $('#select_horario_final').append('<option>Selecione um horário final:</option>')
+        $('#select_horario_final').append('<option value="0">A - 19:20h</option>')
+        $('#select_horario_final').append('<option value="1">B - 20:10h</option>')
+        $('#select_horario_final').append('<option value="2">C - 21:20h</option>')
+        $('#select_horario_final').append('<option value="3">D - 22:10h</option>')
+      } else if($('#select_turno').val() == 'Manhã') {
+        //HORÁRIOS INICIAIS
+        $('#select_horario_inicial').append('<option>Selecione um horário inicial:</option>')
+        $('#select_horario_inicial').append('<option value="0">A - 07:30h</option>')
+        $('#select_horario_inicial').append('<option value="1">B - 08:20h</option>')
+        $('#select_horario_inicial').append('<option value="2">C - 09:10h</option>')
+        $('#select_horario_inicial').append('<option value="3">D - 10:20h</option>')
+        $('#select_horario_inicial').append('<option value="4">E - 11:10h</option>')
+        $('#select_horario_inicial').append('<option value="5">F - 12:00h</option>')
+        //HORÁRIOS FINAIS
+        $('#select_horario_final').append('<option>Selecione um horário final:</option>')
+        $('#select_horario_final').append('<option value="0">A - 08:20h</option>')
+        $('#select_horario_final').append('<option value="1">B - 09:10h</option>')
+        $('#select_horario_final').append('<option value="2">C - 10:00h</option>')
+        $('#select_horario_final').append('<option value="3">D - 11:10h</option>')
+        $('#select_horario_final').append('<option value="4">E - 12:00h</option>')
+        $('#select_horario_final').append('<option value="5">F - 12:50h</option>')
+      } else if($('#select_turno').val() == 'Tarde') {
+        //HORÁRIOS INICIAIS
+        $('#select_horario_inicial').append('<option>Selecione um horário inicial:</option>')
+        $('#select_horario_inicial').append('<option value="0">A - 13:30h</option>')
+        $('#select_horario_inicial').append('<option value="1">B - 14:20h</option>')
+        $('#select_horario_inicial').append('<option value="2">C - 15:30h</option>')
+        $('#select_horario_inicial').append('<option value="3">D - 16:20h</option>')
+        //HORÁRIOS FINAIS
+        $('#select_horario_final').append('<option>Selecione um horário final:</option>')
+        $('#select_horario_final').append('<option value="0">A - 14:20h</option>')
+        $('#select_horario_final').append('<option value="1">B - 15:10h</option>')
+        $('#select_horario_final').append('<option value="2">C - 16:20h</option>')
+        $('#select_horario_final').append('<option value="3">D - 17:10h</option>')
       }
     });
   });
