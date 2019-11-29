@@ -38,11 +38,11 @@ require_once '../../config/DB.php';
       <!-- CARD 1 -->
       <div class="card">
         <!-- Titulo do Card -->
-        <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
             <div id="tituloCard1"><i class='material-icons'>location_city</i><p id="nameCard">Campus:</p></div>
         </div>
 
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne">
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="card-body">
                 <div class="form-group" >
                     <b>Campus:</b>
@@ -98,7 +98,7 @@ require_once '../../config/DB.php';
         
             </div>
 
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingThree">
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
             <div class="card-body">
                 <div class="form-group" >
                 <b>Data:</b>
@@ -156,7 +156,7 @@ require_once '../../config/DB.php';
             </div>
           </div>
 
-        <div id="collapseThree" class="collapse" aria-labelledby="headingThree">
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
         <div class="card-body">
               <div class="form-group" >
               
