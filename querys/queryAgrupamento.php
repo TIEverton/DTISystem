@@ -5,9 +5,16 @@
     $turno = $_REQUEST['select_turno'];
     $horario_inicial = $_REQUEST['select_horario_inicial'];
     $horario_final = $_REQUEST['select_horario_final'];
-    $agrupamento = $_REQUEST['select_agrupamento'];
 
-    $result_equipamentos = "SELECT equipamento.id, equipamento.numeracao, agrupamento.nome AS nome FROM reserva
+    $result_agrupamentos = "SELECT * FROM agrupamento";
+    $exec = DB::prepare($result_agrupamento);
+    $exec->execute();
+    while($dados = $exec->fetch(PDO::FETCH_ASSOC)){
+
+    }
+    
+    
+    = "SELECT equipamento.id, equipamento.numeracao, agrupamento.nome AS nome FROM reserva
     RIGHT JOIN equipamento
     ON reserva.equipamento = equipamento.id
     AND reserva.campus = '$campus'
@@ -19,7 +26,6 @@
     ON equipamento.agrupamento = agrupamento.id
     WHERE reserva.equipamento IS null
     AND equipamento.campus = '$campus'
-    AND equipamento.agrupamento = '$agrupamento'
     ORDER BY agrupamento.nome";
 
     $exec = DB::prepare($result_equipamentos);

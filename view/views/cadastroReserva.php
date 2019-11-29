@@ -51,16 +51,16 @@ require_once '../../config/DB.php';
                     <select class="form-control" id="select_campus" name="select_campus">
                         <option>Selecione um campus:</option>
                         <?php
-                              $result_campus = "SELECT * FROM campus";
-                              $exec = DB::prepare($result_campus);
-                              $exec->execute();
-                              while($dados = $exec->fetch(PDO::FETCH_ASSOC)):?>
-                                <option value="<?php echo $dados['id']?>">
-                                  <?php echo $dados['nome']?>
-                                </option>
-                            <?php
-                              endwhile;
-                              ?>
+                          $result_campus = "SELECT * FROM campus";
+                          $exec = DB::prepare($result_campus);
+                          $exec->execute();
+                          while($dados = $exec->fetch(PDO::FETCH_ASSOC)):?>
+                            <option value="<?php echo $dados['id']?>">
+                              <?php echo $dados['nome']?>
+                            </option>
+                        <?php
+                          endwhile;
+                          ?>
                     </select>
                     </div>
               
@@ -71,15 +71,6 @@ require_once '../../config/DB.php';
                         <option>Selecione uma Sala:</option>
                     </select>
                     </div>
-              
-              
-                    <!-- Observação:
-                    <div class="input-group mb-3">
-                          <div class="input-group-prepend">
-                          <span class="input-group-text" ><i class='material-icons left'>insert_comment</i></span>
-                          </div>
-                          <textarea id="observacao" class="form-control" id="exampleFormControlTextarea1" rows="5" name="observacao"></textarea>
-                    </div> -->
                     
                     <input type="hidden" name="acao" class="form-control" value="inserir"/>
                     <input type="hidden" name="responsavel" value="<?php echo $_SESSION['user_id'];?>"/>
@@ -130,14 +121,6 @@ require_once '../../config/DB.php';
                   <option>Selecione horário final:</option>
               </select>
               </div>
-              
-                    <!-- Observação:
-                    <div class="input-group mb-3">
-                          <div class="input-group-prepend">
-                          <span class="input-group-text" ><i class='material-icons left'>insert_comment</i></span>
-                          </div>
-                          <textarea id="observacao" class="form-control" id="exampleFormControlTextarea1" rows="5" name="observacao"></textarea>
-                    </div> -->
                     
                     <input type="hidden" name="acao" class="form-control" value="inserir"/>
                     <input type="hidden" name="responsavel" value="<?php echo $_SESSION['user_id'];?>"/>
@@ -165,6 +148,17 @@ require_once '../../config/DB.php';
                       <span class="input-group-text" ><i class='material-icons left'>keyboard</i></span>
               <select class="form-control" name="select_agrupamento" id="select_agrupamento">
                     <option>Selecione o tipo de Equipamento:</option>
+                    <?php
+                          $result_agrupamento = "SELECT * FROM agrupamento";
+                          $exec = DB::prepare($result_agrupamento);
+                          $exec->execute();
+                          while($dados = $exec->fetch(PDO::FETCH_ASSOC)):?>
+                            <option value="<?php echo $dados['id']?>">
+                              <?php echo $dados['nome']?>
+                            </option>
+                        <?php
+                          endwhile;
+                          ?>
               </select>
               </div>
               
@@ -173,17 +167,6 @@ require_once '../../config/DB.php';
                     <span class="input-group-text" ><i class='material-icons left'>keyboard</i></span>
               <select class="form-control" name="select_equipamentos" id="select_equipamentos">
                   <option>Selecione um Equipamento:</option>
-                  <?php
-                    $result_campus = "SELECT * FROM equipamento";
-                    $exec = DB::prepare($result_campus);
-                    $exec->execute();
-                    while($dados = $exec->fetch(PDO::FETCH_ASSOC)):?>
-                      <option value="<?php echo $dados['id']?>">
-                        <?php echo $dados['agrupamento']?>
-                      </option>
-                  <?php
-                    endwhile;
-                    ?>
               </select>
               </div>
               
@@ -335,9 +318,9 @@ require_once '../../config/DB.php';
 
   $(function(){
     //PREENCHER SELECT_EQUIPAMENTOS
-    $('#select_campus, #data, #select_turno, #select_horario_inicial, #select_horario_final').change(function(){
+    $('#select_campus, #data, #select_turno, #select_horario_inicial, #select_horario_final, #select_agrupamento').change(function(){
       $('#select_equipamentos').empty()
-      $('#select_equipamentos').append(`<option value="">Selecione um Equipamento</option>`); 
+      $('#select_equipamentos').append(`<option value="">Selecione um Equipamento: </option>`); 
 
       if($(this).val()){
         $.getJSON('../../querys/querysEquipamentos.php?search=', {
@@ -346,9 +329,11 @@ require_once '../../config/DB.php';
           select_turno: $('#select_turno').val(),
           select_horario_inicial: $('#select_horario_inicial').val(),
           select_horario_final: $('#select_horario_final').val(),
+          select_agrupamento: $('#select_agrupamento').val(),
           ajax: 'true'
         },
         function(j){
+            $('#select_equipamentos').empty()
             for(var i = 0; i < j.length; i++){
               id =j[i].id
               nome =j[i].nome
