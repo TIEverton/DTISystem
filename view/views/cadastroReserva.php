@@ -89,7 +89,7 @@ require_once '../../config/DB.php';
         
             </div>
 
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingThree">
             <div class="card-body">
                 <div class="form-group" >
                 <b>Data:</b>
@@ -139,7 +139,7 @@ require_once '../../config/DB.php';
             </div>
           </div>
 
-        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree">
         <div class="card-body">
               <div class="form-group" >
               
