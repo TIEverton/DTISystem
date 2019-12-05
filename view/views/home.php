@@ -63,22 +63,18 @@ require_once '../../config/DB.php';
           <thead>
             <tr class="text-center" style="background-color: #0052aa; color: white;">
                 <th>Professor</th>
-                <th>Data</th>
                 <th>Campus</th>
+                <th>Sala</th>
                 <th>Equipamento</th>
+                <th>Data</th>
+                <th>Turno</th>
                 <th>Horário</th>
+                <th>Observação</th>
+                <th>Devolvido</th>
                 <th class="text-center">Ação</th>
             </tr>
           </thead>
           <tbody class="table_body">
-              <tr>
-                  <td>Everton Pinheiro da Silva</td>
-                  <td>12/05/2002</td>
-                  <td>VGA 03</td>
-                  <td>VGA 03</td>
-                  <td>VGA 03</td>
-                  <td class="text-center"><a class="btn btn-primary btn-sm" href="#"><i class="fa fa-check-square" aria-hidden="true"></i></span> Devolver</a></td>
-              </tr>
             </tbody>
         </table>
         </div>
@@ -126,7 +122,9 @@ require_once '../../config/DB.php';
       atualizarTabela()
       setInterval(() => {
         atualizarTabela()
-      }, 10000);
+      }, 10000)
+      
+      $('#select_campus').on('change', atualizarTabela)
 
       function atualizarTabela(){
         $.getJSON('../../querys/queryReservas.php?search=', {
@@ -136,7 +134,19 @@ require_once '../../config/DB.php';
           $('.table_body').empty()
 
           for(var reserva in j){
-            console.log(j[reserva])
+            $('.table_body').append(`<tr class="reserva${reserva}"></tr>`)
+            $(`.reserva${reserva}`).append(`<td>${j[reserva].responsavel}</td>`)
+            $(`.reserva${reserva}`).append(`<td>${j[reserva].campus}</td>`)
+            $(`.reserva${reserva}`).append(`<td>${j[reserva].sala}</td>`)
+            $(`.reserva${reserva}`).append(`<td>${j[reserva].equipamento} | N° ${j[reserva].numeracaoEqui}</td>`)
+            $(`.reserva${reserva}`).append(`<td>${j[reserva].data}</td>`)
+            $(`.reserva${reserva}`).append(`<td>${j[reserva].turno}</td>`)
+            $(`.reserva${reserva}`).append(`<td>${j[reserva].horario}</td>`)
+            $(`.reserva${reserva}`).append(`<td>${j[reserva].observacao}</td>`)
+            $(`.reserva${reserva}`).append(`<td>${j[reserva].devolvido}</td>`)
+
+            $(`.reserva${reserva}`).append(`<td class="text-center"><a class="btn btn-primary btn-sm" href="#"><i class="fa fa-check-square" aria-hidden="true"></i></span> Devolver</a></td>`)
+  
           }
         })
       }

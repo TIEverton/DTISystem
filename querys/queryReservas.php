@@ -2,8 +2,8 @@
     require_once '../config/DB.php';
     $campus = $_REQUEST['select_campus'];
     if($campus == 0){
-        $resultado = "SELECT reserva.*, campus.`nome` AS campus, agrupamento.`nome` AS equipamento, equipamento.`numeracao` AS numeracaoEqui,
-        sala.`nome` AS sala, usuarios.`nome` AS responsavel FROM reserva 
+        $resultado = "SELECT reserva.*, campus.`nome` AS campusNome, agrupamento.`nome` AS equipamentoNome, equipamento.`numeracao` AS numeracaoEqui,
+        sala.`nome` AS salaNome, usuarios.`nome` AS responsavel FROM reserva 
     
         INNER JOIN campus
         INNER JOIN sala
@@ -13,14 +13,15 @@
         ON reserva.`campus`= campus.`id` 
         AND reserva.`equipamento`= equipamento.`id` 
         AND reserva.`sala`= sala.`id` 
+        AND equipamento.`agrupamento` = agrupamento.`id`
         AND reserva.`responsavel` = usuarios.`id`
         ORDER BY id DESC
         ";
         
     }else{
-        $resultado = "SELECT reserva.*, campus.`nome` AS campus, agrupamento.`nome` AS equipamento, equipamento.`numeracao` AS numeracaoEqui,
-        sala.`nome` AS sala, usuarios.`nome` AS responsavel FROM reserva 
-
+        $resultado = "SELECT reserva.*, campus.`nome` AS campusNome, agrupamento.`nome` AS equipamentoNome, equipamento.`numeracao` AS numeracaoEqui,
+        sala.`nome` AS salaNome, usuarios.`nome` AS responsavel FROM reserva 
+    
         INNER JOIN campus
         INNER JOIN sala
         INNER JOIN equipamento
@@ -29,8 +30,9 @@
         ON reserva.`campus`= campus.`id` 
         AND reserva.`equipamento`= equipamento.`id` 
         AND reserva.`sala`= sala.`id` 
+        AND equipamento.`agrupamento` = agrupamento.`id`
         AND reserva.`responsavel` = usuarios.`id`
-        WHERE campus = '$campus'
+        WHERE reserva.`campus` = '$campus'
         ORDER BY id DESC
         ";
     }
@@ -42,9 +44,9 @@
     if($resultado->rowCount()>0){
         while($dados = $resultado->fetch(PDO::FETCH_ASSOC)){
             $result[] = array(
-                'campus' => $dados['campus'],
-                'sala' => $dados['sala'],
-                'equipamento' => $dados['equipamento'],
+                'campus' => $dados['campusNome'],
+                'sala' => $dados['salaNome'],
+                'equipamento' => $dados['equipamentoNome'],
                 'numeracaoEqui' => $dados['numeracaoEqui'],
                 'responsavel' => $dados['responsavel'],
                 'data' => $dados['data'],

@@ -342,6 +342,24 @@ require_once '../../config/DB.php';
             }
         })
       }
+
+      // if($(this).val()){
+      //   $.getJSON('../../querys/queryAgrupamento.php?search=', {
+      //     select_campus: $('#select_campus').val(),
+      //     data: $('#data').val(),
+      //     select_turno: $('#select_turno').val(),
+      //     select_horario_inicial: $('#select_horario_inicial').val(),
+      //     select_horario_final: $('#select_horario_final').val(),
+      //     ajax: 'true'
+      //   },
+      //   function(j){
+      //       $('#select_agrupamento').empty()
+      //       for(var i = 0; i < j.length; i++){
+      //         quantidadeEqui = j[i].quantidadeEqui
+      //         $('#select_agrupamento').append(`<option value="" | Quant. ${quantidadeEqui}</option>`)
+      //       }
+      //   })
+      // }
     })
   })
   

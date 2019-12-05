@@ -91,7 +91,8 @@
             INNER JOIN usuarios
             ON reserva.`campus`= campus.`id` 
             AND reserva.`equipamento`= equipamento.`id` 
-            AND reserva.`sala`= sala.`id` 
+            AND reserva.`sala`= sala.`id`
+            AND equipamento.`agrupamento` = agrupamento.`id`
             AND reserva.`responsavel` = usuarios.`id`
             ORDER BY id ASC
             ";
