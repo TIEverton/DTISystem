@@ -34,10 +34,7 @@ require_once '../../config/DB.php';
 <!-- FIM INCLUDE MENU -->
 
 <div class="container">
-<br>
-<center><h4 id="tituloCards">TABELA DE RESERVAS ATIVAS</h4>
-<a href="" id="duvidasLink">Dúvidas sobre a reserva, clique aqui!</a>                      
-</center>
+  <br>
 <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>search</i></span>
