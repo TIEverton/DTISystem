@@ -51,14 +51,10 @@ if(!isset($_SESSION)){
         </div>
         </li> 
 
-            <li class="nav-item dropdown active">
-              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-555" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false"><i class="fa fa-file-text" aria-hidden="true"></i> Relatório
+            <li class="nav-item active">
+              <a class="nav-link" href="gerarRelatorio.php"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Gerar Relatórios
+                <span class="sr-only">(current)</span>
               </a>
-              <div class="dropdown-menu dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-555">
-                <a class="dropdown-item" href="#"><i class="fa fa-university" aria-hidden="true"></i> Por campus</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-university" aria-hidden="true"></i> Geral</a>
-              </div>
             </li>
           </ul>
 
