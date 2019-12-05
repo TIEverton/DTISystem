@@ -148,7 +148,7 @@ require_once '../../config/DB.php';
                       <span class="input-group-text" ><i class='material-icons left'>keyboard</i></span>
               <select class="form-control" name="select_agrupamento" id="select_agrupamento">
                     <option>Selecione o tipo de Equipamento:</option>
-                    <?php
+                    <!-- <?php
                           $result_agrupamento = "SELECT * FROM agrupamento";
                           $exec = DB::prepare($result_agrupamento);
                           $exec->execute();
@@ -158,7 +158,7 @@ require_once '../../config/DB.php';
                             </option>
                         <?php
                           endwhile;
-                          ?>
+                          ?> -->
               </select>
               </div>
               
@@ -316,51 +316,60 @@ require_once '../../config/DB.php';
     })   
   })
 
+  // $(function(){
+  //   //PREENCHER SELECT_EQUIPAMENTOS
+  //   $('#select_campus, #data, #select_turno, #select_horario_inicial, #select_horario_final, #select_agrupamento').change(function(){
+  //     $('#select_equipamentos').empty()
+  //     $('#select_equipamentos').append(`<option value="">Selecione um Equipamento: </option>`); 
+
+  //     if($(this).val()){
+  //       $.getJSON('../../querys/querysEquipamentos.php?search=', {
+  //         select_campus: $('#select_campus').val(),
+  //         data: $('#data').val(),
+  //         select_turno: $('#select_turno').val(),
+  //         select_horario_inicial: $('#select_horario_inicial').val(),
+  //         select_horario_final: $('#select_horario_final').val(),
+  //         select_agrupamento: $('#select_agrupamento').val(),
+  //         ajax: 'true'
+  //       },
+  //       function(j){
+  //           $('#select_equipamentos').empty()
+  //           for(var i = 0; i < j.length; i++){
+  //             id =j[i].id
+  //             nome =j[i].nome
+  //             numeracao = j[i].numeracao
+  //             $('#select_equipamentos').append(`<option value="${id}">${nome} | N° ${numeracao}</option>`)
+  //           }
+  //       })
+  //     }
+  //   })
+  // })
+
   $(function(){
-    //PREENCHER SELECT_EQUIPAMENTOS
-    $('#select_campus, #data, #select_turno, #select_horario_inicial, #select_horario_final, #select_agrupamento').change(function(){
+    $('#select_campus, #data, #select_turno, #select_horario_inicial, #select_horario_final').change(function(){
       $('#select_equipamentos').empty()
       $('#select_equipamentos').append(`<option value="">Selecione um Equipamento: </option>`); 
 
       if($(this).val()){
-        $.getJSON('../../querys/querysEquipamentos.php?search=', {
+        $.getJSON('../../querys/queryAgrupamento.php?search=', {
           select_campus: $('#select_campus').val(),
           data: $('#data').val(),
           select_turno: $('#select_turno').val(),
           select_horario_inicial: $('#select_horario_inicial').val(),
           select_horario_final: $('#select_horario_final').val(),
-          select_agrupamento: $('#select_agrupamento').val(),
           ajax: 'true'
         },
         function(j){
-            $('#select_equipamentos').empty()
+            $('#select_agrupamento').empty()
             for(var i = 0; i < j.length; i++){
-              id =j[i].id
-              nome =j[i].nome
-              numeracao = j[i].numeracao
-              $('#select_equipamentos').append(`<option value="${id}">${nome} | N° ${numeracao}</option>`)
+              alert('opa')
+              console.log(j[i])
+              //$('#select_agrupamento').append(`<option value="" | Quant. ${quantidadeEqui}</option>`)
             }
         })
       }
-
-      // if($(this).val()){
-      //   $.getJSON('../../querys/queryAgrupamento.php?search=', {
-      //     select_campus: $('#select_campus').val(),
-      //     data: $('#data').val(),
-      //     select_turno: $('#select_turno').val(),
-      //     select_horario_inicial: $('#select_horario_inicial').val(),
-      //     select_horario_final: $('#select_horario_final').val(),
-      //     ajax: 'true'
-      //   },
-      //   function(j){
-      //       $('#select_agrupamento').empty()
-      //       for(var i = 0; i < j.length; i++){
-      //         quantidadeEqui = j[i].quantidadeEqui
-      //         $('#select_agrupamento').append(`<option value="" | Quant. ${quantidadeEqui}</option>`)
-      //       }
-      //   })
-      // }
     })
+
   })
   
 </script>
