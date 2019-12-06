@@ -167,11 +167,11 @@ require_once '../../config/DB.php';
         <div class="card-body">
               <div class="form-group" >
               
-              <b>Agrupamento:</b>
+              <b>Equipamento:</b>
               <div class="input-group mb-3">
                       <span class="input-group-text" ><i class='material-icons left'>keyboard</i></span>
-              <select class="form-control custom-select" name="select_agrupamento" id="select_agrupamento" required>
-                    <option value="">Selecione o tipo de Equipamento:</option>
+              <select class="form-control custom-select" name="select_equipamento" id="select_equipamento" required>
+                    <option value="">Selecione um equipamento: </option>
                     <!-- <?php
                           $result_agrupamento = "SELECT * FROM agrupamento";
                           $exec = DB::prepare($result_agrupamento);
@@ -185,21 +185,9 @@ require_once '../../config/DB.php';
                           ?> -->
               </select>
               <div class="invalid-feedback" style="margin-bottom: -15px;">
-                É necessário informar um <b>agrupamento.</b>
-              </div>
-              </div>
-              
-              <b>Equipamento:</b>
-              <div class="input-group mb-3">
-                    <span class="input-group-text" ><i class='material-icons left'>keyboard</i></span>
-              <select class="form-control custom-select" name="select_equipamentos" id="select_equipamentos" required>
-                  <option>Selecione um Equipamento:</option>
-              </select>
-              <div class="invalid-feedback" style="margin-bottom: -15px;">
                 É necessário informar um <b>equipamento.</b>
               </div>
               </div>
-              
                             
               <b>Observação:</b>
               <div class="input-group mb-3">
@@ -377,9 +365,16 @@ require_once '../../config/DB.php';
 
   $(function(){
     $('#select_campus, #data, #select_turno, #select_horario_inicial, #select_horario_final').change(function(){
-      $('#select_equipamentos').empty()
-      $('#select_equipamentos').append(`<option value="">Selecione um Equipamento: </option>`); 
+      $('#select_equipamento').empty()
+      $('#select_equipamento').append(`<option value="">Selecione um equipamento: </option>`); 
 
+      <?php
+      $result_agrupamentos = "SELECT * FROM agrupamento";
+      $exec = DB::prepare($result_agrupamento);
+      $exec->execute();
+      while($dados = $exec->fetch(PDO::FETCH_ASSOC)){
+      ?>
+      
       if($(this).val()){
         $.getJSON('../../querys/queryAgrupamento.php?search=', {
           select_campus: $('#select_campus').val(),
@@ -387,17 +382,20 @@ require_once '../../config/DB.php';
           select_turno: $('#select_turno').val(),
           select_horario_inicial: $('#select_horario_inicial').val(),
           select_horario_final: $('#select_horario_final').val(),
+          agrupamento: <?php echo $dados['id'] ?>,
           ajax: 'true'
         },
         function(j){
-            $('#select_agrupamento').empty()
             for(var i = 0; i < j.length; i++){
-              alert('opa')
               console.log(j[i])
-              //$('#select_agrupamento').append(`<option value="" | Quant. ${quantidadeEqui}</option>`)
+              $('#select_equipamento').append(`<option value="${j[i].idEqui}" ${j[i].quantidadeEqui == 0 ? 'disabled' : ''}><?php echo $dados['nome'] ?> | Disponível: ${j[i].quantidadeEqui} </option>`)
             }
         })
       }
+
+      <?php
+      }
+      ?>
     })
 
   })
