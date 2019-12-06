@@ -51,7 +51,7 @@ $resultado = $reser->listarUsuarios();
                             <td><?php echo $res['email'] ?></td>
                             <td>
                               <a class="btn btn-danger btn-sm" href="../../controller/usuario/Usuario.controller.php?acao=delete&id=<?php echo $res['id'] ?>" name="acao" onClick="remover()"><i class="fa fa-times-circle" aria-hidden="true"></i> Excluir</span> </a>
-                              <a class="btn btn-primary btn-sm" href="editarusuario.php?id=<?php echo $res['id'] ?>"><i class="fa fa-check-square" aria-hidden="true"></i> Atualizar</span> </a>
+                              <a class="btn btn-primary btn-sm" href="editarusuario.php?id=<?php echo $res['id'] ?>"><i class="fa fa-refresh" aria-hidden="true"></i> Atualizar</span> </a>
                             </td>
                         </tr>
                 <?php } ?>

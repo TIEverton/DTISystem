@@ -19,6 +19,7 @@ require_once '../../config/DB.php';
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <title>DTI - Reservar Equipamento &copy;</title>
+    <script src="../../js/validacao.js"></script>
 </head>
 <body>
 <!-- INCLUDE MENU -->
@@ -26,8 +27,8 @@ require_once '../../config/DB.php';
   include 'menu.php'; 
 ?>
 <!-- FIM INCLUDE MENU -->
-<div class="container">
-<form method="POST" action="../../controller/reserva/Reserva.controller.php">
+<div class="container" onload="validate()">
+<form method="POST" action="../../controller/reserva/Reserva.controller.php" class="needs-validation" novalidate>
 <div class="row justify-content-center">
   <div class="col-8">
     <div class="form-group" style="margin-top: 3%;">
@@ -48,8 +49,8 @@ require_once '../../config/DB.php';
                     <b>Campus:</b>
                     <div class="input-group mb-3">
                     <span class="input-group-text" ><i class='material-icons left'>location_city</i></span>
-                    <select class="form-control" id="select_campus" name="select_campus">
-                        <option>Selecione um campus:</option>
+                    <select class="form-control custom-select" id="select_campus" name="select_campus" required>
+                        <option value="">Selecione um campus:</option>
                         <?php
                           $result_campus = "SELECT * FROM campus";
                           $exec = DB::prepare($result_campus);
@@ -62,14 +63,20 @@ require_once '../../config/DB.php';
                           endwhile;
                           ?>
                     </select>
+                    <div class="invalid-feedback" style="margin-bottom: -15px;">
+                      É necessário informar um <b>campus.</b>
+                    </div>
                     </div>
               
                     <b>Sala:</b>
                     <div class="input-group mb-3">
                       <span class="input-group-text" ><i class='material-icons left'>people</i></span>
-                    <select class="form-control" name="select_salas" id="select_salas">
-                        <option>Selecione uma Sala:</option>
+                    <select class="form-control custom-select" name="select_salas" id="select_salas" required>
+                        <option value="">Selecione uma Sala:</option>
                     </select>
+                    <div class="invalid-feedback" style="margin-bottom: -15px;">
+                      É necessário informar um <b>campus.</b>
+                    </div>
                     </div>
                     
                     <input type="hidden" name="acao" class="form-control" value="inserir"/>
@@ -95,31 +102,48 @@ require_once '../../config/DB.php';
                 <b>Data:</b>
               <div class="input-group mb-3">
                     <span class="input-group-text" ><i class='material-icons left'>date_range</i></span>
-                    <input type="date" name="data" class="form-control" placeholder="Escolha uma data." id="data">
+                    <input type="date" name="data" class="form-control" placeholder="Escolha uma data." id="data" required>
+                    <div class="invalid-feedback" style="margin-bottom: -15px;">
+                      É necessário informar uma <b>data.</b>
+                    </div>
               </div>
         
               <b>Turno:</b>
               <div class="input-group mb-3">
                     <span class="input-group-text" ><i class='material-icons left'>schedule</i></span>
-              <select class="form-control" name="select_turno" id="select_turno">
-                  <option>Selecione um turno:</option>  
+              <select class="form-control custom-select" name="select_turno" id="select_turno" required>
+                  <option value="">Selecione um turno:</option>  
                   <option>Manhã</option>
                   <option>Tarde</option>
                   <option>Noite</option>
               </select>
+              <div class="invalid-feedback" style="margin-bottom: -15px;">
+                É necessário informar um <b>turno.</b>
+              </div>
               </div>
         
               <b>Horário:</b>
-              <div class="input-group mb-3">
+              <div class="input-group mb-4">
               <span class="input-group-text" ><i class='material-icons left'>schedule</i></span>
-              <select class="form-control" name="select_horario_inicial" id="select_horario_inicial">
-                  <option>Selecione horário inicial:</option>
+              <div class="form-group">
+              <select class="form-control custom-select" name="select_horario_inicial" id="select_horario_inicial" required>
+                  <option value="">Selecione horário inicial:</option>
               </select>
+              <div class="invalid-feedback" style="margin-bottom: -15px;">
+                É necessário informar um <b>horário inicial.</b>
+              </div>
+              </div>
               &nbsp;&nbsp;&nbsp;
               <span class="input-group-text" ><i class='material-icons left'>schedule</i></span>
-              <select class="form-control" name="select_horario_final" id="select_horario_final">
-                  <option>Selecione horário final:</option>
+              <div class="form-group">
+              
+              <select class="form-control custom-select" name="select_horario_final" id="select_horario_final" required>
+                  <option value="">Selecione horário final:</option>
               </select>
+                <div class="invalid-feedback" style="margin-bottom: -15px;">
+                  É necessário informar um <b>horário final.</b>
+                </div>
+              </div>
               </div>
                     
                     <input type="hidden" name="acao" class="form-control" value="inserir"/>
@@ -146,8 +170,8 @@ require_once '../../config/DB.php';
               <b>Agrupamento:</b>
               <div class="input-group mb-3">
                       <span class="input-group-text" ><i class='material-icons left'>keyboard</i></span>
-              <select class="form-control" name="select_agrupamento" id="select_agrupamento">
-                    <option>Selecione o tipo de Equipamento:</option>
+              <select class="form-control custom-select" name="select_agrupamento" id="select_agrupamento" required>
+                    <option value="">Selecione o tipo de Equipamento:</option>
                     <!-- <?php
                           $result_agrupamento = "SELECT * FROM agrupamento";
                           $exec = DB::prepare($result_agrupamento);
@@ -160,14 +184,20 @@ require_once '../../config/DB.php';
                           endwhile;
                           ?> -->
               </select>
+              <div class="invalid-feedback" style="margin-bottom: -15px;">
+                É necessário informar um <b>agrupamento.</b>
+              </div>
               </div>
               
               <b>Equipamento:</b>
               <div class="input-group mb-3">
                     <span class="input-group-text" ><i class='material-icons left'>keyboard</i></span>
-              <select class="form-control" name="select_equipamentos" id="select_equipamentos">
+              <select class="form-control custom-select" name="select_equipamentos" id="select_equipamentos" required>
                   <option>Selecione um Equipamento:</option>
               </select>
+              <div class="invalid-feedback" style="margin-bottom: -15px;">
+                É necessário informar um <b>equipamento.</b>
+              </div>
               </div>
               
                             
@@ -249,20 +279,20 @@ require_once '../../config/DB.php';
       $('#select_horario_final').empty();
       if($('#select_turno').val() == 'Noite'){
         //HORÁRIOS INICIAIS
-        $('#select_horario_inicial').append('<option>Selecione um horário inicial:</option>')
+        $('#select_horario_inicial').append('<option value="">Selecione um horário inicial:</option>')
         $('#select_horario_inicial').append('<option value="0">A - 18:30h</option>')
         $('#select_horario_inicial').append('<option value="1">B - 19:20h</option>')
         $('#select_horario_inicial').append('<option value="2">C - 20:30h</option>')
         $('#select_horario_inicial').append('<option value="3">D - 21:20h</option>')
         //HORÁRIOS FINAIS
-        $('#select_horario_final').append('<option>Selecione um horário final:</option>')
+        $('#select_horario_final').append('<option value="">Selecione um horário final:</option>')
         $('#select_horario_final').append('<option value="0">A - 19:20h</option>')
         $('#select_horario_final').append('<option value="1">B - 20:10h</option>')
         $('#select_horario_final').append('<option value="2">C - 21:20h</option>')
         $('#select_horario_final').append('<option value="3">D - 22:10h</option>')
       } else if($('#select_turno').val() == 'Manhã') {
         //HORÁRIOS INICIAIS
-        $('#select_horario_inicial').append('<option>Selecione um horário inicial:</option>')
+        $('#select_horario_inicial').append('<option value="">Selecione um horário inicial:</option>')
         $('#select_horario_inicial').append('<option value="0">A - 07:30h</option>')
         $('#select_horario_inicial').append('<option value="1">B - 08:20h</option>')
         $('#select_horario_inicial').append('<option value="2">C - 09:10h</option>')
@@ -270,7 +300,7 @@ require_once '../../config/DB.php';
         $('#select_horario_inicial').append('<option value="4">E - 11:10h</option>')
         $('#select_horario_inicial').append('<option value="5">F - 12:00h</option>')
         //HORÁRIOS FINAIS
-        $('#select_horario_final').append('<option>Selecione um horário final:</option>')
+        $('#select_horario_final').append('<option value="">Selecione um horário final:</option>')
         $('#select_horario_final').append('<option value="0">A - 08:20h</option>')
         $('#select_horario_final').append('<option value="1">B - 09:10h</option>')
         $('#select_horario_final').append('<option value="2">C - 10:00h</option>')
@@ -279,13 +309,13 @@ require_once '../../config/DB.php';
         $('#select_horario_final').append('<option value="5">F - 12:50h</option>')
       } else if($('#select_turno').val() == 'Tarde') {
         //HORÁRIOS INICIAIS
-        $('#select_horario_inicial').append('<option>Selecione um horário inicial:</option>')
+        $('#select_horario_inicial').append('<option value="">Selecione um horário inicial:</option>')
         $('#select_horario_inicial').append('<option value="0">A - 13:30h</option>')
         $('#select_horario_inicial').append('<option value="1">B - 14:20h</option>')
         $('#select_horario_inicial').append('<option value="2">C - 15:30h</option>')
         $('#select_horario_inicial').append('<option value="3">D - 16:20h</option>')
         //HORÁRIOS FINAIS
-        $('#select_horario_final').append('<option>Selecione um horário final:</option>')
+        $('#select_horario_final').append('<option value="">Selecione um horário final:</option>')
         $('#select_horario_final').append('<option value="0">A - 14:20h</option>')
         $('#select_horario_final').append('<option value="1">B - 15:10h</option>')
         $('#select_horario_final').append('<option value="2">C - 16:20h</option>')

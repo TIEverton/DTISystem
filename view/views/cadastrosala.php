@@ -17,6 +17,7 @@ require_once '../../config/DB.php';
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <title>DTI - Cadastro Sala &copy;</title>
+    <script src="../../js/validacao.js"></script>
 </head>
 <body>
 <!-- INCLUDE MENU -->
@@ -25,7 +26,7 @@ require_once '../../config/DB.php';
 ?>
 <!-- FIM INCLUDE MENU -->
 <div class="container">
-<form method="POST" action="../../controller/salas/Salas.controller.php">
+<form method="POST" action="../../controller/salas/Salas.controller.php" class="needs-validation" novalidate>
 <div class="row justify-content-center">
   <div class="col-md-6">
     <div class="form-group" style="margin-top: 3%;">
@@ -35,14 +36,17 @@ require_once '../../config/DB.php';
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>text_fields</i></span>
             </div>
-            <input type="text" name="nome" class="form-control" placeholder="Digite o nome da Sala." aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" name="nome" class="form-control" placeholder="Digite o nome da Sala." aria-label="Username" aria-describedby="basic-addon1" required>
+            <div class="invalid-feedback" style="margin-bottom: -15px;">
+              É necessário informar um <b>nome</b> para a <b>sala.</b>
+            </div>
       </div>
 
       <b>Campus:</b>
       <div class="input-group mb-3">
       <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>location_city</i></span>
-      <select class="form-control" name="select_campus" id="exampleFormControlSelect1">
-            <option>Selecione um campus:</option>
+      <select class="form-control custom-select" name="select_campus" id="exampleFormControlSelect1" required>
+            <option value="">Selecione um campus:</option>
             <?php
               $result_campus = "SELECT * FROM campus";
               $exec = DB::prepare($result_campus);
@@ -55,16 +59,22 @@ require_once '../../config/DB.php';
               endwhile;
             ?>
       </select>
+      <div class="invalid-feedback" style="margin-bottom: -15px;">
+        É necessário selecionar um <b>campus.</b>
+      </div>
       </div>
   
       <b>Situação:</b>
       <div class="input-group mb-3">
       <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>done_all</i></span>
-      <select class="form-control" name="situacao" id="exampleFormControlSelect1">
-            <option>Selecione a situação da sala:</option>
+      <select class="form-control custom-select" name="situacao" id="exampleFormControlSelect1" required>
+            <option value="">Selecione a situação da sala:</option>
             <option value="1">Ativa</option>
             <option value="0">Inativa</option>
       </select>
+      <div class="invalid-feedback" style="margin-bottom: -7px;">
+        É necessário selecionar uma <b>situação</b> para a <b>sala.</b>
+      </div>
       </div>
 
       <input type="hidden" name="acao" class="form-control" value="inserir"/>

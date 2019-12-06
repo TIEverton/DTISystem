@@ -17,6 +17,7 @@ require_once '../../config/DB.php';
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <title>DTI - Cadastro Equipamento &copy;</title>
+    <script src="../../js/validacao.js"></script>
 </head>
 <body>
 <!-- INCLUDE MENU -->
@@ -24,10 +25,10 @@ require_once '../../config/DB.php';
   include 'menu.php'; 
 ?>
 <!-- FIM INCLUDE MENU -->
-<div class="container">
+<div class="container" onload="validate()">
 <div class="row justify-content-center">
   <div class="col-md-6">
-  <form method="POST" action="../../controller/equipamento/Equipamento.controller.php">
+  <form method="POST" action="../../controller/equipamento/Equipamento.controller.php" class="needs-validation" novalidate>
     <div class="form-group" style="margin-top: 3%;">
       <input type="hidden" name="id" value="" />
       <b>Numeração:</b>
@@ -35,14 +36,17 @@ require_once '../../config/DB.php';
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>format_list_numbered</i></span>
             </div>
-            <input type="text" name="numeracao" class="form-control" placeholder="Digite a numeração do Equipamento." require="true" aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" name="numeracao" class="form-control" placeholder="Digite a numeração do Equipamento." require="true" aria-label="Username" aria-describedby="basic-addon1" required>
+            <div class="invalid-feedback" style="margin-bottom: -15px;">
+              É necessário informar uma <b>numeração.</b>
+            </div>
       </div>
 
       <b>Agrupamento:</b>
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>folder</i></span>
-        <select name="agrupamento" class="form-control" id="exampleFormControlSelect1" require>
-            <option>Selecione um agrupamento:</option>
+        <select name="agrupamento" class="form-control custom-select" required id="exampleFormControlSelect1" require>
+            <option value="">Selecione um agrupamento:</option>
             <?php
                 $result_campus = "SELECT * FROM agrupamento";
                 $exec = DB::prepare($result_campus);
@@ -55,13 +59,16 @@ require_once '../../config/DB.php';
                 endwhile;
                 ?>
         </select>
+        <div class="invalid-feedback" style="margin-bottom: -15px;">
+          É necessário selecionar um <b>agrupamento.</b>
+        </div>
       </div>
 
       <b>Campus:</b>
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>location_city</i></span>
-        <select name="campus" class="form-control" id="exampleFormControlSelect1" require>
-            <option>Selecione um campus:</option>
+        <select name="campus" class="form-control custom-select" required id="exampleFormControlSelect1" require>
+            <option value="">Selecione um campus:</option>
             <?php
                 $result_campus = "SELECT * FROM campus";
                 $exec = DB::prepare($result_campus);
@@ -74,6 +81,9 @@ require_once '../../config/DB.php';
                 endwhile;
                 ?>
         </select>
+        <div class="invalid-feedback" style="margin-bottom: -15px;">
+          É necessário selecionar um <b>campus.</b>
+        </div>
       </div>
 
       <b>Descrição:</b>

@@ -15,6 +15,7 @@ include_once '../../config/sessions.php';
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <title>DTI - Cadastro Campus &copy;</title>
+    <script src="../../js/validacao.js"></script>
 </head>
 <body>
 <!-- INCLUDE MENU -->
@@ -22,8 +23,8 @@ include_once '../../config/sessions.php';
   include 'menu.php'; 
 ?>
 <!-- FIM INCLUDE MENU -->
-<div class="container">
-<form method="POST" action="../../controller/campus/Campus.controller.php">
+<div class="container" onload="validate()">
+<form method="POST" action="../../controller/campus/Campus.controller.php" class="needs-validation" novalidate>
 <div class="row justify-content-center">
   <div class="col-md-6">
     <div class="form-group" style="margin-top: 3%;">
@@ -32,7 +33,10 @@ include_once '../../config/sessions.php';
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>text_fields</i></span>
             </div>
-            <input type="text" class="form-control" name="nome" placeholder="Digite o nome do Campus." aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" name="nome" placeholder="Digite o nome do Campus." aria-label="Username" aria-describedby="basic-addon1" required>
+            <div class="invalid-feedback" style="margin-bottom: -15px;">
+              É necessário informar um <b>nome</b> para o <b>campus.</b>
+            </div>
       </div>
 
       <b>CNPJ:</b>
@@ -40,7 +44,10 @@ include_once '../../config/sessions.php';
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>featured_play_list</i></span>
             </div>
-            <input type="text" class="form-control" name="cnpj" placeholder="Digite o CNPJ do Campus." aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" name="cnpj" placeholder="Digite o CNPJ do Campus." aria-label="Username" aria-describedby="basic-addon1" required>
+            <div class="invalid-feedback" style="margin-bottom: -15px;">
+              É necessário informar um <b>CNPJ</b> para o <b>campus.</b>
+            </div>
       </div>
 
       <b>Endereço:</b>
@@ -48,7 +55,10 @@ include_once '../../config/sessions.php';
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>map</i></span>
             </div>
-            <input type="text" class="form-control" name="endereco" placeholder="Digite o endereço do Campus. (Rua, N°)" aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" name="endereco" placeholder="Digite o endereço do Campus. (Rua, N°)" aria-label="Username" aria-describedby="basic-addon1" required>
+            <div class="invalid-feedback" style="margin-bottom: -15px;">
+              É necessário informar um <b>endereço</b> para o <b>campus.</b>
+            </div>
       </div>
 
       <b>Bairro:</b>
@@ -56,9 +66,12 @@ include_once '../../config/sessions.php';
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>my_location</i></span>
             </div>
-            <input type="text" class="form-control" name="bairro" placeholder="Digite o bairro do Campus." aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" name="bairro" placeholder="Digite o bairro do Campus." aria-label="Username" aria-describedby="basic-addon1" required>
+            <div class="invalid-feedback" style="margin-bottom: -7px;">
+              É necessário informar um <b>endereço</b> para o <b>campus.</b>
+            </div>
       </div>
-
+    
       <input type="hidden" name="acao" class="form-control" value="inserir"/>
       <div class="botaoentrar" style="margin-top: 10px;">
         <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button>
