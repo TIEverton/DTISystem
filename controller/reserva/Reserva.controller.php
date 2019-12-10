@@ -26,7 +26,7 @@
                 $horario = $horario.$i;
             }
 
-            $ReservaClass->setEquipamento($_POST['select_equipamentos']);
+            $ReservaClass->setEquipamento($_POST['select_equipamento']);
             $ReservaClass->seCampus($_POST['select_campus']);
             $ReservaClass->setSala($_POST['select_salas']);
             $ReservaClass->setData($_POST['data']);

@@ -22,7 +22,8 @@
         AND reserva.data = '$data'
         AND reserva.turno = '$turno'
         AND (reserva.horario LIKE '%$horario_inicial%'
-        OR reserva.horario LIKE '%$horario_final%')) as 'quantiaReserva',
+        OR reserva.horario LIKE '%$horario_final%')
+        AND reserva.devolvido = 0) as 'quantiaReserva',
 
         (SELECT equipamento.id FROM reserva
         RIGHT JOIN equipamento
