@@ -118,5 +118,45 @@
             }
 
         }
+
+        public function ListarReservasDevolvida() {
+            $resultado = "SELECT reserva.*, campus.`nome` AS campus, agrupamento.`nome` AS equipamento, equipamento.`numeracao` AS numeracaoEqui,
+            sala.`nome` AS sala, usuarios.`nome` AS responsavel FROM reserva 
+
+            INNER JOIN campus
+            INNER JOIN sala
+            INNER JOIN equipamento
+            INNER JOIN agrupamento
+            INNER JOIN usuarios
+            ON reserva.`campus`= campus.`id` 
+            AND reserva.`equipamento`= equipamento.`id` 
+            AND reserva.`sala`= sala.`id`
+            AND equipamento.`agrupamento` = agrupamento.`id`
+            AND reserva.`responsavel` = usuarios.`id`
+            WHERE reserva.`devolvido` = 1
+            ORDER BY id ASC
+            ";
+
+            $resultado = DB::prepare($resultado);
+            $resultado->execute();
+            if($resultado->rowCount()>0){
+                while($dados = $resultado->fetch(PDO::FETCH_ASSOC)){
+                    $result[] = array(
+                        'campus' => $dados['campus'],
+                        'sala' => $dados['sala'],
+                        'equipamento' => $dados['equipamento'],
+                        'numeracaoEqui' => $dados['numeracaoEqui'],
+                        'responsavel' => $dados['responsavel'],
+                        'data' => $dados['data'],
+                        'turno' => $dados['turno'],
+                        'horario' => $dados['horario'],
+                        'observacao' => $dados['observacoes'],
+                        'devolvido' => $dados['devolvido'],
+                    );
+                }
+                return $result;
+            }
+
+        }
     }
 ?>
