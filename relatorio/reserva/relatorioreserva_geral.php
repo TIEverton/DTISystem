@@ -14,6 +14,7 @@ $html .= '<center>
 $html .= '<hr style="color: #0a003d;"></hr>
 <b style="font-family: Arial, Helvetica, sans-serif; font-size: 14px;">TIPO DE RELATÓRIO:</b> <span style="margin-left: 0px;">Relatório de <b>Reservas.</b></span>
 <br>';
+$html .= '<p>'.$dataInicial.$dataFinal.'</p>';
 $html .= '<b style="font-family: Arial, Helvetica, sans-serif; font-size: 14px;">CAMPUS:</b> <span style="margin-left: 82px;">'.$campus."</span>
 <br>";
 $html .= '<b style="font-family: Arial, Helvetica, sans-serif; font-size: 14px;">INTERVALO:</b>  <span style="margin-left: 62px;">'.$dataInicial.' até '.$dataFinal."</span><br>";
@@ -28,8 +29,9 @@ $html .= '<th width="100">Equipamento</th>';
 $html .= '<th width="100">Data</th>';
 $html .= '<th width="80">Turno</th>';
 $html .= '<th width="65">Horário</th></tr>';
+$html .= '<th width="65">Horário</th></tr>';
     $reser = new reserva_DAO;
-    $resultado = $reser->ListarReservasDevolvida();
+    $resultado = $reser->ListarReservasDevolvidasPorData($dataInicial, $dataFinal);
 
     foreach($resultado as $res){
     $html .= '<tr><td style="background: #eee; text-align:center;vertical-align:middle;">'.$res['responsavel']."</td>";

@@ -119,7 +119,7 @@
 
         }
 
-        public function ListarReservasDevolvida() {
+        public function ListarReservasDevolvidasPorData($dataInicial, $dataFinal) {
             $resultado = "SELECT reserva.*, campus.`nome` AS campus, agrupamento.`nome` AS equipamento, equipamento.`numeracao` AS numeracaoEqui,
             sala.`nome` AS sala, usuarios.`nome` AS responsavel FROM reserva 
 
@@ -134,6 +134,7 @@
             AND equipamento.`agrupamento` = agrupamento.`id`
             AND reserva.`responsavel` = usuarios.`id`
             WHERE reserva.`devolvido` = 1
+            AND (reserva.`data` BETWEEN $dataInicial AND $dataFinal)
             ORDER BY id ASC
             ";
 
