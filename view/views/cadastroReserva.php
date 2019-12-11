@@ -117,34 +117,30 @@ require_once '../../config/DB.php';
                   <option>Tarde</option>
                   <option>Noite</option>
               </select>
-              <div class="invalid-feedback" style="margin-bottom: -15px;">
+              <div class="invalid-feedback">
                 É necessário informar um <b>turno.</b>
               </div>
               </div>
-        
+                         
               <b>Horário:</b>
-              <div class="input-group mb-4">
+              <div class="input-group mb-3">
               <span class="input-group-text" ><i class='material-icons left'>schedule</i></span>
-              <div class="form-group">
               <select class="form-control custom-select" name="select_horario_inicial" id="select_horario_inicial" required>
-                  <option value="">Selecione horário inicial:</option>
+                  <option value="">Selecione um horário inicial:</option>  
+              </select>
+              &nbsp;
+              <span class="input-group-text" ><i class='material-icons left'>schedule</i></span>
+              <select class="form-control custom-select" name="select_horario_final" id="select_horario_final" required>
+                  <option value="">Selecione um horário final:</option>  
               </select>
               <div class="invalid-feedback" style="margin-bottom: -15px;">
-                É necessário informar um <b>horário inicial.</b>
+                É necessário informar um <b>horário inicial e final.</b>
               </div>
               </div>
-              &nbsp;&nbsp;&nbsp;
-              <span class="input-group-text" ><i class='material-icons left'>schedule</i></span>
-              <div class="form-group">
               
-              <select class="form-control custom-select" name="select_horario_final" id="select_horario_final" required>
-                  <option value="">Selecione horário final:</option>
-              </select>
-                <div class="invalid-feedback" style="margin-bottom: -15px;">
-                  É necessário informar um <b>horário final.</b>
-                </div>
-              </div>
-              </div>
+              
+
+
                     
                     <input type="hidden" name="acao" class="form-control" value="inserir"/>
                     <input type="hidden" name="responsavel" value="<?php echo $_SESSION['user_id'];?>"/>
