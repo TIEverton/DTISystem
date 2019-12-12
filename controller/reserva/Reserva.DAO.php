@@ -119,26 +119,56 @@
 
         }
 
-        public function ListarReservasDevolvidasPorData($dataInicial, $dataFinal) {
-            $resultado = "SELECT reserva.*, campus.`nome` AS campus, agrupamento.`nome` AS equipamento, equipamento.`numeracao` AS numeracaoEqui,
-            sala.`nome` AS sala, usuarios.`nome` AS responsavel FROM reserva 
+        public function ListarReservasDevolvidasPorData($dataInicial, $dataFinal, $campus) {
+            if($campus != 0){
+                $resultado = "SELECT reserva.*, campus.`nome` AS campus, agrupamento.`nome` AS equipamento, equipamento.`numeracao` AS numeracaoEqui,
+                sala.`nome` AS sala, usuarios.`nome` AS responsavel FROM reserva 
 
-            INNER JOIN campus
-            INNER JOIN sala
-            INNER JOIN equipamento
-            INNER JOIN agrupamento
-            INNER JOIN usuarios
-            ON reserva.`campus`= campus.`id` 
-            AND reserva.`equipamento`= equipamento.`id` 
-            AND reserva.`sala`= sala.`id`
-            AND equipamento.`agrupamento` = agrupamento.`id`
-            AND reserva.`responsavel` = usuarios.`id`
-            WHERE reserva.`devolvido` = 1
-            AND (reserva.`data` BETWEEN $dataInicial AND $dataFinal)
-            ORDER BY id ASC
-            ";
+                INNER JOIN campus
+                INNER JOIN sala
+                INNER JOIN equipamento
+                INNER JOIN agrupamento
+                INNER JOIN usuarios
+                ON reserva.`campus`= campus.`id` 
+                AND reserva.`equipamento`= equipamento.`id` 
+                AND reserva.`sala`= sala.`id`
+                AND equipamento.`agrupamento` = agrupamento.`id`
+                AND reserva.`responsavel` = usuarios.`id`
+                WHERE reserva.`devolvido` = 1
+                AND (reserva.`data` BETWEEN :dataInicial AND :dataFinal)
+                AND reserva.`campus` = :campus 
+                ORDER BY id ASC
+                ";
 
-            $resultado = DB::prepare($resultado);
+                $resultado = DB::prepare($resultado);
+                $resultado->bindParam(':dataInicial',$dataInicial);
+                $resultado->bindParam(':dataFinal',$dataFinal);
+                $resultado->bindParam(':campus',$campus);
+
+            }else{
+                $resultado = "SELECT reserva.*, campus.`nome` AS campus, agrupamento.`nome` AS equipamento, equipamento.`numeracao` AS numeracaoEqui,
+                sala.`nome` AS sala, usuarios.`nome` AS responsavel FROM reserva 
+
+                INNER JOIN campus
+                INNER JOIN sala
+                INNER JOIN equipamento
+                INNER JOIN agrupamento
+                INNER JOIN usuarios
+                ON reserva.`campus`= campus.`id` 
+                AND reserva.`equipamento`= equipamento.`id` 
+                AND reserva.`sala`= sala.`id`
+                AND equipamento.`agrupamento` = agrupamento.`id`
+                AND reserva.`responsavel` = usuarios.`id`
+                WHERE reserva.`devolvido` = 1
+                AND (reserva.`data` BETWEEN :dataInicial AND :dataFinal)
+                ORDER BY id ASC
+                ";
+
+                $resultado = DB::prepare($resultado);
+                $resultado->bindParam(':dataInicial',$dataInicial);
+                $resultado->bindParam(':dataFinal',$dataFinal);
+            }
+            
             $resultado->execute();
             if($resultado->rowCount()>0){
                 while($dados = $resultado->fetch(PDO::FETCH_ASSOC)){
@@ -157,6 +187,7 @@
                 }
                 return $result;
             }
+          
 
         }
     }

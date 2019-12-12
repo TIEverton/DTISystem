@@ -1,9 +1,14 @@
 <?php
 include '../../config/DB.php';
 include_once '../../controller/reserva/Reserva.DAO.php';
+include_once '../../controller/campus/Campus.DAO.php';
 $dataInicial = $_POST['dataInicial'];
 $dataFinal = $_POST['dataFinal'];
 $campus = $_POST['select_campus'];
+
+$campusDAO = new campus_DAO;
+$instanciaCampus = $campusDAO->findUnic($campus);
+$nomeCampus;
 
 $html = '<center>
 <img src="logo.png" style="height: 80px; margin-bottom: 10px;">
@@ -14,8 +19,7 @@ $html .= '<center>
 $html .= '<hr style="color: #0a003d;"></hr>
 <b style="font-family: Arial, Helvetica, sans-serif; font-size: 14px;">TIPO DE RELATÓRIO:</b> <span style="margin-left: 0px;">Relatório de <b>Reservas.</b></span>
 <br>';
-$html .= '<p>'.$dataInicial.$dataFinal.'</p>';
-$html .= '<b style="font-family: Arial, Helvetica, sans-serif; font-size: 14px;">CAMPUS:</b> <span style="margin-left: 82px;">'.$campus."</span>
+$html .= '<b style="font-family: Arial, Helvetica, sans-serif; font-size: 14px;">CAMPUS:</b> <span style="margin-left: 82px;">'.$nomeCampus."</span>
 <br>";
 $html .= '<b style="font-family: Arial, Helvetica, sans-serif; font-size: 14px;">INTERVALO:</b>  <span style="margin-left: 62px;">'.$dataInicial.' até '.$dataFinal."</span><br>";
 $html .= '<hr style="color: #0a003d;"></hr>';
@@ -29,9 +33,8 @@ $html .= '<th width="100">Equipamento</th>';
 $html .= '<th width="100">Data</th>';
 $html .= '<th width="80">Turno</th>';
 $html .= '<th width="65">Horário</th></tr>';
-$html .= '<th width="65">Horário</th></tr>';
     $reser = new reserva_DAO;
-    $resultado = $reser->ListarReservasDevolvidasPorData($dataInicial, $dataFinal);
+    $resultado = $reser->ListarReservasDevolvidasPorData($dataInicial, $dataFinal, $campus);
 
     foreach($resultado as $res){
     $html .= '<tr><td style="background: #eee; text-align:center;vertical-align:middle;">'.$res['responsavel']."</td>";

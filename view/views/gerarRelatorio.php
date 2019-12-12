@@ -51,8 +51,7 @@ require_once '../../config/DB.php';
                                         <div class="input-group mb-3">
                                         <span class="input-group-text" ><i class='material-icons left'>location_city</i></span>
                                             <select class="form-control custom-select" id="select_campus" name="select_campus" required>
-                                                <option value="">Selecione um campus:</option>
-                                                <option value="Todos os <b>Campus.</b>">Todos os Campus</option>
+                                                <option value="0">Todos os Campus</option>
                                                     <?php
                                                     $result_campus = "SELECT * FROM campus";
                                                     $exec = DB::prepare($result_campus);
