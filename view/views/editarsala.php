@@ -2,6 +2,9 @@
 $id =  filter_input(INPUT_GET,'id', FILTER_SANITIZE_NUMBER_INT);
 include_once '../../config/config.php';
 include_once '../../config/DB.php';
+
+include_once '../../config/sessions.php';
+
 ?>
 
 <!DOCTYPE html>

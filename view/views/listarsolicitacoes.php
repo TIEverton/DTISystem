@@ -1,3 +1,6 @@
+<?php
+include_once '../../config/sessions.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
