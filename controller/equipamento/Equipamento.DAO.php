@@ -93,7 +93,47 @@
                 }
                 return $result;
             }
-       
         }
+        function listarEquipamentoRelatorio($campus){
+            if($campus != 0){
+                $resultado = "SELECT equipamento.*, agrupamento.`nome` AS agrupamento, campus.`nome` AS campus
+                FROM equipamento
+                INNER JOIN agrupamento
+                INNER JOIN campus
+                ON equipamento.`agrupamento` = agrupamento.`id`
+                AND equipamento.`campus` = campus.`id`
+                AND equipamento.`campus` = :campus 
+                ORDER BY id ASC";
+
+                $resultado = DB::prepare($resultado);
+                $resultado->bindParam(':campus',$campus);
+
+            }else{
+                $resultado = "SELECT equipamento.*, agrupamento.`nome` AS agrupamento, campus.`nome` AS campus
+                FROM equipamento
+                INNER JOIN agrupamento
+                INNER JOIN campus
+                ON equipamento.`agrupamento` = agrupamento.`id`
+                AND equipamento.`campus` = campus.`id`
+                ORDER BY id ASC";
+                $resultado = DB::prepare($resultado);
+
+            }
+            
+            $resultado->execute();
+            if($resultado->rowCount()>0){
+                while($dados = $resultado->fetch(PDO::FETCH_ASSOC)){
+                    $result[] = array(
+                        'id' => $dados['id'],
+                        'numeracao' => $dados['numeracao'],
+                        'agrupamento' => $dados['agrupamento'],
+                        'campus' => $dados['campus'],
+                        'descricao' => $dados['descricao'],
+                    );
+                }
+                return $result;
+            }
+        }
+
     }
 ?>

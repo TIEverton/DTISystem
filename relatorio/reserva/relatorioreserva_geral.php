@@ -21,11 +21,11 @@ $html .= '<center>
 <b style="font-family: Arial, Helvetica, sans-serif; font-size: 16px;">RELATÓRIO GERAL - DTI SYSTEM</b>
 </center>';
 $html .= '<hr style="color: #0a003d;"></hr>
-<b style="font-family: Arial, Helvetica, sans-serif; font-size: 14px;">TIPO DE RELATÓRIO:</b> <span style="margin-left: 0px;">Relatório de <b>Reservas.</b></span>
+<b style="font-family: Arial, Helvetica, sans-serif; font-size: 14px;">TIPO DE RELATÓRIO:</b> <span style="margin-left: 0px; font-family: Arial, Helvetica, sans-serif; font-size: 14px;">Relatório de <b>Reservas.</b></span>
 <br>';
-$html .= '<b style="font-family: Arial, Helvetica, sans-serif; font-size: 14px;">CAMPUS:</b> <span style="margin-left: 82px;">'.$nomeCampus."</span>
+$html .= '<b style="font-family: Arial, Helvetica, sans-serif; font-size: 14px;">CAMPUS:</b> <span style="margin-left: 82px; font-family: Arial, Helvetica, sans-serif; font-size: 14px;">'.$nomeCampus."</span>
 <br>";
-$html .= '<b style="font-family: Arial, Helvetica, sans-serif; font-size: 14px;">INTERVALO:</b>  <span style="margin-left: 62px;">'.$dataInicial.' até '.$dataFinal."</span><br>";
+$html .= '<b style="font-family: Arial, Helvetica, sans-serif; font-size: 14px;">INTERVALO:</b>  <span style="margin-left: 62px; font-family: Arial, Helvetica, sans-serif; font-size: 14px;">'.$dataInicial.' até '.$dataFinal."</span><br>";
 $html .= '<hr style="color: #0a003d;"></hr>';
 $html .= '<table id="pesquisaTable" border="1" cellspacing=0 cellpadding=2 bordercolor="000000" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px;">';
 $html .= '<thead>';

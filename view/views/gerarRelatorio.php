@@ -119,22 +119,6 @@ require_once '../../config/DB.php';
                                                     ?>
                                             </select>
                                         </div>
-                                        <b>Data inicial:</b>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text" ><i class='material-icons left'>date_range</i></span>
-                                            <input type="date" name="dataInicial" class="form-control" placeholder="Escolha uma data." id="data" required>
-                                            <div class="invalid-feedback" style="margin-bottom: -15px;">
-                                                É necessário informar uma <b>data inicial.</b>
-                                            </div>
-                                        </div>
-                                        <b>Data final:</b>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text" ><i class='material-icons left'>date_range</i></span>
-                                            <input type="date" name="dataFinal" class="form-control" placeholder="Escolha uma data." id="data" required>
-                                            <div class="invalid-feedback" style="margin-bottom: -15px;">
-                                                É necessário informar uma <b>data final.</b>
-                                            </div>
-                                        </div>
                                         <button type="submit" class="btn btn-success float-right" style="margin-bottom: 10px; margin-top: -5px;"><i class="fa fa-file-text" aria-hidden="true"></i> Gerar</button></a>
                                     </form>
                                     </div>
