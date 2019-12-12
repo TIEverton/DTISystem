@@ -99,18 +99,44 @@ require_once '../../config/DB.php';
 
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                 <div class="card-body">
+                                    <form  method="POST" target="_blank" action="../../relatorio/equipamento/relatorioequipamento_geral.php" class="needs-validation" novalidate>                 
                                     <div class="form-group">
                                     <b>Selecione um Campus:</b>
                                         <div class="input-group mb-3">
                                         <span class="input-group-text" ><i class='material-icons left'>location_city</i></span>
-                                            <select class="form-control" id="select_campus" name="select_campus">
-                                                <option>Selecione um Campus:</option>
-                                                <option>Todos</option>
-                                                <option>Enfermagem</option>
-                                                <option>Serviço Social</option>
+                                            <select class="form-control custom-select" id="select_campus" name="select_campus" required>>
+                                                <option value="0">Todos os Campus</option>
+                                                    <?php
+                                                    $result_campus = "SELECT * FROM campus";
+                                                    $exec = DB::prepare($result_campus);
+                                                    $exec->execute();
+                                                    while($dados = $exec->fetch(PDO::FETCH_ASSOC)):?>
+                                                        <option value="<?php echo $dados['id']?>">
+                                                        <?php echo $dados['nome']?>
+                                                        </option>
+                                                    <?php
+                                                    endwhile;
+                                                    ?>
                                             </select>
                                         </div>
+                                        <b>Data inicial:</b>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" ><i class='material-icons left'>date_range</i></span>
+                                            <input type="date" name="dataInicial" class="form-control" placeholder="Escolha uma data." id="data" required>
+                                            <div class="invalid-feedback" style="margin-bottom: -15px;">
+                                                É necessário informar uma <b>data inicial.</b>
+                                            </div>
+                                        </div>
+                                        <b>Data final:</b>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" ><i class='material-icons left'>date_range</i></span>
+                                            <input type="date" name="dataFinal" class="form-control" placeholder="Escolha uma data." id="data" required>
+                                            <div class="invalid-feedback" style="margin-bottom: -15px;">
+                                                É necessário informar uma <b>data final.</b>
+                                            </div>
+                                        </div>
                                         <button type="submit" class="btn btn-success float-right" style="margin-bottom: 10px; margin-top: -5px;"><i class="fa fa-file-text" aria-hidden="true"></i> Gerar</button></a>
+                                    </form>
                                     </div>
                                 </div>
                             </div>
