@@ -8,7 +8,11 @@ $campus = $_POST['select_campus'];
 
 $campusDAO = new campus_DAO;
 $instanciaCampus = $campusDAO->findUnic($campus);
-$nomeCampus;
+$nomeCampus = $instanciaCampus['nome'];
+
+if(!isset($nomeCampus)){
+    $nomeCampus = 'Todos os Campus';
+}
 
 $html = '<center>
 <img src="logo.png" style="height: 80px; margin-bottom: 10px;">

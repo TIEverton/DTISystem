@@ -11,7 +11,7 @@
                 $exec = DB::prepare($sql);
                 $exec->bindValue(':id', $id, PDO::PARAM_INT);
                 $exec->execute();
-                return $exec->fetch();
+                return $exec->fetch(PDO::FETCH_ASSOC);
             }catch(PDOException $erro){
                 echo $erro->getMessage();
             }
