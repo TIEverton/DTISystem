@@ -7,12 +7,11 @@
     $horario_final = $_REQUEST['select_horario_final'];
     $agrupamento = $_REQUEST['agrupamento'];
 
-    // $result_agrupamentos = "SELECT * FROM agrupamento";
-    // $exec = DB::prepare($result_agrupamento);
-    // $exec->execute();
-    // while($dados = $exec->fetch(PDO::FETCH_ASSOC)){
-    //     $agrupamento = $dados['id'];
-        // $agrupamento = 1;
+    $intervalo_horario = '';
+
+    for ($i=$horario_inicial; $i <= $horario_final; $i++) { 
+        $intervalo_horario = $intervalo_horario.$horario_inicial;
+    }
 
         $quant_equipamentos = "SELECT count(equipamento.id) as 'quantiaEquipamento', (SELECT count(reserva.id) FROM reserva
         INNER JOIN equipamento
@@ -21,8 +20,10 @@
         WHERE reserva.campus = '$campus'
         AND reserva.data = '$data'
         AND reserva.turno = '$turno'
-        AND (reserva.horario LIKE '%$horario_inicial%'
+        AND ((reserva.horario LIKE '%$horario_inicial%'
         OR reserva.horario LIKE '%$horario_final%')
+        OR (substring(reserva.horario, 1, 1) > '$horario_inicial' 
+        AND right(reserva.horario, 1) < '$horario_final'))
         AND reserva.devolvido = 0) as 'quantiaReserva',
 
         (SELECT equipamento.id FROM reserva
@@ -31,8 +32,10 @@
         AND reserva.campus = '$campus'
         AND reserva.data = '$data'
         AND reserva.turno = '$turno'
-        AND (reserva.horario LIKE '%$horario_inicial%'
+        AND ((reserva.horario LIKE '%$horario_inicial%'
         OR reserva.horario LIKE '%$horario_final%')
+        OR (substring(reserva.horario, 1, 1) > '$horario_inicial' 
+        AND right(reserva.horario, 1) < '$horario_final'))
         WHERE reserva.equipamento IS null
         AND equipamento.campus = '$campus'
         AND equipamento.agrupamento = '$agrupamento'

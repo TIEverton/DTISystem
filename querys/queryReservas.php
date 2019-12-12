@@ -36,8 +36,6 @@
         ORDER BY id DESC
         ";
     }
-    
-    
 
     $resultado = DB::prepare($resultado);
     $resultado->execute();
