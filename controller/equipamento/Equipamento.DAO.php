@@ -26,15 +26,16 @@
                 echo $erro->getMessage();
             }
         }
-        public function insert($numeracao,$agrupamento,$campus,$descricao){
+        public function insert($numeracao,$agrupamento,$campus,$descricao,$situacao){
             try{
-                $sql = "INSERT INTO $this->tabela(numeracao, agrupamento, campus, descricao)
-             VALUES (:numeracao, :agrupamento, :campus, :descricao)";
+                $sql = "INSERT INTO $this->tabela(numeracao, agrupamento, campus, descricao, situacao)
+             VALUES (:numeracao, :agrupamento, :campus, :descricao, :situacao)";
                 $exec = DB::prepare($sql);
                 $exec->bindParam(':numeracao',$numeracao);
                 $exec->bindParam(':agrupamento',$agrupamento);
                 $exec->bindParam(':campus',$campus);
                 $exec->bindParam(':descricao',$descricao);
+                $exec->bindParam(':situacao',$situacao);
                 echo "<script>alert('Equipamento cadastrado com sucesso');window.location ='../../view/views/cadastroequipamento.php';</script>";
                 return $exec->execute();
             }catch(PDOException $erro){
@@ -44,7 +45,7 @@
         public function update($id){
             try{
                 $sql = "UPDATE $this->tabela SET numeracao = :numeracao ,agrupamento = :agrupamento,
-                campus = :campus, descricao = :descricao WHERE id = :id";
+                campus = :campus, descricao = :descricao, situacao = :situacao WHERE id = :id";
 
                 $exec = DB::prepare($sql);
                 $exec->bindValue(':id', $id, PDO::PARAM_INT);
@@ -52,8 +53,9 @@
                 $exec->bindValue(':agrupamento', $this->getagrupamento());
                 $exec->bindValue(':campus', $this->getCampus());
                 $exec->bindValue(':descricao', $this->getDescricao());
+                $exec->bindValue(':situacao', $this->getSituacao());
+                echo "<script>alert('Equipamento Editado com sucesso!!');window.location ='../../view/views/listarEquipamento.php';</script>";
                 return $exec->execute();
-                echo "<script>alert('Equipamento Editado com sucesso!!');window.location ='../../view/views/cadastroequipamento.php';</script>";
             }catch(PDOException $erro){
                 echo $erro->getMessage();
             }
@@ -64,7 +66,7 @@
                 $sql = "DELETE FROM $this->tabela WHERE id = :id";
                 $exec = DB::prepare($sql);
                 $exec->bindParam(':id', $id, PDO::PARAM_INT);
-                echo "<script>alert('Equipamento deletado com sucesso');window.location ='../../view/views/cadastroequipamento.php';</script>";
+                echo "<script>alert('Equipamento deletado com sucesso');window.location ='../../view/views/listarEquipamento.php';</script>";
                 return $exec->execute();
             }catch(PDOException $erro){
                 echo $erro->getMessage();
@@ -89,6 +91,7 @@
                         'agrupamento' => $dados['agrupamento'],
                         'campus' => $dados['campus'],
                         'descricao' => $dados['descricao'],
+                        'situacao' => $dados['situacao'],
                     );
                 }
                 return $result;
@@ -129,6 +132,7 @@
                         'agrupamento' => $dados['agrupamento'],
                         'campus' => $dados['campus'],
                         'descricao' => $dados['descricao'],
+                        'situacao' => $dados['situacao'] > 0 ? "Operando" : "Não operando",
                     );
                 }
                 return $result;

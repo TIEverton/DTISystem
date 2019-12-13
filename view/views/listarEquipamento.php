@@ -40,7 +40,7 @@ $resultado = $reser->listarEquipamento();
           <th>Agrupamento</th>
           <th>Campus</th>
           <th>Descrição</th>
-
+          <th>Situação</th>
           <th class="text-center">Ação</th>
       </tr>
   </thead>
@@ -52,7 +52,7 @@ $resultado = $reser->listarEquipamento();
               <td><?php echo $res['agrupamento'] ?></td>
               <td><?php echo $res['campus'] ?></td>
               <td><?php echo $res['descricao'] ?></td>
-
+              <td><?php echo $res['situacao'] > 0 ? "Operando" : "Não operando" ?></td>
               <td>
                 <a class="btn btn-danger btn-sm" href="../../controller/equipamento/Equipamento.controller.php?acao=delete&id=<?php echo $res['id'] ?>" name="acao" onClick="remover()"><i class="fa fa-times-circle" aria-hidden="true"></i> Excluir</span> </a>
                 <a class="btn btn-primary btn-sm" href="editarEquipamento.php?id=<?php echo $res['id'] ?>"><i class="fa fa-refresh" aria-hidden="true"></i></i> Atualizar</span> </a>

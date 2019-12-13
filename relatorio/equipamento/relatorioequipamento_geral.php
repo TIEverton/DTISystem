@@ -27,10 +27,11 @@ $html .= '<hr style="color: #0a003d;"></hr>';
 $html .= '<table id="pesquisaTable" border="1" cellspacing=0 cellpadding=2 bordercolor="000000" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px;">';
 $html .= '<thead>';
 $html .= '<tr style="background-color: #0052aa; color: white; text-align:center;vertical-align:middle;">';
-$html .= '<th width="200">Campus</th>';
-$html .= '<th width="187">Agrupamento</th>';
+$html .= '<th width="120">Campus</th>';
+$html .= '<th width="150">Agrupamento</th>';
 $html .= '<th width="120">Numeração</th>';
-$html .= '<th width="250">Descrição</th>';
+$html .= '<th width="180">Descrição</th>';
+$html .= '<th width="183">Situação</th>';
         $reser = new equipamento_DAO;
         $resultado = $reser->listarEquipamentoRelatorio($campus);
 
@@ -39,6 +40,7 @@ $html .= '<th width="250">Descrição</th>';
     $html .= '<td style="background: #eee; text-align:center;vertical-align:middle;">'.$res['agrupamento']."</td>";
     $html .= '<td style="background: #eee; text-align:center;vertical-align:middle;">'.$res['numeracao']."</td>";
     $html .= '<td style="background: #eee; text-align:center;vertical-align:middle;">'.$res['descricao']."</td>";
+    $html .= '<td style="background: #eee; text-align:center;vertical-align:middle;">'.$res['situacao']."</td>";
     }
 $html .= '</thead>';
 $html .= '</table>';

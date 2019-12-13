@@ -68,7 +68,6 @@ include_once '../../config/DB.php';
             endwhile;
             ?>
     </select>
-    <br>
 
     <b>Campus:</b>
     <select name="campus" class="form-control" id="exampleFormControlSelect1" require>
@@ -84,7 +83,15 @@ include_once '../../config/DB.php';
             endwhile;
             ?>
     </select>
-    <br>
+
+    <b>Situação:</b>
+      <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>done_all</i></span>
+      <select class="form-control" name="situacao" id="exampleFormControlSelect1">
+            <option value="1">Operando</option>
+            <option value="0" <?php echo $resultaEditar['situacao'] == 0 ? "selected" : "" ?>>Não operando</option>
+      </select>
+      </div>
 
     <b>Descrição:</b>
     <div class="input-group mb-3">
