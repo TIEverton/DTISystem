@@ -32,7 +32,6 @@ $resultado = $reser->ListarReservas();
 ?>
 
 <div class="container">
-
 <table class="table table-striped custab text-center table-bordered">
   <thead>
       <tr class="text-center" style="background-color: #0052aa; color: white;">
@@ -62,8 +61,8 @@ $resultado = $reser->ListarReservas();
               <td><?php echo $res['observacao']?></td>
               <td><?php echo $res['devolvido']?></td>
               <td>
-                <a class="btn btn-danger btn-sm" href="../../controller/reserva/Reserva.controller.php?acao=delete&id=<?php echo $res['id'] ?>" name="acao" onClick="remover()"><i class="fa fa-times-circle" aria-hidden="true"></i> Excluir</span> </a>
-                <a class="btn btn-primary btn-sm" href="editarReserva.php?id=<?php echo $res['id'] ?>"><i class="fa fa-check-square" aria-hidden="true"></i> Atualizar</span> </a>
+                <a class="btn btn-danger btn-sm" href="../../controller/reserva/Reserva.controller.php?acao=delete&id=<?php echo $res['id'] ?>" name="acao" title="Excluir"><i class="fa fa-times-circle" aria-hidden="true"></i></span> </a>
+                <a class="btn btn-primary btn-sm" href="editarReserva.php?id=<?php echo $res['id'] ?>" title="Atualizar"><i class="fa fa-refresh" aria-hidden="true"></i></i></span> </a>
               </td>
           </tr>
   <?php } ?>

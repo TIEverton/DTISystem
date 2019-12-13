@@ -42,6 +42,7 @@
     if($resultado->rowCount()>0){
         while($dados = $resultado->fetch(PDO::FETCH_ASSOC)){
             $result[] = array(
+                'id' => $dados['id'],
                 'campus' => $dados['campusNome'],
                 'sala' => $dados['salaNome'],
                 'equipamento' => $dados['equipamentoNome'],
