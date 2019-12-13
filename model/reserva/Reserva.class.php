@@ -12,7 +12,7 @@
         private $turno;
         private $horario;
         private $observacao;
-        private $devolvido;
+        private $situacao;
 
 
         //set's
@@ -25,7 +25,7 @@
         public function setTurno($turno){$this->turno = $turno;}
         public function setHorario($horario){$this->horario = $horario;}
         public function setObservacao($observacao){$this->observacao = $observacao;}
-        public function setDevolvido($devolvido){$this->devolvido = $devolvido;}
+        public function setSituacao($situacao){$this->situacao = $situacao;}
 
         //get's
         public function getId(){return $this->id;}
@@ -37,7 +37,7 @@
         public function getTurno(){return $this->turno;}
         public function getHorario(){return $this->horario;}
         public function getObservacao(){return $this->observacao;}
-        public function getDevolvido(){return $this->devolvido;}
+        public function getSituacao(){return $this->situacao;}
         
     }
 ?>

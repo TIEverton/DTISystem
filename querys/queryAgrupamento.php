@@ -24,7 +24,8 @@
         OR reserva.horario LIKE '%$horario_final%')
         OR (substring(reserva.horario, 1, 1) > '$horario_inicial' 
         AND right(reserva.horario, 1) < '$horario_final'))
-        AND reserva.devolvido = 0) as 'quantiaReserva',
+        AND reserva.situacao != 'Devolvido'
+        AND reserva.situacao != 'Devolvido com problema') as 'quantiaReserva',
 
         (SELECT equipamento.id FROM reserva
         RIGHT JOIN equipamento

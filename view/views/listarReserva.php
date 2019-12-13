@@ -43,7 +43,7 @@ $resultado = $reser->ListarReservas();
           <th>Turno</th>
           <th>Horário</th>
           <th>Observação</th>
-          <th>Devolvido</th>
+          <th>Situação</th>
           <th class="text-center">Ação</th>
       </tr>
   </thead>
@@ -59,7 +59,7 @@ $resultado = $reser->ListarReservas();
               <td><?php echo $res['turno']?></td>
               <td><?php echo $res['horario']?></td>
               <td><?php echo $res['observacao']?></td>
-              <td><?php echo $res['devolvido']?></td>
+              <td><?php echo $res['situacao']?></td>
               <td>
                 <a class="btn btn-danger btn-sm" href="../../controller/reserva/Reserva.controller.php?acao=delete&id=<?php echo $res['id'] ?>" name="acao" title="Excluir"><i class="fa fa-times-circle" aria-hidden="true"></i></span> </a>
                 <a class="btn btn-primary btn-sm" href="editarReserva.php?id=<?php echo $res['id'] ?>" title="Atualizar"><i class="fa fa-refresh" aria-hidden="true"></i></i></span> </a>

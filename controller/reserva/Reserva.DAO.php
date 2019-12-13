@@ -28,8 +28,8 @@
         }
         public function insert($idEquipamento, $idSala, $idCampus, $idResponsavel, $data, $turno, $horario, $observacao){
             try{
-                $sql = "INSERT INTO $this->tabela(equipamento, sala, campus, responsavel, data, turno, horario, observacoes)
-             VALUES (:idEquipamento, :idSala, :idCampus, :idResponsavel, :data, :turno, :horario, :observacao)";
+                $sql = "INSERT INTO $this->tabela(equipamento, sala, campus, responsavel, data, turno, horario, observacoes, situacao)
+             VALUES (:idEquipamento, :idSala, :idCampus, :idResponsavel, :data, :turno, :horario, :observacao, 'Não entregado')";
                 $exec = DB::prepare($sql);
                 $exec->bindParam(':idEquipamento',$idEquipamento);
                 $exec->bindParam(':idSala',$idSala, PDO::PARAM_INT);
@@ -49,7 +49,7 @@
         }
         public function update($id){
             try{
-                $sql = "UPDATE $this->tabela SET equipamento = :idEquipamento, sala = :idSala, campus = :idCampus, responsavel = :idResponsavel, data = :data, turno = :turno, horario = :horario, observacao = :observacao, devolvido = :devolvido WHERE id = :id";
+                $sql = "UPDATE $this->tabela SET equipamento = :idEquipamento, sala = :idSala, campus = :idCampus, responsavel = :idResponsavel, data = :data, turno = :turno, horario = :horario, observacao = :observacao, situacao = :situacao WHERE id = :id";
                 $exec = DB::prepare($sql);
                 $exec->bindValue(':id', $id, PDO::PARAM_INT);
                 $exec->bindValue(':idEquipamento', $this->getEquipamento());
@@ -60,7 +60,7 @@
                 $exec->bindValue(':turno', $this->getTurno());
                 $exec->bindValue(':horario', $this->getTurno());
                 $exec->bindValue(':observacao', $this->getObservacao());
-                $exec->bindValue(':devolvido', $this->getDevolvido());
+                $exec->bindValue(':situacao', $this->getSituacao());
 
                 echo "<script>alert('Reserva Editada com Sucesso');window.location ='../../view/views/';</script>";
                 return $exec->execute();
@@ -112,7 +112,7 @@
                         'turno' => $dados['turno'],
                         'horario' => $dados['horario'],
                         'observacao' => $dados['observacoes'],
-                        'devolvido' => $dados['devolvido'],
+                        'situacao' => $dados['situacao'],
                     );
                 }
                 return $result;
@@ -135,8 +135,7 @@
                 AND reserva.`sala`= sala.`id`
                 AND equipamento.`agrupamento` = agrupamento.`id`
                 AND reserva.`responsavel` = usuarios.`id`
-                WHERE reserva.`devolvido` = 1
-                AND (reserva.`data` BETWEEN :dataInicial AND :dataFinal)
+                WHERE (reserva.`data` BETWEEN :dataInicial AND :dataFinal)
                 AND reserva.`campus` = :campus 
                 ORDER BY id ASC
                 ";
@@ -160,8 +159,7 @@
                 AND reserva.`sala`= sala.`id`
                 AND equipamento.`agrupamento` = agrupamento.`id`
                 AND reserva.`responsavel` = usuarios.`id`
-                WHERE reserva.`devolvido` = 1
-                AND (reserva.`data` BETWEEN :dataInicial AND :dataFinal)
+                WHERE (reserva.`data` BETWEEN :dataInicial AND :dataFinal)
                 ORDER BY id ASC
                 ";
 
@@ -183,7 +181,7 @@
                         'turno' => $dados['turno'],
                         'horario' => $dados['horario'],
                         'observacao' => $dados['observacoes'],
-                        'devolvido' => $dados['devolvido'],
+                        'situacao' => $dados['situacao'],
                     );
                 }
                 return $result;

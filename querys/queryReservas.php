@@ -52,7 +52,7 @@
                 'turno' => $dados['turno'],
                 'horario' => $dados['horario'],
                 'observacao' => $dados['observacoes'],
-                'devolvido' => $dados['devolvido'],
+                'situacao' => $dados['situacao'],
             );
         }
         

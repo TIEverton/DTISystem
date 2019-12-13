@@ -73,7 +73,7 @@ require_once '../../config/DB.php';
                 <th>Turno</th>
                 <th>Horário</th>
                 <th>Observação</th>
-                <th>Devolvido</th>
+                <th>Situação</th>
                 <th class="text-center">Ação</th>
             </tr>
           </thead>
@@ -146,9 +146,9 @@ require_once '../../config/DB.php';
             $(`.reserva${reserva}`).append(`<td>${j[reserva].turno}</td>`)
             $(`.reserva${reserva}`).append(`<td>${j[reserva].horario}</td>`)
             $(`.reserva${reserva}`).append(`<td>${j[reserva].observacao}</td>`)
-            $(`.reserva${reserva}`).append(`<td>${j[reserva].devolvido}</td>`)
+            $(`.reserva${reserva}`).append(`<td>${j[reserva].situacao}</td>`)
 
-            $(`.reserva${reserva}`).append(`<td class="text-center"><a class="btn btn-primary btn-sm" href="#"><i class="fa fa-check-square" aria-hidden="true"></i></span> Devolver</a></td>`)
+            $(`.reserva${reserva}`).append(`<td class="text-center"><a class="btn btn-primary btn-sm" href="#"><i class="fa fa-check-square" aria-hidden="true"></i></span>${ j[reserva].situacao === 'Não entregado' ? ' Entregar' : 'Devolver' }</a></td>`)
   
           }
         })
