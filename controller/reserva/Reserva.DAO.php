@@ -80,6 +80,23 @@
                 echo $erro->getMessage();
             }
         }
+        public function mudarSituacao($id, $funcao){
+            if($funcao == 'entregar'){
+                try{
+                    $sql = "UPDATE $this->tabela SET situacao = :situacao WHERE id = :id";
+                    $exec = DB::prepare($sql);
+                    $exec->bindValue(':id', $id, PDO::PARAM_INT);
+                    $exec->bindValue(':situacao', 'Entregado');
+                    echo "<script>window.location ='../../view/views/home.php';</script>";
+                    
+                    return $exec->execute();
+                }catch(PDOException $erro){
+                    echo $erro->getMessage();
+                }
+            }
+            echo $id;
+            echo $funcao;
+        }
         public function ListarReservas(){
             $resultado = "SELECT reserva.*, campus.`nome` AS campus, agrupamento.`nome` AS equipamento, equipamento.`numeracao` AS numeracaoEqui,
             sala.`nome` AS sala, usuarios.`nome` AS responsavel FROM reserva 

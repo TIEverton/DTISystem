@@ -148,13 +148,60 @@ require_once '../../config/DB.php';
             $(`.reserva${reserva}`).append(`<td>${j[reserva].observacao}</td>`)
             $(`.reserva${reserva}`).append(`<td>${j[reserva].situacao}</td>`)
 
-            $(`.reserva${reserva}`).append(`<td class="text-center"><a class="btn btn-primary btn-sm" href="#"><i class="fa fa-check-square" aria-hidden="true"></i></span>${ j[reserva].situacao === 'Não entregado' ? ' Entregar' : 'Devolver' }</a></td>`)
-  
+            $(`.reserva${reserva}`).append(`<td class="text-center"><a class="btn btn-primary btn-sm" data-toggle="modal" data-target="${j[reserva].situacao == 'Não entregado' ? '#modalEntregar' + j[reserva].id : j[reserva].situacao == ('Devolvido' || 'Devolvido com problema') ? '' : '#modalDevolver' + j[reserva].id }" href=""><i class="fa fa-check-square" aria-hidden="true"></i></span>${ j[reserva].situacao == 'Não entregado' ? ' Entregar' : j[reserva].situacao == ('Devolvido' || 'Devolvido com problema') ? ' Devolvido' : ' Devolver' }</a></td>`)
+            //MODAL ENTREGAR
+            $('body').append(`
+            <div class="modal fade" id="modalEntregar${j[reserva].id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Deseja realmente entregar este equipamento a <b>${j[reserva].responsavel}</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                    <a href="../../controller/reserva/Reserva.controller.php?acao=mudarSituacao&id=${j[reserva].id}&funcao=entregar"><button type="button" class="btn btn-primary">Sim</button></a>
+                  </div>
+                </div>
+              </div>
+            </div>`)
+            //MODAL DEVOLVER
+            $('body').append(`
+            <div class="modal fade" id="modalDevolver${j[reserva].id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle"><b>Devolver</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <b>Selecione um estado:</b>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" ><i class='material-icons left'>schedule</i></span>
+                      <select class="form-control custom-select" name="select_estado" id="select_estado" required>
+                        <option value="Devolvido">Sem problemas</option>
+                        <option value="Devolvido com problema">Apresenta problemas</option>  
+                      </select>
+                      &nbsp;
+                    </div>
+                  </div>
+                  
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <a href="../../controller/reserva/Reserva.controllr.php?acao=mudarSituacao&id=${j[reserva].id}&funcao=devolver&estado=${ $('#select_estado').val() }"><button type="button" class="btn btn-primary">Enviar</button></a>
+                  </div>
+                </div>
+              </div>
+            </div>`)
           }
         })
       }
     })
-  </script>
+  </script> 
 
 </body>
 </html>
