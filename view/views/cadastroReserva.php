@@ -19,6 +19,7 @@ require_once '../../config/DB.php';
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <title>DTI - Reservar Equipamento &copy;</title>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="../../js/validacao.js"></script>
 </head>
 <body>
@@ -46,6 +47,25 @@ require_once '../../config/DB.php';
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="card-body">
                 <div class="form-group" >
+                  <b>Responsável:</b>
+                  <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>featured_play_list</i></span>
+                        </div>
+                        <input type="text" class="form-control" name="nomeRes" id="nomeRes" placeholder="Digite um responsável:">
+                        <div class="invalid-feedback" style="margin-bottom: -15px;">
+                          É necessário informar um <b>responsável</b> pela <b>reserva.</b>
+                        </div>
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+                        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+                        <script>
+                          $(function () {
+                              $("#nomeRes").autocomplete({
+                                  source: 'queryComplete.php'
+                              });
+                          });
+                        </script>
+                  </div>
                     <b>Campus:</b>
                     <div class="input-group mb-3">
                     <span class="input-group-text" ><i class='material-icons left'>location_city</i></span>
@@ -254,8 +274,16 @@ require_once '../../config/DB.php';
       </div>
     </div>
   </div>
+  <!-- AUTOCOMPLETE -->
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
 <script>
+  $(function () {
+    $("#nome").autocomplete({
+      source: '../../querys/queryComplete.php'
+    });
+    });
   $(function(){
     // SELECT HORARIO
     $('#select_turno').change(function(){
