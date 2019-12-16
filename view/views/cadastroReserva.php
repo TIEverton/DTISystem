@@ -330,37 +330,12 @@ require_once '../../config/DB.php';
     })   
   })
 
-  // $(function(){
-  //   //PREENCHER SELECT_EQUIPAMENTOS
-  //   $('#select_campus, #data, #select_turno, #select_horario_inicial, #select_horario_final, #select_agrupamento').change(function(){
-  //     $('#select_equipamentos').empty()
-  //     $('#select_equipamentos').append(`<option value="">Selecione um Equipamento: </option>`); 
-
-  //     if($(this).val()){
-  //       $.getJSON('../../querys/querysEquipamentos.php?search=', {
-  //         select_campus: $('#select_campus').val(),
-  //         data: $('#data').val(),
-  //         select_turno: $('#select_turno').val(),
-  //         select_horario_inicial: $('#select_horario_inicial').val(),
-  //         select_horario_final: $('#select_horario_final').val(),
-  //         select_agrupamento: $('#select_agrupamento').val(),
-  //         ajax: 'true'
-  //       },
-  //       function(j){
-  //           $('#select_equipamentos').empty()
-  //           for(var i = 0; i < j.length; i++){
-  //             id =j[i].id
-  //             nome =j[i].nome
-  //             numeracao = j[i].numeracao
-  //             $('#select_equipamentos').append(`<option value="${id}">${nome} | N° ${numeracao}</option>`)
-  //           }
-  //       })
-  //     }
-  //   })
-  // })
-
   $(function(){
     $('#select_campus, #data, #select_turno, #select_horario_inicial, #select_horario_final').change(function(){
+      if($('#select_horario_final').val() < $('#select_horario_inicial').val()){
+        $('#select_horario_final').val("")
+      }
+
       $('#select_equipamento').empty()
       $('#select_equipamento').append(`<option value="">Selecione um equipamento: </option>`); 
 

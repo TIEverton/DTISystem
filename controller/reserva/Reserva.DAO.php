@@ -224,7 +224,7 @@
                         'responsavel' => $dados['responsavel'],
                         'data' =>  date("d-m-y", strtotime($dados['data'])),
                         'turno' => $dados['turno'],
-                        'horario' => $dados['horario'],
+                        'horario' => $horario,
                         'observacao' => $dados['observacoes'],
                         'situacao' => $dados['situacao'],
                     );
