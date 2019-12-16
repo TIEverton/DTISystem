@@ -155,12 +155,7 @@ require_once '../../config/DB.php';
               <div class="invalid-feedback" style="margin-bottom: -15px;">
                 É necessário informar um <b>horário inicial e final.</b>
               </div>
-              </div>
-              
-              
-
-
-                    
+              </div>                    
                     <input type="hidden" name="acao" class="form-control" value="inserir"/>
                     <input type="hidden" name="responsavel" value="<?php echo $_SESSION['user_id'];?>"/>
                   </div>
@@ -187,7 +182,7 @@ require_once '../../config/DB.php';
                       <span class="input-group-text" ><i class='material-icons left'>keyboard</i></span>
               <select class="form-control custom-select" name="select_equipamento" id="select_equipamento" required>
                     <option value="">Selecione um equipamento: </option>
-                    <!-- <?php
+                     <!-- <?php
                           $result_agrupamento = "SELECT * FROM agrupamento";
                           $exec = DB::prepare($result_agrupamento);
                           $exec->execute();
