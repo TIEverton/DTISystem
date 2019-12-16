@@ -37,6 +37,9 @@
         AND equipamento.`agrupamento` = agrupamento.`id`
         AND reserva.`responsavel` = usuarios.`id`
         WHERE reserva.`campus` = '$campus'
+        AND reserva.`data` = '$dataSistema'
+        AND reserva.`situacao` != 'Devolvido'
+        AND reserva.`situacao` != 'Devolvido com problema'
         ORDER BY id DESC
         ";
     }
