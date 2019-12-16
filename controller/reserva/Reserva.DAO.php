@@ -80,7 +80,7 @@
                 echo $erro->getMessage();
             }
         }
-        public function mudarSituacao($id, $funcao, $estado, $comentarioFunc){
+        public function mudarSituacao($id, $funcao, $estado = "", $comentarioFunc = ""){
             if($funcao == 'entregar'){
                 try{
                     $sql = "UPDATE $this->tabela SET situacao = :situacao WHERE id = :id";

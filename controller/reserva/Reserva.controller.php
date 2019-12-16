@@ -75,7 +75,7 @@ switch($acao){
     break;
     case 'mudarSituacao':
         try{
-            $ReservaClass->mudarSituacao($id, $funcao, $_POST['select_estado'.$id], $_POST['comentarioFunc'.$id]);
+            @$ReservaClass->mudarSituacao($id, $funcao, $_POST['select_estado'.$id], $_POST['comentarioFunc'.$id]);
         }catch(Exception $e){
             echo $e->getMessage();
         }
