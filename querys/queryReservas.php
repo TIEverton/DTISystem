@@ -52,7 +52,7 @@
                 'equipamento' => $dados['equipamentoNome'],
                 'numeracaoEqui' => $dados['numeracaoEqui'],
                 'responsavel' => $dados['responsavel'],
-                'data' => $dados['data'],
+                'data' => date("d-m-y", strtotime($dados['data'])),
                 'turno' => $dados['turno'],
                 'horario' => $dados['horario'],
                 'observacao' => $dados['observacoes'],
