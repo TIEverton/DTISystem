@@ -1,7 +1,5 @@
 <?php
-include_once '../../DB.php';
-include_once '../../config.php';
-
+include_once '../../config/DB.php';
 
 $assunto = filter_input(INPUT_GET, 'term', FILTER_SANITIZE_STRING);
 
@@ -16,5 +14,4 @@ while($row_msg_cont = $resultado_msg_cont->fetch(PDO::FETCH_ASSOC)){
     $data[] = $row_msg_cont['nome'];
 }
 echo json_encode($data);
-?>
 ?>
