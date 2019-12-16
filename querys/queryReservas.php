@@ -45,6 +45,13 @@
     $resultado->execute();
     if($resultado->rowCount()>0){
         while($dados = $resultado->fetch(PDO::FETCH_ASSOC)){
+            $letrasHorario = array('A', 'B', 'C', 'D', 'E', 'F');
+            $horario = '';
+            for ($i=0; $i < strlen($dados['horario']); $i++) { 
+                $posicaoLetra = $dados['horario'][$i];
+                $horario = $horario.$letrasHorario[$posicaoLetra];
+            }
+
             $result[] = array(
                 'id' => $dados['id'],
                 'campus' => $dados['campusNome'],
@@ -54,7 +61,7 @@
                 'responsavel' => $dados['responsavel'],
                 'data' => date("d-m-y", strtotime($dados['data'])),
                 'turno' => $dados['turno'],
-                'horario' => $dados['horario'],
+                'horario' => $horario,
                 'observacao' => $dados['observacoes'],
                 'situacao' => $dados['situacao'],
             );
