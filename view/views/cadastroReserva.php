@@ -47,24 +47,7 @@ require_once '../../config/DB.php';
 
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="card-body">
-                <div class="form-group" >
-                  <b>Responsável:</b>
-                  <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>featured_play_list</i></span>
-                        </div>
-                        <input type="text" class="form-control" name="nomeRes" id="nomeRes" placeholder="Digite um responsável:">
-                        <div class="invalid-feedback" style="margin-bottom: -15px;">
-                          É necessário informar um <b>responsável</b> pela <b>reserva.</b>
-                        </div>
-                        <script>
-                          $(function () {
-                              $("#nomeRes").autocomplete({
-                                  source: 'queryComplete.php'
-                              });
-                          });
-                        </script>
-                  </div>
+                <div class="form-group">
                     <b>Campus:</b>
                     <div class="input-group mb-3">
                     <span class="input-group-text" ><i class='material-icons left'>location_city</i></span>
