@@ -89,8 +89,8 @@ include_once '../../config/sessions.php';
       <b>Nível de Acesso:</b>
       <select class="form-control custom-select" name="nivel" id="exampleFormControlSelect1" required>
           <option value="">Selecione um nível de acesso:</option>
-          <option value="Administrador / Funcionário">Administrador / Funcionário</option>
-          <option value="Professor">Professor</option>
+          <option value="0">Administrador / Funcionário</option>
+          <option value="1">Professor / Responsável</option>
       </select>
       <div class="invalid-feedback" style="margin-bottom: -7px;">
         É necessário informar um <b>nível de acesso!</b>

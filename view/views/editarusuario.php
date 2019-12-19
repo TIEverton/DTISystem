@@ -91,8 +91,8 @@ include_once '../../config/config.php';
           <option><?php echo $resultaEditar['nivel']; ?></option>          
           <?php }?>
           <option>Selecione um nível de acesso:</option>
-          <option value="Administrador / Funcionário">Administrador / Funcionário</option>
-          <option value="Professor">Professor</option>
+          <option value="0">Administrador / Funcionário</option>
+          <option value="1">Professor</option>
    
       </select>
       <input type="hidden" name="acao" class="form-control" value="update">

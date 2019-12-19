@@ -77,7 +77,7 @@
         }
         public function autenticar($email,$senha){
            try{
-                $sql = "SELECT id,nome,email,senha FROM $this->tabela 
+                $sql = "SELECT * FROM $this->tabela 
                 WHERE email = :email AND senha = :senha";
                 $exec = DB::prepare($sql);
                 $exec->bindParam(':email', $email);
@@ -90,10 +90,16 @@
                 }else{
                     $user = $users[0];
                     session_start();
+                    $_SESSION['nivel'] = $user['nivel'];
                     $_SESSION['logado'] = true;
                     $_SESSION['user_id'] = $user['id'];
                     $_SESSION['user_name'] = $user['nome'];  
-                    echo "<script>window.location='../../view/views/home.php'</script>";
+                    if ($user['nivel'] != 0) {
+                        echo "<script>window.location='../../view/professor/home.php'</script>";
+                    }else{
+                        echo "<script>window.location='../../view/views/home.php'</script>";
+                    }
+                    
                 }
            }catch(PDOException $erro){
                echo $erro->getMessage();

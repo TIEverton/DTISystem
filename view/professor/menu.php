@@ -1,8 +1,7 @@
 <?php
-if ($_SESSION['nivel'] == 1) {
-  echo "<script>alert('Sem autorização!');window.location='../professor/home.php'</script>";
+if ($_SESSION['nivel'] == 0) {
+  echo "<script>alert('Sem autorização!');window.location='../views/home.php'</script>";
 }
-
 if(!isset($_SESSION)){ 
     session_start(); 
 } 
@@ -30,36 +29,23 @@ if(!isset($_SESSION)){
                 <span class="sr-only">(current)</span>
               </a>
             </li>
-
-            <li class="nav-item dropdown active">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-555" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-square" aria-hidden="true"></i> Cadastro
-                    </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink-555">
-                    <a class="dropdown-item" href="cadastrousuario.php"><i class="fa fa-user-circle" aria-hidden="true"></i> Usuário</a>
-                    <a class="dropdown-item" href="cadastroequipamento.php"><i class="fa fa-keyboard-o" aria-hidden="true"></i> Equipamento</a>
-                    <a class="dropdown-item" href="cadastrocampus.php"><i class="fa fa-university" aria-hidden="true"></i> Campus</a>
-                    <a class="dropdown-item" href="cadastrosala.php"><i class="fa fa-users" aria-hidden="true"></i> Sala</a>
-                    <a class="dropdown-item" href="cadastroReserva.php"><i class="fa fa-inbox" aria-hidden="true"></i> Reserva</a>
-                    <a class="dropdown-item" href="cadastroagrupamento.php"><i class="fa fa-inbox" aria-hidden="true"></i> Agrupamento</a>
-            </div>
+            
+            <li class="nav-item active">
+              <a class="nav-link" href="reservar.php"><i class="fa fa-inbox" aria-hidden="true"></i> Reserva
+                <span class="sr-only">(current)</span>
+              </a>
             </li>
 
+            
             <li class="nav-item dropdown active">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-555" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false"><i class="fa fa-id-badge" aria-hidden="true"></i> Solicitações
                 </a>
-        <div class="dropdown-menu dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-555">
-                <a class="dropdown-item" href="solicitardocumento.php"><i class="fa fa-address-card-o" aria-hidden="true"></i> Crachás/Carterinha</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-address-card" aria-hidden="true"></i> Suporte a Eventos</a>
-        </div>
-        </li> 
-
-            <li class="nav-item active">
-              <a class="nav-link" href="gerarRelatorio.php"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Gerar Relatórios
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
+                <div class="dropdown-menu dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-555">
+                    <a class="dropdown-item" href="solicitardocumento.php"><i class="fa fa-address-card-o" aria-hidden="true"></i> Crachás/Carterinha</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-address-card" aria-hidden="true"></i> Suporte a Eventos</a>
+                </div>
+            </li> 
           </ul>
 
           <ul class="navbar-nav ml-auto nav-flex-icons">
@@ -75,7 +61,7 @@ if(!isset($_SESSION)){
               <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
                 aria-labelledby="navbarDropdownMenuLink-55">
                 <a class="dropdown-item" href="#"><i class="fa fa-id-card" aria-hidden="true"></i> Editar Perfil</a>
-                <a class="dropdown-item" href="index.php"><i class="fa fa-sign-out" aria-hidden="true"></i> Sair</a>
+                <a class="dropdown-item" href="../views/index.php"><i class="fa fa-sign-out" aria-hidden="true"></i> Sair</a>
               </div>
             </li>
           </ul>
