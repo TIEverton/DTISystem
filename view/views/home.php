@@ -136,13 +136,14 @@ require_once '../../config/DB.php';
         }, function(j){
           $('.table_body').empty()
           //$('.modals').empty()
-    
+          
           for(var reserva in j){
+            alert(j[reserva])
             $('.table_body').append(`<tr class="reserva${reserva}"></tr>`)
             $(`.reserva${reserva}`).append(`<td>${j[reserva].responsavel}</td>`)
             $(`.reserva${reserva}`).append(`<td>${j[reserva].campus}</td>`)
             $(`.reserva${reserva}`).append(`<td>${j[reserva].sala}</td>`)
-            $(`.reserva${reserva}`).append(`<td>${j[reserva].equipamento} | N° ${j[reserva].numeracaoEqui}</td>`)
+            $(`.reserva${reserva}`).append(`<td>${j[reserva].equipamento} ${j[reserva].numeracaoEqui != null ? ' | N° ' + j[reserva].numeracaoEqui : ''}</td>`)
             $(`.reserva${reserva}`).append(`<td>${j[reserva].data}</td>`)
             $(`.reserva${reserva}`).append(`<td>${j[reserva].turno}</td>`)
             $(`.reserva${reserva}`).append(`<td>${j[reserva].horario}</td>`)
@@ -150,26 +151,43 @@ require_once '../../config/DB.php';
             $(`.reserva${reserva}`).append(`<td>${j[reserva].situacao}</td>`)
 
             $(`.reserva${reserva}`).append(`<td class="text-center"><a class="btn btn-primary btn-sm" data-toggle="modal" data-target="${j[reserva].situacao == 'Não entregado' ? '#modalEntregar' + j[reserva].id : j[reserva].situacao == ('Devolvido' || 'Devolvido com problema') ? '' : '#modalDevolver' + j[reserva].id }" href=""><i class="fa fa-check-square" aria-hidden="true"></i></span>${ j[reserva].situacao == 'Não entregado' ? ' Entregar' : j[reserva].situacao == ('Devolvido' || 'Devolvido com problema') ? ' Devolvido' : ' Devolver' }</a></td>`)
+            
             //MODAL ENTREGAR
             $('.modals').append(`
             <div class="modal fade" id="modalEntregar${j[reserva].id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Deseja realmente entregar este equipamento a <b>${j[reserva].responsavel}</b></h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Deseja entregar qual ${j[reserva].equipamento} a <b>${j[reserva].responsavel}</b>?</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
+                  <form method="POST" action="../../controller/reserva/Reserva.controller.php">
+                  <div class="modal-body">
+                    <b>Selecione um equipamento:</b>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" ><i class='material-icons left'>settings_input_hdmi</i></span>
+                      <select class="form-control custom-select" name="select_equipamento${j[reserva].id}" id="select_equipamento${j[reserva].id}" required>
+                        
+                      </select>
+                      &nbsp;
+                    </div>
+
+                    <input type="hidden" name="acao" class="form-control" value="mudarSituacao">
+                    <input type="hidden" name="id" class="form-control" value="${j[reserva].id}">
+                    <input type="hidden" name="funcao" class="form-control" value="entregar">
+                  </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
-                    <a href="../../controller/reserva/Reserva.controller.php?acao=mudarSituacao&id=${j[reserva].id}&funcao=entregar"><button type="button" class="btn btn-primary">Sim</button></a>
+                    <button type="submit" class="btn btn-primary">Sim</button>
                   </div>
+                  </form>
                 </div>
               </div>
             </div>`)
+
             //MODAL DEVOLVER
-            
             $('.modals').append(`
             <div class="modal fade" id="modalDevolver${j[reserva].id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">

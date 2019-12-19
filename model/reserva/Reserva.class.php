@@ -7,6 +7,7 @@
         private $campus;
         private $sala;
         private $equipamento;
+        private $agrupamento;
         private $responsavel;
         private $data;
         private $turno;
@@ -20,6 +21,7 @@
         public function seCampus($campus){$this->campus = $campus;}
         public function setSala($sala){$this->sala = $sala;}
         public function setEquipamento($equipamento){$this->equipamento = $equipamento;}
+        public function setAgrupamento($agrupamento){$this->agrupamento = $agrupamento;}
         public function setResponsavel($responsavel){$this->responsavel = $responsavel;}
         public function setData($data){$this->data = $data;}
         public function setTurno($turno){$this->turno = $turno;}
@@ -32,6 +34,7 @@
         public function getCampus(){return $this->campus;}
         public function getSala(){return $this->sala;}
         public function getEquipamento(){return $this->equipamento;}
+        public function getAgrupamento(){return $this->agrupamento;}
         public function getResponsavel(){return $this->responsavel;}
         public function getData(){return $this->data;}
         public function getTurno(){return $this->turno;}

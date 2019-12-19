@@ -14,10 +14,8 @@
     }
 
         $quant_equipamentos = "SELECT count(equipamento.id) as 'quantiaEquipamento', (SELECT count(reserva.id) FROM reserva
-        INNER JOIN equipamento
-        ON reserva.equipamento = equipamento.id
-        AND equipamento.agrupamento = '$agrupamento'
         WHERE reserva.campus = '$campus'
+        AND reserva.agrupamento = '$agrupamento'
         AND reserva.data = '$data'
         AND reserva.turno = '$turno'
         AND ((reserva.horario LIKE '%$horario_inicial%'
@@ -25,25 +23,12 @@
         OR (substring(reserva.horario, 1, 1) > '$horario_inicial' 
         AND right(reserva.horario, 1) < '$horario_final'))
         AND reserva.situacao != 'Devolvido'
-        AND reserva.situacao != 'Devolvido com problema') as 'quantiaReserva',
+        AND reserva.situacao != 'Devolvido com problema') as 'quantiaReserva'
 
-        (SELECT equipamento.id FROM reserva
-        RIGHT JOIN equipamento
-        ON reserva.equipamento = equipamento.id
-        AND reserva.campus = '$campus'
-        AND reserva.data = '$data'
-        AND reserva.turno = '$turno'
-        AND ((reserva.horario LIKE '%$horario_inicial%'
-        OR reserva.horario LIKE '%$horario_final%')
-        OR (substring(reserva.horario, 1, 1) > '$horario_inicial' 
-        AND right(reserva.horario, 1) < '$horario_final'))
-        WHERE reserva.equipamento IS null
-        AND equipamento.campus = '$campus'
-        AND equipamento.agrupamento = '$agrupamento'
-        GROUP BY agrupamento) as idEqui
-
-        FROM equipamento WHERE agrupamento = '$agrupamento'
-        AND campus = '$campus'";
+        FROM equipamento
+        WHERE agrupamento = '$agrupamento'
+        AND campus = '$campus'
+        AND equipamento.situacao = 1";
 
         $exec2 = DB::prepare($quant_equipamentos);
         $exec2->execute();
@@ -52,7 +37,7 @@
                 'quantidadeEqui' => $dados2['quantiaEquipamento'] - $dados2['quantiaReserva'],
                 'quantiaEquipamento' => $dados2['quantiaEquipamento'],
                 'quantiaReserva' => $dados2['quantiaReserva'],
-                'idEqui' => $dados2['idEqui']
+                'idEqui' => $agrupamento
             );
         }
 

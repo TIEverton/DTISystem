@@ -26,12 +26,12 @@
                 echo $erro->getMessage();
             }
         }
-        public function insert($idEquipamento, $idSala, $idCampus, $idResponsavel, $data, $turno, $horario, $observacao){
+        public function insert($idAgrupamento, $idSala, $idCampus, $idResponsavel, $data, $turno, $horario, $observacao){
             try{
-                $sql = "INSERT INTO $this->tabela(equipamento, sala, campus, responsavel, data, turno, horario, observacoes, situacao)
-             VALUES (:idEquipamento, :idSala, :idCampus, :idResponsavel, :data, :turno, :horario, :observacao, 'Não entregado')";
+                $sql = "INSERT INTO $this->tabela(agrupamento, sala, campus, responsavel, data, turno, horario, observacoes, situacao)
+             VALUES (:idAgrupamento, :idSala, :idCampus, :idResponsavel, :data, :turno, :horario, :observacao, 'Não entregado')";
                 $exec = DB::prepare($sql);
-                $exec->bindParam(':idEquipamento',$idEquipamento);
+                $exec->bindParam(':idAgrupamento',$idAgrupamento);
                 $exec->bindParam(':idSala',$idSala, PDO::PARAM_INT);
                 $exec->bindParam(':idCampus',$idCampus);
                 $exec->bindParam(':idResponsavel',$idResponsavel);
@@ -227,6 +227,7 @@
                         'horario' => $horario,
                         'observacao' => $dados['observacoes'],
                         'situacao' => $dados['situacao'],
+                        'comentarioFunc' => $dados['comentario_funcionario']
                     );
                 }
                 return $result;

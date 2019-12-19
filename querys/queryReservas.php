@@ -3,18 +3,16 @@
     $campus = $_REQUEST['select_campus'];
     $dataSistema = date("Y/m/d");
     if($campus == 0){
-        $resultado = "SELECT reserva.*, campus.`nome` AS campusNome, agrupamento.`nome` AS equipamentoNome, equipamento.`numeracao` AS numeracaoEqui,
+        $resultado = "SELECT reserva.*, campus.`nome` AS campusNome, agrupamento.`nome` AS equipamentoNome, reserva.equipamento AS numeracaoEqui,
         sala.`nome` AS salaNome, usuarios.`nome` AS responsavel FROM reserva 
     
         INNER JOIN campus
         INNER JOIN sala
-        INNER JOIN equipamento
         INNER JOIN agrupamento
         INNER JOIN usuarios
         ON reserva.`campus`= campus.`id` 
-        AND reserva.`equipamento`= equipamento.`id` 
         AND reserva.`sala`= sala.`id` 
-        AND equipamento.`agrupamento` = agrupamento.`id`
+        AND reserva.`agrupamento` = agrupamento.`id`
         AND reserva.`responsavel` = usuarios.`id`
         WHERE reserva.`data` = '$dataSistema'
         AND reserva.`situacao` != 'Devolvido'
@@ -23,18 +21,16 @@
         ";
         
     }else{
-        $resultado = "SELECT reserva.*, campus.`nome` AS campusNome, agrupamento.`nome` AS equipamentoNome, equipamento.`numeracao` AS numeracaoEqui,
+        $resultado = "SELECT reserva.*, campus.`nome` AS campusNome, agrupamento.`nome` AS equipamentoNome, reserva.equipamento AS numeracaoEqui,
         sala.`nome` AS salaNome, usuarios.`nome` AS responsavel FROM reserva 
     
         INNER JOIN campus
         INNER JOIN sala
-        INNER JOIN equipamento
         INNER JOIN agrupamento
         INNER JOIN usuarios
         ON reserva.`campus`= campus.`id` 
-        AND reserva.`equipamento`= equipamento.`id` 
         AND reserva.`sala`= sala.`id` 
-        AND equipamento.`agrupamento` = agrupamento.`id`
+        AND reserva.`agrupamento` = agrupamento.`id`
         AND reserva.`responsavel` = usuarios.`id`
         WHERE reserva.`campus` = '$campus'
         AND reserva.`data` = '$dataSistema'
@@ -48,6 +44,7 @@
     $resultado->execute();
     if($resultado->rowCount()>0){
         while($dados = $resultado->fetch(PDO::FETCH_ASSOC)){
+            
             $letrasHorario = array('A', 'B', 'C', 'D', 'E', 'F');
             $horario = '';
             for ($i=0; $i < strlen($dados['horario']); $i++) { 

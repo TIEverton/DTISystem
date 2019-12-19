@@ -39,7 +39,7 @@
                 $horario = $horario.$i;
             }
 
-            $ReservaClass->setEquipamento($_POST['select_equipamento']);
+            $ReservaClass->setAgrupamento($_POST['select_equipamento']);
             $ReservaClass->seCampus($_POST['select_campus']);
             $ReservaClass->setSala($_POST['select_salas']);
             $ReservaClass->setData($_POST['data']);
@@ -53,7 +53,7 @@
 switch($acao){
     case 'inserir':
         try{
-            $ReservaClass->insert($ReservaClass->getEquipamento(),$ReservaClass->getSala(),$ReservaClass->getCampus(), $ReservaClass->getResponsavel(), $ReservaClass->getData(),$ReservaClass->getTurno(),$ReservaClass->getHorario(), $ReservaClass->getObservacao() );
+            $ReservaClass->insert($ReservaClass->getAgrupamento(),$ReservaClass->getSala(),$ReservaClass->getCampus(), $ReservaClass->getResponsavel(), $ReservaClass->getData(),$ReservaClass->getTurno(),$ReservaClass->getHorario(), $ReservaClass->getObservacao() );
             
         }catch(Exception $e){
             echo $e->getMessage();
