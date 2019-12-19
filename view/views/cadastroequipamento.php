@@ -91,8 +91,8 @@ require_once '../../config/DB.php';
       <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>done_all</i></span>
       <select class="form-control custom-select" name="situacao" id="exampleFormControlSelect1" required>
             <option value="">Selecione a situação do Equipamento:</option>
-            <option value="1">Operando</option>
-            <option value="0">Não operando</option>
+            <option value="1">Ativo</option>
+            <option value="0">Inativo</option>
       </select>
       <div class="invalid-feedback" style="margin-bottom: -7px;">
         É necessário selecionar uma <b>situação</b> para o <b>equipamento.</b>
