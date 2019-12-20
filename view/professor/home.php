@@ -129,8 +129,9 @@ require_once '../../config/DB.php';
       $('#select_campus').on('change', atualizarTabela)
 
       function atualizarTabela(){
-        $.getJSON('../../querys/queryReservas.php?search=', {
+        $.getJSON('../../querys/queryReservasProfessor.php?search=', {
           select_campus: $('#select_campus').val(),
+          user: <?php echo $_SESSION['user_id'] ?>,
           ajax: 'true',
         }, function(j){
           $('.table_body').empty()
