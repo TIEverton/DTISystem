@@ -11,16 +11,11 @@
     if($acao == "delete"){
         $AgrupamentoClass->setId($_GET['id']);
     }
-    if($acao != "delete"){
-        if(!empty($AgrupamentoClass->getnome())){
-            echo "Algum dado vazio";
-        }else{
+    if($acao != "delete"){   
             if($acao == "update"){
                 $AgrupamentoClass->setId($_POST['id']);
             }
             $AgrupamentoClass->setNome($_POST['nome']);
-
-        }
     }
 
     switch($acao){

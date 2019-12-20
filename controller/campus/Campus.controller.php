@@ -13,10 +13,6 @@
         $CampusClass->setId($_GET['id']);
     }
     if($acao != "delete"){
-        if(!empty($CampusClass->getnome()) || !empty($CampusClass->getBairro()) ||
-           !empty($CampusClass->getCNPJ())   || !empty($CampusClass->getEndereco())){
-            echo "Algum dado vazio";
-        }else{
             if($acao == "update"){
                 $CampusClass->setId($_POST['id']);
             }
@@ -24,7 +20,6 @@
             $CampusClass->setCNPJ($_POST['cnpj']);
             $CampusClass->setEndereco($_POST['endereco']);
             $CampusClass->setBairro($_POST['bairro']);
-        }
     }
 
 switch($acao){

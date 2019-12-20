@@ -12,16 +12,12 @@
         $SalasClass->setId($_GET['id']);
     }
     if($acao != "delete"){
-        if(!empty($SalasClass->getNome()) || !empty($SalasClass->getCampus()) || !empty($SalasClass->getSituacao())){
-            echo "Algum dado vazio";
-        }else{
             if($acao == "update"){
                 $SalasClass->setId($_POST['id']);
             }
             $SalasClass->setNome($_POST['nome']);
             $SalasClass->setCampus($_POST['select_campus']);
             $SalasClass->setSituacao($_POST['situacao']);
-        }
     }
 
 switch($acao){

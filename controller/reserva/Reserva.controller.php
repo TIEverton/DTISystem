@@ -17,11 +17,6 @@
     }
 
     if($acao != "delete" and $acao != "mudarSituacao"){
-        if(!empty($ReservaClass->getEquipamento()) || !empty($ReservaClass->getCampus())
-        || !empty($ReservaClass->getSala()) || !empty($ReservaClass->getData()) || !empty($ReservaClass->getTurno()) 
-        || !empty($ReservaClass->getHorario())|| !empty($ReservaClass->getObservacao())){
-            echo "Algum dado vazio";
-        }else{
             if($acao == "update"){
                 $ReservaClass->setId($_POST['id']);
             }
@@ -39,7 +34,6 @@
             $ReservaClass->setTurno($_POST['select_turno']);
             $ReservaClass->setObservacao($_POST['observacao']);
             $ReservaClass->setResponsavel($_POST['responsavel']);
-        }
     }
 
 switch($acao){

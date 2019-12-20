@@ -13,11 +13,6 @@
         $equipClass->setId($_GET['id']);
     }
     if($acao != "delete"){
-        if(!empty($equipClass->getNumeracao()) || !empty($equipClass->getDescricao()) ||
-           !empty($equipClass->getAgrupamento())   || !empty($equipClass->getCampus())
-           ||!empty($equipClass->getSituacao())){
-            echo "Algum dado vazio";
-        }else{
             if($acao == "update"){
                 $equipClass->setId($_POST['id']);
             }
@@ -26,7 +21,6 @@
             $equipClass->setCampus($_POST['campus']);
             $equipClass->setSituacao($_POST['situacao']);
             $equipClass->setDescricao($_POST['descricao']);
-        }
     }
 
 
