@@ -1,6 +1,7 @@
 <?php
     require_once '../config/DB.php';
     $campus = $_REQUEST['select_campus'];
+    date_default_timezone_set('America/Sao_Paulo');
     $dataSistema = date("Y/m/d");
     if($campus == 0){
         $resultado = "SELECT reserva.*, campus.`nome` AS campusNome, agrupamento.`nome` AS equipamentoNome, reserva.equipamento AS numeracaoEqui,
