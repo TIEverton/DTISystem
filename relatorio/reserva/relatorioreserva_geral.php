@@ -30,13 +30,14 @@ $html .= '<hr style="color: #0a003d;"></hr>';
 $html .= '<table id="pesquisaTable" border="1" cellspacing=0 cellpadding=2 bordercolor="000000" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px;">';
 $html .= '<thead>';
 $html .= '<tr style="background-color: #0052aa; color: white; text-align:center;vertical-align:middle;">';
-$html .= '<th width="200">Responsável</th>';
+$html .= '<th width="130">Responsável</th>';
 $html .= '<th width="100">Campus</th>';
 $html .= '<th width="100">Sala</th>';
 $html .= '<th width="100">Equipamento</th>';
-$html .= '<th width="100">Data</th>';
-$html .= '<th width="80">Turno</th>';
-$html .= '<th width="65">Horário</th></tr>';
+$html .= '<th width="80">Data</th>';
+$html .= '<th width="75">Turno</th>';
+$html .= '<th width="55">Horário</th>';
+$html .= '<th width="101">Comentário</th></tr>';
     $reser = new reserva_DAO;
     $resultado = $reser->ListarReservasDevolvidasPorData($dataInicial, $dataFinal, $campus);
 
@@ -48,6 +49,7 @@ $html .= '<th width="65">Horário</th></tr>';
     $html .= '<td style="background: #eee; text-align:center;vertical-align:middle;">'.$res['data']."</td>";
     $html .= '<td style="background: #eee; text-align:center;vertical-align:middle;">'.$res['turno']."</td>";
     $html .= '<td style="background: #eee; text-align:center;vertical-align:middle;">'.$res['horario']."</td>";
+    $html .= '<td style="background: #eee; text-align:center;vertical-align:middle;">'.$res['comentarioFunc']."</td>";
     }
 $html .= '</thead>';
 $html .= '</table>';
