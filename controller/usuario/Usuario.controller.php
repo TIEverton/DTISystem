@@ -14,22 +14,17 @@
     if($acao == "autenticar"){
             $userClass->setEmail($_POST['email']);
             $userClass->setSenha($_POST['senha']);
-    }else if($acao != "delete"){
-        if(!empty($userClass->getLogin()) || !empty($userClass->getSenha()) ||
-           !empty($userClass->getCPF())   || !empty($userClass->getEmail()) ||
-           !empty($userClass->getAcesso())|| !empty($userClass->getNivel())){
-            echo "Algum dado vazio";
-        }else{
-            if($acao == "update"){
-                $userClass->setId($_POST['id']);
-            }
-            $userClass->setNome($_POST['nome']);
-            $userClass->setLogin($_POST['login']);
-            $userClass->setSenha($_POST['senha']);
-            $userClass->setEmail($_POST['email']);
-            $userClass->setCPF($_POST['cpf']);
-            $userClass->setNivel($_POST['nivel']);
+    }else if($acao != "delete" and $acao != "updateSenha"){
+        if($acao == "update"){
+            $userClass->setId($_POST['id']);
         }
+
+        $userClass->setNome($_POST['nome']);
+        $userClass->setLogin($_POST['login']);
+        $userClass->setSenha($_POST['senha']);
+        $userClass->setEmail($_POST['email']);
+        $userClass->setCPF($_POST['cpf']);
+        $userClass->setNivel($_POST['nivel']);
     }
 
 switch($acao){
@@ -56,5 +51,12 @@ switch($acao){
     break;
     case 'autenticar':
         $userClass->autenticar($userClass->getEmail(), $userClass->getSenha());
+    break;
+    case 'updateSenha':
+        try{
+            $userClass->updateSenha($_POST['id'], $_POST['senhaAtual'], $_POST['novaSenha']);
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }
     break;
 }

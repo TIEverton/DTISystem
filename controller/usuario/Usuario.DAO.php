@@ -75,6 +75,29 @@
                 echo $erro->getMessage();
             }
         }
+        public function updateSenha($id, $senhaAtual, $novaSenha){
+            try{
+                $sql = "SELECT senha FROM usuarios WHERE senha = :senhaAtual AND id = :id";
+                $exec = DB::prepare($sql);
+                $exec->bindValue(':id', $id, PDO::PARAM_INT);
+                $exec->bindValue(':senhaAtual', $senhaAtual);
+                $exec->execute();
+                $users = $exec->fetchAll(PDO::FETCH_ASSOC);
+                if(count($users) > 0){
+                    $sql = "UPDATE $this->tabela SET senha = :novaSenha WHERE id = :id";
+                    $exec = DB::prepare($sql);
+                    $exec->bindValue(':id', $id, PDO::PARAM_INT);
+                    $exec->bindValue(':novaSenha', $novaSenha);
+                    echo "<script>alert('Senha atualizada com sucesso.');window.location ='../../view/professor/editarperfil.php';</script>";
+                    return $exec->execute();
+                }else{
+                    echo "<script>alert('Senha atual incorreta.');window.location ='../../view/professor/editarperfil.php';</script>";
+                }
+            }catch(PDOException $erro){
+                echo "Erro".$erro->getMessage();
+            }
+
+        }
         public function autenticar($email,$senha){
            try{
                 $sql = "SELECT * FROM $this->tabela 

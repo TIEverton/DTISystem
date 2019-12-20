@@ -4,7 +4,7 @@ if (!isset($_SESSION['logado'])) {
   header("location: index.php");
   session_destroy();
 }
-$id =  filter_input(INPUT_GET,'id', FILTER_SANITIZE_NUMBER_INT);
+$id =  $_SESSION['user_id'];
 include_once '../../config/config.php';
 
 ?>
@@ -28,13 +28,6 @@ include_once '../../config/config.php';
 <!-- INCLUDE MENU -->
 <?php 
   include 'menu.php'; 
-
-  $resultaQuery = "SELECT senha FROM usuarios where id= $id";
-
-  //selecionar os registros
-  $resulta = $conecta->prepare($resultaQuery);
-  $resulta->execute();
-  $resultaEditar = $resulta->fetch(PDO::FETCH_ASSOC);
 ?>
 <!-- FIM INCLUDE MENU -->
 
@@ -44,7 +37,7 @@ include_once '../../config/config.php';
   <div class="col-md-6">
     <div class="form-group" style="margin-top: 3%;">
     <input type="hidden" name="id" value="" />
-      <b>Senha antiga:</b>
+      <b>Senha atual:</b>
       <div class="input-group mb-3">
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>lock</i></span>
@@ -57,11 +50,8 @@ include_once '../../config/config.php';
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>lock</i></span>
             </div>
-            <input type="password" name="senha" class="form-control" placeholder="Digite uma nova senha." aria-label="Username" aria-describedby="basic-addon1" value="<?php if(isset($resultaEditar['senha'])) { echo $resultaEditar['senha']; } ?>">
+            <input type="password" name="novaSenha" class="form-control" placeholder="Digite uma nova senha." aria-label="Username" aria-describedby="basic-addon1" value="<?php if(isset($resultaEditar['senha'])) { echo $resultaEditar['senha']; } ?>">
       </div>
-
-
-
 
       <input type="hidden" name="acao" class="form-control" value="updateSenha">
       <input type="hidden" name="id" class="form-control" value="<?php echo $id?>"/>
