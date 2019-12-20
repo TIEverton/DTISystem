@@ -132,7 +132,7 @@
                         'agrupamento' => $dados['agrupamento'],
                         'campus' => $dados['campus'],
                         'descricao' => $dados['descricao'],
-                        'situacao' => $dados['situacao'] > 0 ? "Operando" : "Não operando",
+                        'situacao' => $dados['situacao'] > 0 ? "Ativo" : "Inativo",
                     );
                 }
                 return $result;
