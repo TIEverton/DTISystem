@@ -135,7 +135,9 @@ require_once '../../config/DB.php';
           ajax: 'true',
         }, function(j){
           $('.table_body').empty()
-          //$('.modals').empty()
+          if(!$('body').hasClass('modal-open')){
+            $('.modals').empty()
+          }
     
           for(var reserva in j){
             $('.table_body').append(`<tr class="reserva${reserva}"></tr>`)
