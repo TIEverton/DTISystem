@@ -141,7 +141,7 @@ require_once '../../config/DB.php';
             $(`.reserva${reserva}`).append(`<td>${j[reserva].responsavel}</td>`)
             $(`.reserva${reserva}`).append(`<td>${j[reserva].campus}</td>`)
             $(`.reserva${reserva}`).append(`<td>${j[reserva].sala}</td>`)
-            $(`.reserva${reserva}`).append(`<td>${j[reserva].equipamento} | N° ${j[reserva].numeracaoEqui}</td>`)
+            $(`.reserva${reserva}`).append(`<td>${j[reserva].equipamento} ${j[reserva].numeracaoEqui != null ? ' | N° ' + j[reserva].numeracaoEqui : ''}</td>`)
             $(`.reserva${reserva}`).append(`<td>${j[reserva].data}</td>`)
             $(`.reserva${reserva}`).append(`<td>${j[reserva].turno}</td>`)
             $(`.reserva${reserva}`).append(`<td>${j[reserva].horario}</td>`)

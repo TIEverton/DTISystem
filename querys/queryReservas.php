@@ -14,7 +14,7 @@
         AND reserva.`sala`= sala.`id` 
         AND reserva.`agrupamento` = agrupamento.`id`
         AND reserva.`responsavel` = usuarios.`id`
-        WHERE reserva.`data` = '2019/12/19'
+        WHERE reserva.`data` = '$dataSistema'
         AND reserva.`situacao` != 'Devolvido'
         AND reserva.`situacao` != 'Devolvido com problema'
         ORDER BY id DESC

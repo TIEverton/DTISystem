@@ -1,5 +1,5 @@
 <?php
-
+    session_start();
     require_once '../../model/reserva/Reserva.class.php';
 
     class reserva_DAO extends reserva_class{
@@ -39,8 +39,12 @@
                 $exec->bindParam(':turno',$turno);
                 $exec->bindParam(':horario',$horario);
                 $exec->bindParam(':observacao',$observacao);
-
-                echo "<script>alert('Reserva Cadastrada com sucesso');window.location ='../../view/views/cadastroReserva.php';</script>";
+                if ($_SESSION['nivel'] != 0) {
+                    echo "<script>window.location='../../view/professor/reservar.php'</script>";
+                }else{
+                    echo "<script>alert('Reserva Cadastrada com sucesso');window.location ='../../view/views/cadastroReserva.php';</script>";
+                }
+                
                 return $exec->execute();
               
             }catch(PDOException $erro){

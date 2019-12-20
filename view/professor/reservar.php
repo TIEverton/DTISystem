@@ -77,7 +77,7 @@ require_once '../../config/DB.php';
                         <option value="">Selecione uma Sala:</option>
                     </select>
                     <div class="invalid-feedback" style="margin-bottom: -15px;">
-                      É necessário informar um <b>campus.</b>
+                      É necessário informar uma <b>sala.</b>
                     </div>
                     </div>
                     

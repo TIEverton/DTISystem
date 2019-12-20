@@ -1,8 +1,12 @@
 <?php 
+session_start();
+if (!isset($_SESSION['logado'])) {
+  header("location: index.php");
+  session_destroy();
+}
+$id =  filter_input(INPUT_GET,'id', FILTER_SANITIZE_NUMBER_INT);
 include_once '../../config/config.php';
-include_once '../../controller/reserva/Reserva.DAO.php';
 
-include_once '../../config/sessions.php';
 ?>
 
 <!DOCTYPE html>
@@ -18,50 +22,58 @@ include_once '../../config/sessions.php';
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <title>DTI - Listar Reserva &copy;</title>
+    <title>DTI - Editar Perfil &copy;</title>
 </head>
 <body>
 <!-- INCLUDE MENU -->
 <?php 
   include 'menu.php'; 
+
+  $resultaQuery = "SELECT senha FROM usuarios where id= $id";
+
+  //selecionar os registros
+  $resulta = $conecta->prepare($resultaQuery);
+  $resulta->execute();
+  $resultaEditar = $resulta->fetch(PDO::FETCH_ASSOC);
 ?>
 <!-- FIM INCLUDE MENU -->
-<?php 
-$reser = new reserva_DAO;
-$resultado = $reser->ListarReservas();
-?>
 
 <div class="container">
-<table class="table table-striped custab text-center table-bordered">
-  <thead>
-      <tr class="text-center" style="background-color: #0052aa; color: white;">
-          <th>Responsável</th>
-          <th>Campus</th>
-          <th>Sala</th>
-          <th>Equipamento</th>
-          <th>Data</th>
-          <th>Turno</th>
-          <th>Horário</th>
-          <th>Observação</th>
-      </tr>
-  </thead>
-  <?php
-  foreach($resultado as $res){
-  ?>  
-          <tr>
-              <td><?php echo $res['responsavel'] ?></td>
-              <td><?php echo $res['campus'] ?></td>
-              <td><?php echo $res['sala']?></td>
-              <td><?php echo $res['equipamento']?> <?php echo $res['numeracaoEqui'] != null ? ' | N° '.$res['numeracaoEqui'] : ''?></td>
-              <td><?php echo $res['data']?></td>
-              <td><?php echo $res['turno']?></td>
-              <td><?php echo $res['horario']?></td>
-              <td><?php echo $res['observacao']?></td>
-          </tr>
-  <?php } ?>
-</table>
+<form method="POST" action="../../controller/usuario/Usuario.controller.php">
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="form-group" style="margin-top: 3%;">
+    <input type="hidden" name="id" value="" />
+      <b>Senha antiga:</b>
+      <div class="input-group mb-3">
+            <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>lock</i></span>
+            </div>
+            <input type="password" name="senhaAtual" class="form-control" placeholder="Digite sua senha antiga." aria-label="Username" aria-describedby="basic-addon1" value="<?php if(isset($resultaEditar['senha'])) { echo $resultaEditar['senha']; } ?>">
+      </div>
 
+      <b>Nova senha:</b>
+      <div class="input-group mb-3">
+            <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>lock</i></span>
+            </div>
+            <input type="password" name="senha" class="form-control" placeholder="Digite uma nova senha." aria-label="Username" aria-describedby="basic-addon1" value="<?php if(isset($resultaEditar['senha'])) { echo $resultaEditar['senha']; } ?>">
+      </div>
+
+
+
+
+      <input type="hidden" name="acao" class="form-control" value="updateSenha">
+      <input type="hidden" name="id" class="form-control" value="<?php echo $id?>"/>
+      <div class="botaoentrar" style="margin-top: 10px;">
+          <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button></a>
+          <button type="reset" class="btn btn-warning"><i class="fa fa-eraser" aria-hidden="true"></i> Limpar</button></a>
+      </div>
+    </div>
+  </div>
 </div>
+</div>
+</form>
 <!-- Modal -->
 <div class="modal fade" id="modalNotificacao" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
