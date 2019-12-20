@@ -2,7 +2,6 @@
     require_once '../config/DB.php';
     $campus = $_REQUEST['select_campus'];
     $user = $_REQUEST['user'];
-    $dataSistema = date("Y/m/d");
     if($campus == 0){
         $resultado = "SELECT reserva.*, campus.`nome` AS campusNome, agrupamento.`nome` AS equipamentoNome, reserva.equipamento AS numeracaoEqui,
         sala.`nome` AS salaNome, usuarios.`nome` AS responsavel FROM reserva 
@@ -15,8 +14,7 @@
         AND reserva.`sala`= sala.`id` 
         AND reserva.`agrupamento` = agrupamento.`id`
         AND reserva.`responsavel` = usuarios.`id`
-        WHERE reserva.`data` = '$dataSistema'
-        AND reserva.`situacao` != 'Devolvido'
+        WHERE reserva.`situacao` != 'Devolvido'
         AND reserva.`situacao` != 'Devolvido com problema'
         AND reserva.`responsavel` = '$user'
         ORDER BY id DESC
@@ -36,7 +34,6 @@
         AND reserva.`responsavel` = usuarios.`id`
         WHERE reserva.`campus` = '$campus'
         AND reserva.`responsavel` = '$user'
-        AND reserva.`data` = '$dataSistema'
         AND reserva.`situacao` != 'Devolvido'
         AND reserva.`situacao` != 'Devolvido com problema'
         ORDER BY id DESC

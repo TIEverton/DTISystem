@@ -2,7 +2,6 @@
 include_once '../../config/config.php';
 include_once '../../controller/reserva/Reserva.DAO.php';
 
-include_once '../../config/sessions.php';
 ?>
 
 <!DOCTYPE html>

@@ -1,8 +1,7 @@
 <?php 
-include_once '../../config/config.php';
+require_once '../../config/DB.php';
 include_once '../../controller/reserva/Reserva.DAO.php';
 
-include_once '../../config/sessions.php';
 ?>
 
 <!DOCTYPE html>
@@ -26,10 +25,6 @@ include_once '../../config/sessions.php';
   include 'menu.php'; 
 ?>
 <!-- FIM INCLUDE MENU -->
-<?php 
-$reser = new reserva_DAO;
-$resultado = $reser->ListarReservas();
-?>
 
 <div class="container">
 <table class="table table-striped custab text-center table-bordered">
@@ -45,20 +40,51 @@ $resultado = $reser->ListarReservas();
           <th>Observação</th>
       </tr>
   </thead>
+  
   <?php
-  foreach($resultado as $res){
+    $idUser = $_SESSION['user_id'];
+    $resultado = "SELECT reserva.*, campus.`nome` AS campus, agrupamento.`nome` AS equipamento, reserva.equipamento AS numeracaoEqui,
+    sala.`nome` AS sala, usuarios.`nome` AS responsavel FROM reserva 
+
+    INNER JOIN campus
+    INNER JOIN sala
+    INNER JOIN agrupamento
+    INNER JOIN usuarios
+    ON reserva.`campus`= campus.`id` 
+    AND reserva.`sala`= sala.`id`
+    AND reserva.`agrupamento` = agrupamento.`id`
+    AND reserva.`responsavel` = usuarios.`id`
+    WHERE reserva.`responsavel` = '$idUser'
+    ORDER BY id ASC
+    ";
+
+    $resultado = DB::prepare($resultado);
+    $resultado->execute();
+    if($resultado->rowCount()>0){
+      while($dados = $resultado->fetch(PDO::FETCH_ASSOC)){
+        $letrasHorario = array('A', 'B', 'C', 'D', 'E', 'F');
+        $horario = '';
+        for ($i=0; $i < strlen($dados['horario']); $i++) { 
+            $posicaoLetra = $dados['horario'][$i];
+            $horario = $horario.$letrasHorario[$posicaoLetra];
+        }
+        
+      ?>
+        <tr>
+          <td><?php echo $dados['responsavel'] ?></td>
+          <td><?php echo $dados['campus'] ?></td>
+          <td><?php echo $dados['sala']?></td>
+          <td><?php echo $dados['equipamento']?> <?php echo $dados['numeracaoEqui'] != null ? ' | N° '.$dados['numeracaoEqui'] : ''?></td>
+          <td><?php echo $dados['data']?></td>
+          <td><?php echo $dados['turno']?></td>
+          <td><?php echo $horario?></td>
+          <td><?php echo $dados['observacoes']?></td>
+        </tr>
+      <?php
+      }
+    }
   ?>  
-          <tr>
-              <td><?php echo $res['responsavel'] ?></td>
-              <td><?php echo $res['campus'] ?></td>
-              <td><?php echo $res['sala']?></td>
-              <td><?php echo $res['equipamento']?> <?php echo $res['numeracaoEqui'] != null ? ' | N° '.$res['numeracaoEqui'] : ''?></td>
-              <td><?php echo $res['data']?></td>
-              <td><?php echo $res['turno']?></td>
-              <td><?php echo $res['horario']?></td>
-              <td><?php echo $res['observacao']?></td>
-          </tr>
-  <?php } ?>
+          
 </table>
 
 </div>
