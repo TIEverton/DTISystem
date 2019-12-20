@@ -1,7 +1,12 @@
 <?php
     require_once '../config/DB.php';
     $agrupamento = $_REQUEST['agrupamento'];
-    $resultado = "SELECT * FROM equipamento WHERE agrupamento = '$agrupamento'";
+    $campus = $_REQUEST['campus'];
+
+    $resultado = "SELECT * FROM equipamento
+    WHERE agrupamento = '$agrupamento'
+    AND campus = '$campus'
+    AND situacao != 0";
 
     $resultado = DB::prepare($resultado);
     $resultado->execute();

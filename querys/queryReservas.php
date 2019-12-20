@@ -14,7 +14,7 @@
         AND reserva.`sala`= sala.`id` 
         AND reserva.`agrupamento` = agrupamento.`id`
         AND reserva.`responsavel` = usuarios.`id`
-        WHERE reserva.`data` = '$dataSistema'
+        WHERE reserva.`data` = '2019/12/19'
         AND reserva.`situacao` != 'Devolvido'
         AND reserva.`situacao` != 'Devolvido com problema'
         ORDER BY id DESC
@@ -55,8 +55,10 @@
             $result[] = array(
                 'id' => $dados['id'],
                 'campus' => $dados['campusNome'],
+                'idCampus' => $dados['campus'],
                 'sala' => $dados['salaNome'],
                 'equipamento' => $dados['equipamentoNome'],
+                'idAgrupamento' => $dados['agrupamento'],
                 'numeracaoEqui' => $dados['numeracaoEqui'],
                 'responsavel' => $dados['responsavel'],
                 'data' => date("d-m-y", strtotime($dados['data'])),

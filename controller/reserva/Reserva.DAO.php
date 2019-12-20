@@ -80,13 +80,14 @@
                 echo $erro->getMessage();
             }
         }
-        public function mudarSituacao($id, $funcao, $estado = "", $comentarioFunc = ""){
+        public function mudarSituacao($id, $funcao, $estado, $comentarioFunc, $numeracaoEquipamento){
             if($funcao == 'entregar'){
                 try{
-                    $sql = "UPDATE $this->tabela SET situacao = :situacao WHERE id = :id";
+                    $sql = "UPDATE $this->tabela SET situacao = :situacao, equipamento = :numeracaoEqui WHERE id = :id";
                     $exec = DB::prepare($sql);
                     $exec->bindValue(':id', $id, PDO::PARAM_INT);
                     $exec->bindValue(':situacao', 'Entregado');
+                    $exec->bindValue(':numeracaoEqui', $numeracaoEquipamento);
                     echo "<script>window.location ='../../view/views/home.php';</script>";
                     
                     return $exec->execute();
@@ -112,18 +113,16 @@
             echo $estado;
         }
         public function ListarReservas(){
-            $resultado = "SELECT reserva.*, campus.`nome` AS campus, agrupamento.`nome` AS equipamento, equipamento.`numeracao` AS numeracaoEqui,
+            $resultado = "SELECT reserva.*, campus.`nome` AS campus, agrupamento.`nome` AS equipamento, reserva.equipamento AS numeracaoEqui,
             sala.`nome` AS sala, usuarios.`nome` AS responsavel FROM reserva 
 
             INNER JOIN campus
             INNER JOIN sala
-            INNER JOIN equipamento
             INNER JOIN agrupamento
             INNER JOIN usuarios
             ON reserva.`campus`= campus.`id` 
-            AND reserva.`equipamento`= equipamento.`id` 
             AND reserva.`sala`= sala.`id`
-            AND equipamento.`agrupamento` = agrupamento.`id`
+            AND reserva.`agrupamento` = agrupamento.`id`
             AND reserva.`responsavel` = usuarios.`id`
             ORDER BY id ASC
             ";
@@ -160,18 +159,16 @@
 
         public function ListarReservasDevolvidasPorData($dataInicial, $dataFinal, $campus) {
             if($campus != 0){
-                $resultado = "SELECT reserva.*, campus.`nome` AS campus, agrupamento.`nome` AS equipamento, equipamento.`numeracao` AS numeracaoEqui,
+                $resultado = "SELECT reserva.*, campus.`nome` AS campus, agrupamento.`nome` AS equipamento, reserva.equipamento AS numeracaoEqui,
                 sala.`nome` AS sala, usuarios.`nome` AS responsavel FROM reserva 
 
                 INNER JOIN campus
                 INNER JOIN sala
-                INNER JOIN equipamento
                 INNER JOIN agrupamento
                 INNER JOIN usuarios
                 ON reserva.`campus`= campus.`id` 
-                AND reserva.`equipamento`= equipamento.`id` 
                 AND reserva.`sala`= sala.`id`
-                AND equipamento.`agrupamento` = agrupamento.`id`
+                AND reserva.`agrupamento` = agrupamento.`id`
                 AND reserva.`responsavel` = usuarios.`id`
                 WHERE (reserva.`data` BETWEEN :dataInicial AND :dataFinal)
                 AND reserva.`campus` = :campus 
@@ -184,18 +181,16 @@
                 $resultado->bindParam(':campus',$campus);
 
             }else{
-                $resultado = "SELECT reserva.*, campus.`nome` AS campus, agrupamento.`nome` AS equipamento, equipamento.`numeracao` AS numeracaoEqui,
+                $resultado = "SELECT reserva.*, campus.`nome` AS campus, agrupamento.`nome` AS equipamento, reserva.equipamento AS numeracaoEqui,
                 sala.`nome` AS sala, usuarios.`nome` AS responsavel FROM reserva 
 
                 INNER JOIN campus
                 INNER JOIN sala
-                INNER JOIN equipamento
                 INNER JOIN agrupamento
                 INNER JOIN usuarios
                 ON reserva.`campus`= campus.`id` 
-                AND reserva.`equipamento`= equipamento.`id` 
                 AND reserva.`sala`= sala.`id`
-                AND equipamento.`agrupamento` = agrupamento.`id`
+                AND reserva.`agrupamento` = agrupamento.`id`
                 AND reserva.`responsavel` = usuarios.`id`
                 WHERE (reserva.`data` BETWEEN :dataInicial AND :dataFinal)
                 ORDER BY id ASC

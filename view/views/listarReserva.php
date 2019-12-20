@@ -54,7 +54,7 @@ $resultado = $reser->ListarReservas();
               <td><?php echo $res['responsavel'] ?></td>
               <td><?php echo $res['campus'] ?></td>
               <td><?php echo $res['sala']?></td>
-              <td><?php echo $res['equipamento']?> | N° <?php echo $res['numeracaoEqui']?></td>
+              <td><?php echo $res['equipamento']?> <?php echo $res['numeracaoEqui'] != null ? ' | N° '.$res['numeracaoEqui'] : ''?></td>
               <td><?php echo $res['data']?></td>
               <td><?php echo $res['turno']?></td>
               <td><?php echo $res['horario']?></td>
@@ -62,7 +62,6 @@ $resultado = $reser->ListarReservas();
               <td><?php echo $res['situacao']?></td>
               <td>
                 <a class="btn btn-danger btn-sm" href="../../controller/reserva/Reserva.controller.php?acao=delete&id=<?php echo $res['id'] ?>" name="acao" title="Excluir"><i class="fa fa-times-circle" aria-hidden="true"></i></span> </a>
-                <a class="btn btn-primary btn-sm" href="editarReserva.php?id=<?php echo $res['id'] ?>" title="Atualizar"><i class="fa fa-refresh" aria-hidden="true"></i></i></span> </a>
               </td>
           </tr>
   <?php } ?>

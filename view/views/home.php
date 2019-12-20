@@ -133,12 +133,11 @@ require_once '../../config/DB.php';
         $.getJSON('../../querys/queryReservas.php?search=', {
           select_campus: $('#select_campus').val(),
           ajax: 'true',
-        }, function(j){
+        }, async function(j){
           $('.table_body').empty()
           //$('.modals').empty()
           
           for(var reserva in j){
-            alert(j[reserva])
             $('.table_body').append(`<tr class="reserva${reserva}"></tr>`)
             $(`.reserva${reserva}`).append(`<td>${j[reserva].responsavel}</td>`)
             $(`.reserva${reserva}`).append(`<td>${j[reserva].campus}</td>`)
@@ -186,6 +185,19 @@ require_once '../../config/DB.php';
                 </div>
               </div>
             </div>`)
+
+            await $.getJSON('../../querys/queryIdEquipamentos.php?search=', {
+              agrupamento: j[reserva].idAgrupamento,
+              campus: j[reserva].idCampus,
+              ajax: 'true',
+            }, function(k){
+              console.log(k)
+              $(`#select_equipamento${j[reserva].id}`).empty()
+              for(var i in k){
+                $(`#select_equipamento${j[reserva].id}`).append(`<option value="${k[i].numeracao}">${k[i].numeracao}</option>`)
+              }
+            })
+            
 
             //MODAL DEVOLVER
             $('.modals').append(`

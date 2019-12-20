@@ -12,16 +12,8 @@
         $ReservaClass->setId($_GET['id']);
     }
     if($acao == "mudarSituacao"){
-        switch($_SERVER['REQUEST_METHOD']){
-            case 'GET':
-                $id = $_GET['id']; 
-                $funcao = $_GET['funcao']; 
-                break;
-            case 'POST':
-                $id = $_POST['id'];
-                $funcao = $_POST['funcao']; 
-                break;
-        }
+        $id = $_POST['id'];
+        $funcao = $_POST['funcao'];     
     }
 
     if($acao != "delete" and $acao != "mudarSituacao"){
@@ -75,7 +67,7 @@ switch($acao){
     break;
     case 'mudarSituacao':
         try{
-            @$ReservaClass->mudarSituacao($id, $funcao, $_POST['select_estado'.$id], $_POST['comentarioFunc'.$id]);
+            @$ReservaClass->mudarSituacao($id, $funcao, $_POST['select_estado'.$id], $_POST['comentarioFunc'.$id], $_POST['select_equipamento'.$id]);
         }catch(Exception $e){
             echo $e->getMessage();
         }
