@@ -187,7 +187,7 @@ require_once '../../config/DB.php';
                     <div class="input-group-prepend">
                     <span class="input-group-text" ><i class='material-icons left'>insert_comment</i></span>
                     </div>
-                    <textarea id="observacao" class="form-control" id="exampleFormControlTextarea1" rows="1" name="observacao"></textarea>
+                    <textarea id="observacao" class="form-control" id="exampleFormControlTextarea1" rows="3" name="observacao"></textarea>
               </div>
               
               <input type="hidden" name="acao" class="form-control" value="inserir"/>
