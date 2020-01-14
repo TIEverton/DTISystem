@@ -32,7 +32,7 @@ require_once '../../config/DB.php';
 <div class="container" onload="validate()">
 <form method="POST" action="../../controller/reserva/Reserva.controller.php" class="needs-validation" novalidate>
 <div class="row justify-content-center">
-  <div class="col-8">
+  <div class="col">
     <div class="form-group" style="margin-top: 3%;">
         <center><h4 id="tituloCards">RESERVA DE EQUIPAMENTO</h4>
           <a href="" id="duvidasLink">Dúvidas sobre a reserva, clique aqui!</a>                      

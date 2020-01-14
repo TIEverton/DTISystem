@@ -42,7 +42,7 @@
                 if ($_SESSION['nivel'] != 0) {
                     echo "<script>window.location='../../view/professor/reservar.php'</script>";
                 }else{
-                    echo "<script>alert('Reserva Cadastrada com sucesso');window.location ='../../view/views/cadastroReserva.php';</script>";
+                    echo "<script>window.location ='../../view/views/cadastroReserva.php';</script>";
                 }
                 
                 return $exec->execute();
