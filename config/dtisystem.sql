@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 20-Dez-2019 às 00:33
--- Versão do servidor: 10.1.28-MariaDB
--- PHP Version: 7.1.10
+-- Tempo de geração: 20-Jan-2020 às 10:20
+-- Versão do servidor: 10.4.8-MariaDB
+-- versão do PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dtisystem`
+-- Banco de dados: `dtisystem`
 --
 
 -- --------------------------------------------------------
@@ -63,6 +63,26 @@ CREATE TABLE `campus` (
 INSERT INTO `campus` (`id`, `nome`, `cnpj`, `endereco`, `bairro`) VALUES
 (4, 'clinica escola', '1123', 'Rua B', 'Centro'),
 (5, 'sede', '123', 'Rua a', 'Centro');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `endereco`
+--
+
+CREATE TABLE `endereco` (
+  `idEndereco` int(11) NOT NULL,
+  `setor` varchar(100) NOT NULL,
+  `funcionario` int(100) NOT NULL,
+  `mac` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `endereco`
+--
+
+INSERT INTO `endereco` (`idEndereco`, `setor`, `funcionario`, `mac`) VALUES
+(5, 'DTI', 0, 'ttt');
 
 -- --------------------------------------------------------
 
@@ -116,8 +136,15 @@ CREATE TABLE `reserva` (
 --
 
 INSERT INTO `reserva` (`id`, `campus`, `sala`, `equipamento`, `agrupamento`, `responsavel`, `data`, `turno`, `horario`, `observacoes`, `situacao`, `comentario_funcionario`) VALUES
-(12, 4, 3, NULL, 1, 12, '2019-12-19', 'ManhÃ£', '01', '', 'NÃ£o entregado', ''),
-(13, 4, 3, NULL, 2, 12, '2019-12-19', 'ManhÃ£', '01', '', 'NÃ£o entregado', '');
+(14, 4, 3, 9898, 1, 13, '2019-12-19', 'Tarde', '012', '', 'Devolvido', ''),
+(15, 4, 8, NULL, 2, 13, '2019-12-20', 'Manhã', '0', '', 'Não entregado', ''),
+(16, 4, 3, NULL, 1, 13, '2019-12-20', 'Manhã', '012', '', 'Não entregado', ''),
+(17, 5, 4, NULL, 1, 12, '2019-12-20', 'Manhã', '01234', '', 'Não entregado', ''),
+(18, 4, 3, NULL, 2, 12, '2019-12-20', 'Tarde', '1', '', 'Não entregado', ''),
+(19, 4, 3, NULL, 2, 12, '2019-12-20', 'Noite', '123', '', 'Não entregado', ''),
+(20, 4, 3, NULL, 1, 13, '2019-12-20', 'Noite', '3', '', 'Não entregado', ''),
+(21, 4, 3, NULL, 2, 13, '2020-01-06', 'Manhã', '01234', '', 'Não entregado', ''),
+(22, 4, 8, 9898, 1, 12, '2020-01-06', 'Manhã', '0123', '', 'Devolvido com problema', 'Seu lixo  ');
 
 -- --------------------------------------------------------
 
@@ -163,21 +190,21 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nome`, `login`, `senha`, `email`, `cpf`, `nivel`) VALUES
-(12, 'Ãlisson', 'alisson1', '123', 'as119459@gmail.com', '12', 0),
+(12, 'Ãlisson', 'alisson1', '1234', 'as119459@gmail.com', '12', 1),
 (13, 'Everton', 'everton', '123', 'everton@gmail.com', '123', 0);
 
 --
--- Indexes for dumped tables
+-- Índices para tabelas despejadas
 --
 
 --
--- Indexes for table `agrupamento`
+-- Índices para tabela `agrupamento`
 --
 ALTER TABLE `agrupamento`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `campus`
+-- Índices para tabela `campus`
 --
 ALTER TABLE `campus`
   ADD PRIMARY KEY (`id`),
@@ -185,7 +212,13 @@ ALTER TABLE `campus`
   ADD UNIQUE KEY `id_2` (`id`);
 
 --
--- Indexes for table `equipamento`
+-- Índices para tabela `endereco`
+--
+ALTER TABLE `endereco`
+  ADD PRIMARY KEY (`idEndereco`);
+
+--
+-- Índices para tabela `equipamento`
 --
 ALTER TABLE `equipamento`
   ADD PRIMARY KEY (`id`),
@@ -193,7 +226,7 @@ ALTER TABLE `equipamento`
   ADD KEY `campus` (`campus`);
 
 --
--- Indexes for table `reserva`
+-- Índices para tabela `reserva`
 --
 ALTER TABLE `reserva`
   ADD PRIMARY KEY (`id`),
@@ -203,60 +236,66 @@ ALTER TABLE `reserva`
   ADD KEY `agrupamento` (`agrupamento`);
 
 --
--- Indexes for table `sala`
+-- Índices para tabela `sala`
 --
 ALTER TABLE `sala`
   ADD PRIMARY KEY (`id`),
   ADD KEY `campus` (`campus`);
 
 --
--- Indexes for table `usuarios`
+-- Índices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT for table `agrupamento`
+-- AUTO_INCREMENT de tabela `agrupamento`
 --
 ALTER TABLE `agrupamento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `campus`
+-- AUTO_INCREMENT de tabela `campus`
 --
 ALTER TABLE `campus`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `equipamento`
+-- AUTO_INCREMENT de tabela `endereco`
+--
+ALTER TABLE `endereco`
+  MODIFY `idEndereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de tabela `equipamento`
 --
 ALTER TABLE `equipamento`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `reserva`
+-- AUTO_INCREMENT de tabela `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT for table `sala`
+-- AUTO_INCREMENT de tabela `sala`
 --
 ALTER TABLE `sala`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `usuarios`
+-- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- Constraints for dumped tables
+-- Restrições para despejos de tabelas
 --
 
 --
