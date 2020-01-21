@@ -28,17 +28,26 @@
         }
         public function insert($nome,$login,$senha,$email,$cpf,$nivel,$acesso){
             try{
-                $sql = "INSERT INTO $this->tabela(nome, login, senha, email, cpf, nivel)
-             VALUES (:nome, :login, :senha, :email, :cpf, :nivel)";
-                $exec = DB::prepare($sql);
-                $exec->bindParam(':nome',$nome);
-                $exec->bindParam(':login',$login);
-                $exec->bindParam(':senha',$senha);
-                $exec->bindParam(':email',$email);
-                $exec->bindParam(':cpf',$cpf);
-                $exec->bindParam(':nivel',$nivel);
-                echo "<script>alert('Usuario cadastrado com sucesso!');window.location ='../../view/views/cadastrousuario.php';</script>";
-                return $exec->execute();
+                $resultado = "SELECT * FROM $this->tabela WHERE cpf = $cpf";
+                $resultado = DB::prepare($resultado);
+                $resultado->execute();
+                if ($resultado->rowCount()>0) {
+                    echo "<script>alert('CPF já cadastrado!');window.location ='../../view/views/cadastrousuario.php';</script>";
+                }else {
+                    $sql = "INSERT INTO $this->tabela(nome, login, senha, email, cpf, nivel)
+                    VALUES (:nome, :login, :senha, :email, :cpf, :nivel)";
+                    $exec = DB::prepare($sql);
+                    $exec->bindParam(':nome',$nome);
+                    $exec->bindParam(':login',$login);
+                    $exec->bindParam(':senha',$senha);
+                    $exec->bindParam(':email',$email);
+                    $exec->bindParam(':cpf',$cpf);
+                    $exec->bindParam(':nivel',$nivel);
+                    echo "<script>alert('Usuario cadastrado com sucesso!');window.location ='../../view/views/cadastrousuario.php';</script>";
+                    return $exec->execute();
+                }
+
+                
             }catch(PDOException $erro){
                 echo $erro->getMessage();
             }
