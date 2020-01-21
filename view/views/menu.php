@@ -42,7 +42,6 @@ if(!isset($_SESSION)){
                     <a class="dropdown-item" href="cadastrosala.php"><i class="fa fa-users" aria-hidden="true"></i> Sala</a>
                     <a class="dropdown-item" href="cadastroReserva.php"><i class="fa fa-inbox" aria-hidden="true"></i> Reserva</a>
                     <a class="dropdown-item" href="cadastroagrupamento.php"><i class="fa fa-inbox" aria-hidden="true"></i> Agrupamento</a>
-                    <a class="dropdown-item" href="cadastroEndereco.php"><i class="fa fa-inbox" aria-hidden="true"></i> MAC</a>
 
             </div>
             </li>
@@ -52,8 +51,7 @@ if(!isset($_SESSION)){
                   aria-haspopup="true" aria-expanded="false"><i class="fa fa-id-badge" aria-hidden="true"></i> Solicitações
                 </a>
         <div class="dropdown-menu dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-555">
-                <a class="dropdown-item" href="solicitardocumento.php"><i class="fa fa-address-card-o" aria-hidden="true"></i> Crachás/Carterinha</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-address-card" aria-hidden="true"></i> Suporte a Eventos</a>
+                <a class="dropdown-item" href="cadastroSuporte.php"><i class="fa fa-address-card" aria-hidden="true"></i> Suporte a Eventos</a>
         </div>
         </li> 
 
