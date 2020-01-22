@@ -19,7 +19,6 @@ require_once '../../config/DB.php';
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     <title>DTI - Cadastro Eventos &copy;</title>
     <script src="../../js/validacao.js"></script>
@@ -34,7 +33,7 @@ require_once '../../config/DB.php';
 ?>
 <!-- FIM INCLUDE MENU -->
 <div class="container">
-<form method="POST" action="../../controller/salas/Salas.controller.php" class="needs-validation" novalidate>
+<form method="POST" action="../../controller/suporte/Suporte.controller.php" class="needs-validation" novalidate>
 <div class="row justify-content-center">
   <div class="col-md-6">
     <div class="form-group" style="margin-top: 3%;">
@@ -44,16 +43,16 @@ require_once '../../config/DB.php';
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>text_fields</i></span>
             </div>
-            <input type="text" name="nome" class="form-control" placeholder="Digite o nome do evento." aria-label="Username" aria-describedby="basic-addon1" required>
+            <input type="text" name="nomeEvento" class="form-control" placeholder="Digite o nome do evento." aria-label="Username" aria-describedby="basic-addon1" required>
             <div class="invalid-feedback" style="margin-bottom: -15px;">
-              É necessário informar um <b>nome</b> para a <b>sala.</b>
+              É necessário informar um <b>nome</b> para o <b>evento.</b>
             </div>
       </div>
 
       <b>Campus:</b>
         <div class="input-group mb-3">
         <span class="input-group-text" ><i class='material-icons left'>location_city</i></span>
-        <select class="form-control custom-select" id="select_campus" name="select_campus" required>
+        <select class="form-control custom-select" id="select_campus" name="campusEvento" required>
             <option value="">Selecione um campus:</option>
             <?php
                 $result_campus = "SELECT * FROM campus";
@@ -75,7 +74,7 @@ require_once '../../config/DB.php';
       <b>Espaço Principal:</b>
         <div class="input-group mb-3">
             <span class="input-group-text" ><i class='material-icons left'>people</i></span>
-        <select class="form-control custom-select" name="select_salas" id="select_salas" required>
+        <select class="form-control custom-select" name="espacoEvento" id="select_salas" required>
             <option value="">Selecione uma Sala:</option>
         </select>
         <div class="invalid-feedback" style="margin-bottom: -15px;">
@@ -86,7 +85,7 @@ require_once '../../config/DB.php';
         <b>Data do evento:</b>
             <div class="input-group mb-3">
             <span class="input-group-text" ><i class='material-icons left'>schedule</i></span>
-            <input type="input" name="dataInicial" class="form-control telefone" placeholder="__/__/____ à __/__/____" aria-label="Username" aria-describedby="basic-addon1" required>
+            <input type="input" name="dataEvento" class="form-control telefone" placeholder="__/__/____ à __/__/____" aria-label="Username" aria-describedby="basic-addon1" required>
             <div class="invalid-feedback" style="margin-bottom: -15px;">
             É necessário informar um <b>horário inicial e final.</b>
             </div>
@@ -95,7 +94,7 @@ require_once '../../config/DB.php';
         <b>Turno:</b>
             <div class="input-group mb-3">
                 <span class="input-group-text" ><i class='material-icons left'>schedule</i></span>
-            <select class="form-control custom-select" name="select_turno" id="select_turno" required>
+            <select class="form-control custom-select" name="turnoEvento" id="select_turno" required>
                 <option value="">Selecione um turno:</option>  
                 <option>Manhã</option>
                 <option>Tarde</option>
@@ -112,7 +111,7 @@ require_once '../../config/DB.php';
                 <div class="input-group-prepend">
                 <span class="input-group-text" ><i class='material-icons left'>insert_comment</i></span>
             </div>
-            <textarea id="observacao" placeholder="Digite os equipamentos que você precisa no seu evento." class="form-control" id="exampleFormControlTextarea1" rows="3" name="observacao" required></textarea>
+            <textarea id="observacao" placeholder="Digite os equipamentos que você precisa no seu evento." class="form-control" id="exampleFormControlTextarea1" rows="3" name="obsEvento" required></textarea>
             <div class="invalid-feedback" style="margin-bottom: -15px;">
             É necessário informar uma <b>observação.</b>
             </div>

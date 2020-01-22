@@ -16,6 +16,10 @@ include_once '../../config/sessions.php';
     <link rel="stylesheet" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <title>DTI - Cadastro Usuário &copy;</title>
     <script src="../../js/validacao.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+    <script>$(document).ready(function(){
+     $('.cpf').mask("99999999999");
+    });</script>
 </head>
 <body>
 <!-- INCLUDE MENU -->
@@ -80,7 +84,7 @@ include_once '../../config/sessions.php';
             <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>call_to_action</i></span>
             </div>
-            <input type="text" name="cpf" class="form-control" placeholder="Digite seu CPF." aria-label="Username" aria-describedby="basic-addon1" required>
+            <input type="text" name="cpf" class="form-control cpf" placeholder="Digite seu CPF." aria-label="Username" aria-describedby="basic-addon1" required>
             <div class="invalid-feedback" style="margin-bottom: -15px;">
              É necessário informar um <b>CPF.</b>
             </div>
