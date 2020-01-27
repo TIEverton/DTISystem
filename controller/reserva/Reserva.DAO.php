@@ -4,7 +4,7 @@
 
     class reserva_DAO extends reserva_class{
         protected $tabela = 'reserva';
-        
+        protected $table_user = 'usuarios';
         public function findUnic($id){
             try{
                 $sql = "SELECT * FROM $this->tabela WHERE id = :id";
@@ -28,25 +28,31 @@
         }
         public function insert($idAgrupamento, $idSala, $idCampus, $idResponsavel, $data, $turno, $horario, $observacao){
             try{
-                $sql = "INSERT INTO $this->tabela(agrupamento, sala, campus, responsavel, data, turno, horario, observacoes, situacao)
-             VALUES (:idAgrupamento, :idSala, :idCampus, :idResponsavel, :data, :turno, :horario, :observacao, 'Não entregado')";
-                $exec = DB::prepare($sql);
-                $exec->bindParam(':idAgrupamento',$idAgrupamento);
-                $exec->bindParam(':idSala',$idSala, PDO::PARAM_INT);
-                $exec->bindParam(':idCampus',$idCampus);
-                $exec->bindParam(':idResponsavel',$idResponsavel);
-                $exec->bindParam(':data',$data);
-                $exec->bindParam(':turno',$turno);
-                $exec->bindParam(':horario',$horario);
-                $exec->bindParam(':observacao',$observacao);
-                if ($_SESSION['nivel'] != 0) {
-                    echo "<script>window.location='../../view/professor/reservar.php'</script>";
+                $resultado = "SELECT * FROM $this->table_user WHERE pendencia = 1 AND id = $idResponsavel";
+                $resultado = DB::prepare($resultado);
+                $resultado->execute();
+                if ($resultado->rowCount()>0) {
+                    echo "<script>alert('Existe uma pêndencia em seu nome, entre em contato conosco atráves do email ou dirija-se ao DTI!');window.location ='../../view/professor/home.php';</script>";
                 }else{
-                    echo "<script>window.location ='../../view/views/cadastroReserva.php';</script>";
+                    $sql = "INSERT INTO $this->tabela(agrupamento, sala, campus, responsavel, data, turno, horario, observacoes, situacao)
+                    VALUES (:idAgrupamento, :idSala, :idCampus, :idResponsavel, :data, :turno, :horario, :observacao, 'Não entregue')";
+                    $exec = DB::prepare($sql);
+                    $exec->bindParam(':idAgrupamento',$idAgrupamento);
+                    $exec->bindParam(':idSala',$idSala, PDO::PARAM_INT);
+                    $exec->bindParam(':idCampus',$idCampus);
+                    $exec->bindParam(':idResponsavel',$idResponsavel);
+                    $exec->bindParam(':data',$data);
+                    $exec->bindParam(':turno',$turno);
+                    $exec->bindParam(':horario',$horario);
+                    $exec->bindParam(':observacao',$observacao);
+                    if ($_SESSION['nivel'] != 0) {
+                        echo "<script>window.location='../../view/professor/reservar.php'</script>";
+                    }else{
+                        echo "<script>window.location ='../../view/views/cadastroReserva.php';</script>";
+                    }
+                    return $exec->execute();    
                 }
                 
-                return $exec->execute();
-              
             }catch(PDOException $erro){
                 echo $erro->getMessage();
             }
@@ -90,7 +96,7 @@
                     $sql = "UPDATE $this->tabela SET situacao = :situacao, equipamento = :numeracaoEqui WHERE id = :id";
                     $exec = DB::prepare($sql);
                     $exec->bindValue(':id', $id, PDO::PARAM_INT);
-                    $exec->bindValue(':situacao', 'Entregado');
+                    $exec->bindValue(':situacao', 'Entregue');
                     $exec->bindValue(':numeracaoEqui', $numeracaoEquipamento);
                     echo "<script>window.location ='../../view/views/home.php';</script>";
                     

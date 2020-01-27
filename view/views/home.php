@@ -151,7 +151,7 @@ require_once '../../config/DB.php';
             $(`.reserva${reserva}`).append(`<td>${j[reserva].observacao}</td>`)
             $(`.reserva${reserva}`).append(`<td>${j[reserva].situacao}</td>`)
 
-            $(`.reserva${reserva}`).append(`<td class="text-center"><a class="btn btn-primary btn-sm" data-toggle="modal" data-target="${j[reserva].situacao == 'Não entregado' ? '#modalEntregar' + j[reserva].id : j[reserva].situacao == ('Devolvido' || 'Devolvido com problema') ? '' : '#modalDevolver' + j[reserva].id }" href=""><i class="fa fa-check-square" aria-hidden="true"></i></span>${ j[reserva].situacao == 'Não entregado' ? ' Entregar' : j[reserva].situacao == ('Devolvido' || 'Devolvido com problema') ? ' Devolvido' : ' Devolver' }</a></td>`)
+            $(`.reserva${reserva}`).append(`<td class="text-center"><a class="btn btn-primary btn-sm" data-toggle="modal" data-target="${j[reserva].situacao == 'Não entregue' ? '#modalEntregar' + j[reserva].id : j[reserva].situacao == ('Devolvido' || 'Devolvido com problema') ? '' : '#modalDevolver' + j[reserva].id }" href=""><i class="fa fa-check-square" aria-hidden="true"></i></span>${ j[reserva].situacao == 'Não entregue' ? ' Entregar' : j[reserva].situacao == ('Devolvido' || 'Devolvido com problema') ? ' Devolvido' : ' Devolver' }</a></td>`)
             
             //MODAL ENTREGAR
             $('.modals').append(`

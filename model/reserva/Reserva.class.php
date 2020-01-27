@@ -3,6 +3,7 @@
     require_once '../../config/DB.php';
     class reserva_class{
         protected $tabela;
+        protected $table_user;
         private $id;
         private $campus;
         private $sala;
@@ -14,6 +15,7 @@
         private $horario;
         private $observacao;
         private $situacao;
+        private $pendencia;
 
 
         //set's
@@ -28,6 +30,7 @@
         public function setHorario($horario){$this->horario = $horario;}
         public function setObservacao($observacao){$this->observacao = $observacao;}
         public function setSituacao($situacao){$this->situacao = $situacao;}
+        public function setPendencia($pendencia){$this->pendencia = $pendencia;}
 
         //get's
         public function getId(){return $this->id;}
@@ -41,6 +44,7 @@
         public function getHorario(){return $this->horario;}
         public function getObservacao(){return $this->observacao;}
         public function getSituacao(){return $this->situacao;}
+        public function getPendencia(){return $this->pendencia;}
         
     }
 ?>
