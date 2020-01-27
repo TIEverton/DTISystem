@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 20-Jan-2020 às 10:20
--- Versão do servidor: 10.4.8-MariaDB
--- versão do PHP: 7.3.11
+-- Tempo de geração: 27-Jan-2020 às 15:15
+-- Versão do servidor: 10.4.11-MariaDB
+-- versão do PHP: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -82,7 +82,7 @@ CREATE TABLE `endereco` (
 --
 
 INSERT INTO `endereco` (`idEndereco`, `setor`, `funcionario`, `mac`) VALUES
-(5, 'DTI', 0, 'ttt');
+(6, 'DTI - Principal', 0, 'C8-9C-DC-46-7C-33');
 
 -- --------------------------------------------------------
 
@@ -108,7 +108,9 @@ INSERT INTO `equipamento` (`id`, `numeracao`, `agrupamento`, `campus`, `descrica
 (10, '3', 1, 5, '', 1),
 (12, '44', 2, 4, '', 1),
 (13, '9898', 1, 4, '', 1),
-(14, '1', 1, 5, '', 1);
+(14, '1', 1, 5, '', 1),
+(15, '123456789', 1, 4, 'Caixa de som Preta - média', 1),
+(16, '5', 1, 4, '', 1);
 
 -- --------------------------------------------------------
 
@@ -136,15 +138,10 @@ CREATE TABLE `reserva` (
 --
 
 INSERT INTO `reserva` (`id`, `campus`, `sala`, `equipamento`, `agrupamento`, `responsavel`, `data`, `turno`, `horario`, `observacoes`, `situacao`, `comentario_funcionario`) VALUES
-(14, 4, 3, 9898, 1, 13, '2019-12-19', 'Tarde', '012', '', 'Devolvido', ''),
-(15, 4, 8, NULL, 2, 13, '2019-12-20', 'Manhã', '0', '', 'Não entregado', ''),
-(16, 4, 3, NULL, 1, 13, '2019-12-20', 'Manhã', '012', '', 'Não entregado', ''),
-(17, 5, 4, NULL, 1, 12, '2019-12-20', 'Manhã', '01234', '', 'Não entregado', ''),
-(18, 4, 3, NULL, 2, 12, '2019-12-20', 'Tarde', '1', '', 'Não entregado', ''),
-(19, 4, 3, NULL, 2, 12, '2019-12-20', 'Noite', '123', '', 'Não entregado', ''),
-(20, 4, 3, NULL, 1, 13, '2019-12-20', 'Noite', '3', '', 'Não entregado', ''),
-(21, 4, 3, NULL, 2, 13, '2020-01-06', 'Manhã', '01234', '', 'Não entregado', ''),
-(22, 4, 8, 9898, 1, 12, '2020-01-06', 'Manhã', '0123', '', 'Devolvido com problema', 'Seu lixo  ');
+(25, 5, 9, NULL, 1, 12, '2020-01-27', 'Tarde', '01', '', 'Não entregue', ''),
+(26, 4, 8, NULL, 1, 12, '2020-01-27', 'Tarde', '01', '', 'Não entregue', ''),
+(27, 4, 3, 44, 2, 12, '2020-01-27', 'Manhã', '01', '', 'Entregue', ''),
+(28, 4, 8, NULL, 2, 12, '2020-01-27', 'Noite', '012', '', 'Devolvido', '');
 
 -- --------------------------------------------------------
 
@@ -167,7 +164,26 @@ INSERT INTO `sala` (`id`, `nome`, `campus`, `situacao`) VALUES
 (2, 'sala1', 5, 0),
 (3, 'sala2', 4, 1),
 (4, 'sala1', 5, 1),
-(8, 'Sala4', 4, 1);
+(8, 'Sala4', 4, 1),
+(9, 'SALA 1 - ANEXO', 5, 1),
+(10, 'SALA 2 - ANEXO', 5, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `suporte`
+--
+
+CREATE TABLE `suporte` (
+  `idSuporte` int(11) NOT NULL,
+  `nomeEvento` varchar(100) NOT NULL,
+  `campusEvento` varchar(100) NOT NULL,
+  `espacoPrincipal` varchar(100) NOT NULL,
+  `dataEvento` varchar(20) NOT NULL,
+  `turnoEvento` varchar(20) NOT NULL,
+  `obsEvento` varchar(300) NOT NULL,
+  `situacao` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -182,6 +198,7 @@ CREATE TABLE `usuarios` (
   `senha` varchar(200) NOT NULL,
   `email` varchar(200) NOT NULL,
   `cpf` varchar(20) NOT NULL,
+  `pendencia` tinyint(1) NOT NULL,
   `nivel` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -189,9 +206,10 @@ CREATE TABLE `usuarios` (
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nome`, `login`, `senha`, `email`, `cpf`, `nivel`) VALUES
-(12, 'Ãlisson', 'alisson1', '1234', 'as119459@gmail.com', '12', 1),
-(13, 'Everton', 'everton', '123', 'everton@gmail.com', '123', 0);
+INSERT INTO `usuarios` (`id`, `nome`, `login`, `senha`, `email`, `cpf`, `pendencia`, `nivel`) VALUES
+(12, 'Álisson', 'alisson1', '1234', 'professor@gmail.com', '12', 0, 1),
+(13, 'Everton', 'everton', '123', 'everton@gmail.com', '123', 1, 0),
+(15, 'JOSE DIENER FEITOSA MARQUES SEGUNDO', 'dienersegundo', '123', 'josediener@fvs.edu.br', '03551168474', 1, 1);
 
 --
 -- Índices para tabelas despejadas
@@ -243,6 +261,12 @@ ALTER TABLE `sala`
   ADD KEY `campus` (`campus`);
 
 --
+-- Índices para tabela `suporte`
+--
+ALTER TABLE `suporte`
+  ADD PRIMARY KEY (`idSuporte`);
+
+--
 -- Índices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -268,31 +292,37 @@ ALTER TABLE `campus`
 -- AUTO_INCREMENT de tabela `endereco`
 --
 ALTER TABLE `endereco`
-  MODIFY `idEndereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idEndereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `equipamento`
 --
 ALTER TABLE `equipamento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de tabela `sala`
 --
 ALTER TABLE `sala`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de tabela `suporte`
+--
+ALTER TABLE `suporte`
+  MODIFY `idSuporte` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Restrições para despejos de tabelas
