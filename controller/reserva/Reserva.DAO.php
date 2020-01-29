@@ -28,7 +28,7 @@
         }
         public function insert($idAgrupamento, $idSala, $idCampus, $idResponsavel, $data, $turno, $horario, $observacao){
             try{
-                $resultado = "SELECT * FROM $this->table_user WHERE pendencia = 1 AND id = $idResponsavel";
+                $resultado = "SELECT * FROM $this->tabela WHERE pendencia = '1' AND responsavel = $idResponsavel";
                 $resultado = DB::prepare($resultado);
                 $resultado->execute();
                 if ($resultado->rowCount()>0) {
