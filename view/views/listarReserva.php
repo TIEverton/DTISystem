@@ -18,6 +18,7 @@ include_once '../../controller/reserva/Reserva.DAO.php';
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <title>DTI - Listar Reserva &copy;</title>
+    <script src="../../js/filtrotabela.js"></script>
 </head>
 <body>
 <!-- INCLUDE MENU -->
@@ -31,7 +32,16 @@ $resultado = $reser->ListarReservas();
 ?>
 
 <div class="container">
-<table class="table table-striped custab text-center table-bordered">
+<br>
+<center><h4 id="tituloCards">LISTA DE RESERVAS</h4>
+<a href="" id="duvidasLink">Dúvidas sobre a reserva, clique aqui!</a>                      
+<div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class='material-icons left'>search</i></span>
+          </div>
+          <input type="text" id="inputPesquisa" onkeyup="filtrarTable()" class="form-control w-25" style="margin-right: 10px;" name="endereco" placeholder="Consulte um item da tabela" aria-label="Username" aria-describedby="basic-addon1" value="<?php if(isset($resultaEditar['endereco'])) { echo $resultaEditar['endereco']; } ?>">
+</div>
+<table id="pesquisaTable" class="table table-striped custab text-center table-bordered" style="margin: 0px;">
   <thead>
       <tr class="text-center" style="background-color: #0052aa; color: white;">
           <th>Responsável</th>
@@ -61,6 +71,7 @@ $resultado = $reser->ListarReservas();
               <td><?php echo $res['situacao']?></td>
               <td>
                 <a class="btn btn-danger btn-sm" href="../../controller/reserva/Reserva.controller.php?acao=delete&id=<?php echo $res['id'] ?>" name="acao" title="Excluir"><i class="fa fa-times-circle" aria-hidden="true"></i></span> </a>
+                <a class="btn btn-primary btn-sm" href="../../controller/reserva/retirarSituacao.php?id=<?php echo $res['id'] ?>" title="Retirar Pendência"><i class="fa fa-history" aria-hidden="true"></i></span> </a>
               </td>
           </tr>
   <?php } ?>
