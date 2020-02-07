@@ -28,6 +28,7 @@
         public function getCampusEvento(){return $this->campusEvento;}
         public function getEspacoPrincipal(){return $this->espacoPrincipal;}
         public function getDataEvento(){return $this->dataEvento;}
+        public function getTurnoEvento(){return $this->turnoEvento;}
         public function getObsEvento(){return $this->obsEvento;}
         public function getSituacao(){return $this->situacao;}
         

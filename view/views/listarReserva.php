@@ -53,7 +53,7 @@ $resultado = $reser->ListarReservas();
           <th>Horário</th>
           <th>Observação</th>
           <th>Situação</th>
-          <th class="text-center">Ação</th>
+          <th>Ação</th>
       </tr>
   </thead>
   <?php

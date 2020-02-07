@@ -74,7 +74,7 @@ require_once '../../config/DB.php';
       <b>Espaço Principal:</b>
         <div class="input-group mb-3">
             <span class="input-group-text" ><i class='material-icons left'>people</i></span>
-        <select class="form-control custom-select" name="espacoEvento" id="select_salas" required>
+        <select class="form-control custom-select" name="espacoPrincipal" id="select_salas" required>
             <option value="">Selecione uma Sala:</option>
         </select>
         <div class="invalid-feedback" style="margin-bottom: -15px;">
@@ -118,11 +118,11 @@ require_once '../../config/DB.php';
         </div>
   
 
-      <input type="hidden" name="acao" class="form-control" value="inserir"/>
+      <input type="hidden" name="acao" class="form-control" value="inserir">
       <div class="botaoentrar" style="margin-top: 10px;">
          <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar</button>
           <button type="reset" class="btn btn-warning"><i class="fa fa-eraser" aria-hidden="true"></i> Limpar</button>
-          <a href="listarsala.php"><button type="button" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</button></a>
+          <a href="listarSuporte.php"><button type="button" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</button></a>
       </div>
     </div>
   </div>
